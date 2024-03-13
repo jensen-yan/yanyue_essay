@@ -67,7 +67,7 @@
 \intobmk*{\cleardoublepage}{\listtablename}% add link to bookmark
 \listoftables% table catalog
 }
-\input{Tex/Prematter}% symbol list, preface content
+% \input{Tex/Prematter}% symbol list, preface content
 %-
 %-> Mainmatter
 %-
@@ -76,16 +76,16 @@
 %-
 %-> Appendix
 %-
-\cleardoublepage%
-\appendix% initialize the environment
-\input{Tex/Appendix}% appendix content
+% \cleardoublepage%
+% \appendix% initialize the environment
+% \input{Tex/Appendix}% appendix content
 %-
 %-> Backmatter: bibliography, glossary, index
 %-
 \backmatter% initialize the environment
 \intotoc*{\cleardoublepage}{\bibname}% add link to toc
 \artxifstreq{\artxbib}{bibtex}{% enable bibtex
-    \bibliography{Biblio/ref}% bibliography
+    \bibliography{Biblio/essay.bib}% bibliography
 }{%
     \printbibliography% bibliography
 }
