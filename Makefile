@@ -13,7 +13,7 @@ out/Thesis.pdf: \
 	bibtex out/Thesis.aux
 	xelatex -output-directory=out $<
 	xelatex -output-directory=out $<
-	xdg-open $@
+	# xdg-open $@
 
 %.svg: %.drawio
 	drawio -x -f svg $<
