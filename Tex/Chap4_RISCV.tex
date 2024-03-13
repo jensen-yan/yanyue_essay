@@ -1,0 +1,120 @@
+\chapter{RISCV指令支持}\label{chap:RISCV}
+
+设计一套高效完备的融合微码“指令集”是一个长期的工程，这不是本文研究重点。
+为了快速验证微译器的实际效果，同时减少“指令集设计”产生的额外性能影响，
+因此目前我们的融合微码是基于在原本的Gem5 X86微码上扩充的，并谨慎的添加了部分RISCV指令，
+如图\ref{img:TISA}，由于X86指令默认符号扩展，而RISCV指令同时支持符号扩展和零扩展，
+为了尽可能实现一条RISCV指令翻译成一条融合微码指令，所以需要添加适当的“零扩展”微码指令。
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\linewidth]{./image/TISA.pdf}
+  \caption{指令翻译到融合微码过程，X86 add 和RISCV add 指令都翻译成融合微码add指令，
+  而lbu（加载字节并无符合扩展）指令，需要额外添加lbu 微码指令。}
+  \label{img:TISA}
+\end{figure}
+
+\section{RISCV指令翻译}
+
+目前已经完成所有的RISCV指令（包括IMAFDC指令集）到融合微码的翻译。
+
+\begin{itemize}
+  \item 整数指令（I）： 主要包括运算指令、逻辑指令、跳转指令、访存指令等。大部分复用X86微码，访存指令等需要额外添加新的微码。
+
+  \item 乘除法指令（M）：主要包括乘法、除法、取余等指令。大部分复用X86微码。
+
+  \item 原子指令（A）：包括原子加法、原子比较等指令。由于目前尚未实现多线程支持，
+  原子加法指令被翻译为一条普通load+加法指令+一条store指令。
+
+  \item 浮点指令（F，D）：包括单精度浮点F 和双精度浮点D指令。大部分复用X86微码，出于简洁考虑，对于特殊的舍入模式暂未考虑和X86的差异。
+
+  \item 压缩指令（C）：为了压缩指令长度，把常用的4字节指令替换为2字节长度的压缩指令。尽可能把翻译得到的微码也编码为2字节。
+
+\end{itemize}
+
+累积统计数目如下：原本X86指令共有数千条，X86微码也有500余条。
+为了添加272条RISCV指令，我们并没有简单添加272条微码指令，
+而只是添加了41条整数相关指令，10条浮点相关指令，累计添加51条微码指令。
+
+\section{处理ABI差异}
+%介绍什么是ABI, 从而引出RISCV和X86的ABI差异。而我们的项目需要把RISCV的ABI转换成X86的ABI。
+ABI全称为Aplication Binary Interface，是程序和硬件的统一接口，不同指令集的ABI也是不同的，
+在二进制翻译系统中需要维护这种差异性，保证程序运行的正确性。
+ABI包括内容比较多，其中主要的包括系统调用传参、初始化栈等问题，本节介绍微译器项目是如何处理ABI差异的。
+
+
+\subsection{系统调用差异}
+
+如表\ref{tab:syscall}所示，X86和RISCV的系统调用号和参数传递方式的差异。
+X86的系统调用号存储在rax寄存器中，返回值也存储在rax寄存器中，参数传递方式为rdi, rsi, rdx, r10, r8, r9。
+而RISCV的系统调用号存储在a7寄存器中，返回值存储在a0寄存器中，参数传递方式为a0, a1, a2, a3, a4, a5。
+因此我们需要在RISCV的二进制翻译器中，将RISCV的系统调用号和参数传递方式转换成X86的系统调用号和参数传递方式。
+
+参数传递的差异可以通过把X86的参数寄存器和RISCV的参数寄存器映射到相同的微码寄存器即可，如表\ref{tab:reg_map}所示，
+所有的黄色寄存器就是6个参数传递寄存器。系统调用号差异同理也可解决。
+
+
+\begin{table}[]
+  \centering
+  \caption{
+    X86和RISCV的系统调用号和参数传递方式的差异。
+  }
+  \label{tab:syscall}
+  \begin{tabular}{llllllllll}
+  \rowcolor[HTML]{FFCC67} 
+  \cellcolor[HTML]{FBE5D6}指令集 & \cellcolor[HTML]{FBE5D6}系统调用号 & \cellcolor[HTML]{FBE5D6}返回值 & 参数1 & 参数2 & 参数3 & 参数4 & 参数5 & 参数6 & 其他参数 \\
+  X86                         & rax                           & rax                         & rdi & rsi & rdx & r10 & r8  & r9  & 栈传递  \\
+  RISCV                       & a7                            & a0                          & a0  & a1  & a2  & a3  & a4  & a5  & 栈传递 
+  \end{tabular}
+  \end{table}
+
+
+\subsection{寄存器映射表}
+
+寄存器映射一直是二进制翻译中一个重要的研究课题。
+如表\ref{tab:reg_map}所示，展示了X86和RISCV映射到微码的的寄存器映射表。
+对于X86寄存器映射到微码寄存器较为容易，因为X86只有16个通用整数寄存器，而微码我们定义了32个通用寄存器，
+所以只需要把X86寄存器固定映射到前16个通用寄存器即可，还可以把一些常用的寄存器
+（例如AH，BH等子寄存器和段寄存器）映射到后面的寄存器中，还可用一些寄存器作为临时寄存器供二进制翻译器使用。
+
+但是对于RISCV映射到微码方案，由于RISCV本身就有32个通用寄存器，固定映射到32个微码寄存器后，
+就没有额外的临时寄存器供二进制翻译器使用了。对于微译器项目，得益于软硬件协同设计的基本原则，
+我们额外添加了两个微码寄存器作为临时寄存器，
+这两个寄存器只对二进制翻译器可见，不对RISCV应用程序可见，类似于X86“段寄存器”，属于特殊寄存器。
+
+
+
+\begin{table}[]
+  \centering
+  \caption{
+    X86和RISCV的寄存器映射表。
+  }
+  \label{tab:reg_map}
+  \begin{tabular}{|
+    >{\columncolor[HTML]{FFCCC9}}l |l|l|
+    >{\columncolor[HTML]{FFCCC9}}l |
+    >{\columncolor[HTML]{FFFFFF}}l |
+    >{\columncolor[HTML]{FFFFFF}}l |
+    >{\columncolor[HTML]{FFCCC9}}l |
+    >{\columncolor[HTML]{FFFFFF}}l |
+    >{\columncolor[HTML]{FFFFFF}}l |
+    >{\columncolor[HTML]{FFCCC9}}l |
+    >{\columncolor[HTML]{FFFFFF}}l |
+    >{\columncolor[HTML]{FFFFFF}}l |}
+    \hline
+    \cellcolor[HTML]{FBE5D6}微码 & \cellcolor[HTML]{FBE5D6}X86 & \cellcolor[HTML]{FBE5D6}RISCV & \cellcolor[HTML]{FBE5D6}微码 & \cellcolor[HTML]{FBE5D6}X86 & \cellcolor[HTML]{FBE5D6}RISCV & \cellcolor[HTML]{FBE5D6}微码 & \cellcolor[HTML]{FBE5D6}X86 & \cellcolor[HTML]{FBE5D6}RISCV & \cellcolor[HTML]{FBE5D6}微码 & \cellcolor[HTML]{FBE5D6}X86 & \cellcolor[HTML]{FBE5D6}RISCV \\ \hline
+    0                          & \cellcolor[HTML]{FFFC9E}RAX & \cellcolor[HTML]{FFFC9E}A7    & 8                          & \cellcolor[HTML]{FFFC9E}R8  & \cellcolor[HTML]{FFFC9E}A4    & 16                         & T0                          & Zero                          & 24                         & CH                          & S8                            \\ \hline
+    1                          & \cellcolor[HTML]{FFFFFF}RCX & \cellcolor[HTML]{FFFFFF}TP    & 9                          & \cellcolor[HTML]{FFFC9E}R9  & \cellcolor[HTML]{FFFC9E}A5    & 17                         & T1                          & RA                            & 25                         & DH                          & S9                            \\ \hline
+    2                          & \cellcolor[HTML]{FFFC9E}RDX & \cellcolor[HTML]{FFFC9E}A2    & 10                         & \cellcolor[HTML]{FFFC9E}R10 & \cellcolor[HTML]{FFFC9E}A3    & 18                         & T2                          & S2                            & 26                         & ES                          & S10                           \\ \hline
+    3                          & \cellcolor[HTML]{FFFFFF}RBX & \cellcolor[HTML]{FFFFFF}GP    & 11                         & R11                         & A6                            & 19                         & T3                          & S3                            & 27                         & CS                          & S11                           \\ \hline
+    4                          & \cellcolor[HTML]{FFFFFF}RSP & \cellcolor[HTML]{FFFFFF}SP    & 12                         & R12                         & T1                            & 20                         & T4                          & S4                            & 28                         & SS                          & T3                            \\ \hline
+    5                          & \cellcolor[HTML]{FFFFFF}RBP & \cellcolor[HTML]{FFFFFF}T0    & 13                         & R13                         & T2                            & 21                         & T5                          & S5                            & 29                         & DS                          & T4                            \\ \hline
+    6                          & \cellcolor[HTML]{FFFC9E}RSI & \cellcolor[HTML]{FFFC9E}A1    & 14                         & R14                         & S0                            & 22                         & AH                          & S6                            & 30                         & FS                          & T5                            \\ \hline
+    7                          & \cellcolor[HTML]{FFFC9E}RDI & \cellcolor[HTML]{FFFC9E}A0    & 15                         & R15                         & S1                            & 23                         & BH                          & S7                            & 31                         & GS                          & T6                            \\ \hline
+    \end{tabular}
+    \end{table}
+
+% \subsection{栈的初始化}
+% 由于我们目前关注于用户态二进制翻译器，不太涉及系统态指令的翻译和处理操作系统等概念，
+% 但是当加载运行不同指令集的程序时，在libc库眼中，操作系统已经准备好了这个程序的初始化栈等信息，例如argc，argv参数、
+% 环境变量指针等，对于X86和RISCV程序，这个初始化栈是不同的，需要不同的处理
