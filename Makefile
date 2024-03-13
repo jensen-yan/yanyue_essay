@@ -3,7 +3,7 @@
 all: out/Thesis.pdf
 
 out/Thesis.pdf: \
-		Thesis.tex Tex/* Biblio/* Style/* Img/* kaiti.bib Biblio/ref.bib \
+		Thesis.tex Tex/* Biblio/* Style/* Img/* \
 		$(patsubst %.drawio, %.pdf, $(wildcard image/*.drawio)) \
 		$(patsubst %_plot.py, %.pdf, $(wildcard plot/*_plot.py)) \
 		$(patsubst %.mkd, %-crop.pdf, $(wildcard snippets/*.mkd)) \
