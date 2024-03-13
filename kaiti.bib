@@ -1,0 +1,872 @@
+@inproceedings{adamsComparisonSoftwareHardware2006,
+  title = {A Comparison of Software and Hardware Techniques for X86 Virtualization},
+  booktitle = {Proceedings of the 12th International Conference on {{Architectural}} Support for Programming Languages and Operating Systems},
+  author = {Adams, Keith and Agesen, Ole},
+  year = {2006},
+  month = oct,
+  pages = {2--13},
+  publisher = {{ACM}},
+  address = {{San Jose California USA}},
+  doi = {10.1145/1168857.1168860},
+  url = {https://dl.acm.org/doi/10.1145/1168857.1168860},
+  urldate = {2023-12-07},
+  abstract = {Until recently, the x86 architecture has not permitted classical trap-and-emulate virtualization. Virtual Machine Monitors for x86, such as VMware {\textregistered} Workstation and Virtual PC, have instead used binary translation of the guest kernel code. However, both Intel and AMD have now introduced architectural extensions to support classical virtualization.We compare an existing software VMM with a new VMM designed for the emerging hardware support. Surprisingly, the hardware VMM often suffers lower performance than the pure software VMM. To determine why, we study architecture-level events such as page table updates, context switches and I/O, and find their costs vastly different among native, software VMM and hardware VMM execution.We find that the hardware support fails to provide an unambiguous performance advantage for two primary reasons: first, it offers no support for MMU virtualization; second, it fails to co-exist with existing software techniques for MMU virtualization. We look ahead to emerging techniques for addressing this MMU virtualization problem in the context of hardware-assisted virtualization.},
+  isbn = {978-1-59593-451-2},
+  langid = {english}
+}
+
+@article{akramValidationGem5Simulator2019,
+  title = {Validation of the Gem5 {{Simulator}} for X86 {{Architectures}}},
+  author = {Akram, Ayaz and Sawalha, Lina},
+  year = {2019},
+  month = nov,
+  journal = {2019 IEEE/ACM Performance Modeling, Benchmarking and Simulation of High Performance Computer Systems (PMBS)},
+  pages = {53--58},
+  publisher = {{IEEE}},
+  address = {{Denver, CO, USA}},
+  doi = {10.1109/PMBS49563.2019.00012},
+  url = {https://ieeexplore.ieee.org/document/9059267/},
+  urldate = {2023-12-06},
+  abstract = {gem5 has been extensively used in computer architecture simulations and in the evaluation of new architectures for HPC (high performance computing) systems. Previous work has validated gem5 against ARM platforms. However, gem5 still shows high inaccuracy when modeling Intel's x86 based processors. In this work, we focus on the simulation of a single node high performance system and study the sources of inaccuracies of gem5. Then we validate gem5 simulator against an Intel processor, Core-i7 (Haswell microarchitecture). We configured gem5 as close as possible to match Core-i7 Haswell microarchitecture configurations and made changes to the simulator to add some features, modified existing code, and tuned built-in configurations. As a result, we validated the simulator by fixing many sources of errors to match real hardware results with less than 6\% mean error rate for different control, memory, dependency and execution microbenchmarks.},
+  isbn = {9781728159775}
+}
+
+@article{altmanAdvancesFutureChallenges2001,
+  title = {Advances and Future Challenges in Binary Translation and Optimization},
+  author = {{Erik R. Altman} and {Kemal Ebcioglu} and {Michael Gschwind} and {Sumedh Sathaye}},
+  year = {2001},
+  month = nov,
+  journal = {Proceedings of the IEEE},
+  volume = {89},
+  number = {11},
+  pages = {1710--1722},
+  issn = {00189219},
+  doi = {10.1109/5.964447},
+  abstract = {Binary translation and optimization have achieved a high profile in recent years. Binary translation has several potential attractions. While still in its early stages, could binary translation offer a new way to design processors, i.e. is it a disruptive technology? This paper discusses this question, examines some future possibilities for binary translation, and then gives an overview of selected projects (DAISY, Crusoe, Dynamo and LaTTe). One future possibility for binary translation is the Virtual IT Shop. Binary translation offers a possible solution for better utilization of computational resources as services over the World Wide Web. The Internet is radically changing the software landscape, and is fostering platform independence and interoperability. Along the lines of software convergence, recent advances in binary JIT (just-in-time) optimizations also present the future possibility of a convergence virtual machine (CVM). CVM aims to address research challenges in allowing the same standard operating system and application object code to run on different hardware platforms, through state-of-the-art JIT compilation and virtual device emulation.}
+}
+
+@article{altmanWelcomeOpportunitiesBinary2000,
+  title = {Welcome to the Opportunities of Binary Translation},
+  author = {{Erik R. Altman} and {David Kaeli} and {Yaron Sheffer}},
+  year = {2000},
+  month = mar,
+  journal = {Computer},
+  volume = {33},
+  number = {3},
+  pages = {40--45},
+  issn = {00189162},
+  doi = {10.1109/2.825694},
+  abstract = {A new processor architecture poses significant financial risk to hardware and software developers alike, so both have a vested interest in easily porting code from one processor to another. Binary translation offers solutions for automatically converting executable code to run on new architectures without recompiling the source code.}
+}
+
+@book{ARMCoreSight,
+  title = {{{ARM}}{\textregistered} {{CoreSight}}{\texttrademark} {{Architecture Specification}}},
+  author = {{ARM}},
+  year = {2013},
+  edition = {v2.0},
+  abstract = {The CoreSight architecture provides a system-wide solution to real-time debug and trace.}
+}
+
+@inproceedings{balaDynamoTransparentDynamic2011,
+  title = {Dynamo: A Transparent Dynamic Optimization System},
+  shorttitle = {Dynamo},
+  booktitle = {{{ACM SIGPLAN Notices}}},
+  author = {Bala, Vasanth and Duesterwald, Evelyn and Banerjia, Sanjeev},
+  year = {2011},
+  month = may,
+  volume = {46},
+  pages = {41--52},
+  issn = {0362-1340, 1558-1160},
+  doi = {10.1145/1988042.1988044},
+  url = {https://dl.acm.org/doi/10.1145/1988042.1988044},
+  urldate = {2023-12-07},
+  abstract = {We describe the design and implementation of Dynamo, a software dynamic optimization system that is capable of transparently improving the performance of a native instruction stream as it executes on the processor. The input native instruction stream to Dynamo can be dynamically generated (by a JIT for example), or it can come from the execution of a statically compiled native binary. This paper evaluates the Dynamo system in the latter, more challenging situation, in order to emphasize the limits, rather than the potential, of the system. Our experiments demonstrate that even statically optimized native binaries can be accelerated Dynamo, and often by a significant degree. For example, the average performance of --O optimized SpecInt95 benchmark binaries created by the HP product C compiler is improved to a level comparable to their --O4 optimized version running without Dynamo. Dynamo achieves this by focusing its efforts on optimization opportunities that tend to manifest only at runtime, and hence opportunities that might be difficult for a static compiler to exploit. Dynamo's operation is transparent in the sense that it does not depend on any user annotations or binary instrumentation, and does not require multiple runs, or any special compiler, operating system or hardware support. The Dynamo prototype presented here is a realistic implementation running on an HP PA-8000 workstation under the HPUX 10.20 operating system.},
+  langid = {english}
+}
+
+@inproceedings{barazIA32ExecutionLayer2003,
+  title = {{{IA-32 Execution Layer}}: A Two-Phase Dynamic Translator Designed to Support {{IA-32}} Applications on {{Itanium}}{\textregistered}-Based Systems},
+  shorttitle = {{{IA-32 Execution Layer}}},
+  booktitle = {Micro},
+  author = {Baraz, Leonid and Devor, Tevi and Etzion, Orna and Goldenberg, S. and Skaletsky, Alex and Wang, Yun and Zemach, Yigel},
+  year = {2003},
+  url = {https://www.semanticscholar.org/paper/IA-32-Execution-Layer%3A-a-two-phase-dynamic-designed-Baraz-Devor/2be489f1c0cec6b92988d0094fdc0eec72f5bcd9},
+  urldate = {2023-11-29},
+  abstract = {IA-32 Execution Layer (IA-32 EL) is a newtechnology that executes IA-32 applications onIntel{\textregistered} Itanium{\textregistered} processor family systems.Currently, support for IA-32 applications onItanium-based platforms is achieved usinghardware circuitry on the Itanium processors.This capability will be enhanced with IA-32EL-software that will ship with Itanium-basedoperating systems and will convert IA-32instructions into Itanium instructions viadynamic translation.In this paper, we describeaspects of the IA-32 Execution Layertechnology, including the general two-phasetranslation architecture and the usage of asingle translator for multiple operatingsystems.The paper provides details of someof the technical challenges such as preciseexception, emulation of FP, MMXTM, and Intel{\textregistered}Streaming SIMD Extension instructions, andmisalignment handling.Finally, the paperpresents some performance results.}
+}
+
+@inproceedings{bellardQEMUFastPortable2005,
+  title = {{{QEMU}}, a {{Fast}} and {{Portable Dynamic Translator}}},
+  booktitle = {{{USENIX Annual Technical Conference}}},
+  author = {Bellard, Fabrice},
+  year = {2005},
+  month = apr,
+  volume = {41},
+  pages = {46},
+  abstract = {We present the internals of QEMU, a fast machine emulator using an original portable dynamic translator. It emulates several CPUs (x86, PowerPC, ARM and Sparc) on several hosts (x86, PowerPC, ARM, Sparc, Alpha and MIPS). QEMU supports full system emulation in which a complete and unmodified operating system is run in a virtual machine and Linux user mode emulation where a Linux process compiled for one target CPU can be run on another CPU.},
+  file = {/home/xieby1/Zotero/storage/TUBIRIX6/Bellard - 2005 - QEMU, a fast and portable dynamic translator..pdf}
+}
+
+@article{boggsDenverNvidiaFirst2015,
+  title = {Denver: {{Nvidia}}'s {{First}} 64-Bit {{ARM Processor}}},
+  shorttitle = {Denver},
+  author = {Boggs, Darrell and Brown, Gary and Tuck, Nathan and Venkatraman, K S},
+  year = {2015},
+  month = mar,
+  journal = {IEEE Micro},
+  volume = {35},
+  number = {2},
+  pages = {46--55},
+  issn = {0272-1732},
+  doi = {10.1109/MM.2015.12},
+  url = {http://ieeexplore.ieee.org/document/7045419/},
+  urldate = {2023-12-07},
+  abstract = {Nvidia's first 64-bit ARM processor, code-named Denver, leverages a host of new technologies like dynamic code optimization (DCO) to enable high-performance mobile computing. Implemented in a 28-nm process, the Denver CPU can attain clock speeds of up to 2.5 GHz. This article outlines the Denver architecture, describes technological innovations, and provides relevant comparisons against competing mobile processors.}
+}
+
+@article{bohmGeneralizedJustintimeTrace2011,
+  title = {Generalized Just-in-Time Trace Compilation Using a Parallel Task Farm in a Dynamic Binary Translator},
+  author = {B{\"o}hm, Igor and {Edler von Koch}, Tobias J.K. and Kyle, Stephen C. and Franke, Bj{\"o}rn and Topham, Nigel},
+  year = {2011},
+  month = jun,
+  journal = {ACM SIGPLAN Notices},
+  volume = {46},
+  number = {6},
+  pages = {74--85},
+  issn = {0362-1340},
+  doi = {10.1145/1993316.1993508},
+  url = {https://doi.org/10.1145/1993316.1993508},
+  urldate = {2023-11-28},
+  abstract = {Dynamic Binary Translation (DBT) is the key technology behind cross-platform virtualization and allows software compiled for one Instruction Set Architecture (ISA) to be executed on a processor supporting a different ISA. Under the hood, DBT is typically implemented using Just-In-Time (JIT) compilation of frequently executed program regions, also called traces. The main challenge is translating frequently executed program regions as fast as possible into highly efficient native code. As time for JIT compilation adds to the overall execution time, the JIT compiler is often decoupled and operates in a separate thread independent from the main simulation loop to reduce the overhead of JIT compilation. In this paper we present two innovative contributions. The first contribution is a generalized trace compilation approach that considers all frequently executed paths in a program for JIT compilation, as opposed to previous approaches where trace compilation is restricted to paths through loops. The second contribution reduces JIT compilation cost by compiling several hot traces in a concurrent task farm. Altogether we combine generalized light-weight tracing, large translation units, parallel JIT compilation and dynamic work scheduling to ensure timely and efficient processing of hot traces. We have evaluated our industry-strength, LLVM-based parallel DBT implementing the ARCompact ISA against three benchmark suites (EEMBC, BioPerf and SPEC CPU2006) and demonstrate speedups of up to 2.08 on a standard quad-core Intel Xeon machine. Across short- and long-running benchmarks our scheme is robust and never results in a slowdown. In fact, using four processors total execution time can be reduced by on average 11.5\% over state-of-the-art decoupled, parallel (or asynchronous) JIT compilation.},
+  keywords = {dynamic binary translation,dynamic work scheduling,just-in-time compilation,parallelization,task farm},
+  file = {/home/xieby1/Zotero/storage/IWDW6HBL/Böhm et al. - 2011 - Generalized just-in-time trace compilation using a.pdf}
+}
+
+@phdthesis{brueningEfficientTransparentComprehensive2004,
+  title = {Efficient, Transparent, and Comprehensive Runtime Code Manipulation},
+  author = {Bruening, Derek},
+  year = {2004},
+  url = {https://www.semanticscholar.org/paper/Efficient%2C-transparent%2C-and-comprehensive-runtime-Bruening/326cdcbce0831d873ef41ad56e98eddfa6dff235},
+  urldate = {2023-11-28},
+  abstract = {This thesis addresses the challenges of building a software system for general-purpose runtime code manipulation. Modern applications, with dynamically-loaded modules and dynamically-generated code, are assembled at runtime. While it was once feasible at compile time to observe and manipulate every instruction{\textemdash}which is critical for program analysis, instrumentation, trace gathering, optimization, and similar tools{\textemdash}it can now only be done at runtime. Existing runtime tools are successful at inserting instrumentation calls, but no general framework has been developed for fine-grained and comprehensive code observation and modification without high overheads.  This thesis demonstrates the feasibility of building such a system in software. We present DynamoRIO, a fully-implemented runtime code manipulation system that supports code transformations on any part of a program, while it executes. DynamoRIO uses code caching technology to provide efficient, transparent, and comprehensive manipulation of an unmodified application running on a stock operating system and commodity hardware. DynamoRIO executes large, complex, modern applications with dynamically-loaded, generated, or even modified code. Despite the formidable obstacles inherent in the IA-32 architecture, DynamoRIO provides these capabilities efficiently, with zero to thirty percent time and memory overhead on both Windows and Linux.  DynamoRIO exports an interface for building custom runtime code manipulation tools of all types. It has been used by many researchers, with several hundred downloads of our public release, and is being commercialized in a product for protection against remote security exploits, one of numerous applications of runtime code manipulation. (Copies available exclusively from MIT Libraries, Rm. 14-0551, Cambridge, MA 02139-4307. Ph. 617-253-5668; Fax 617-253-1690.)}
+}
+
+@article{callaghanOptimisingDynamicBinary2020,
+  title = {Optimising Dynamic Binary Modification across 64-Bit {{Arm}} Microarchitectures},
+  author = {Callaghan, Guillermo and Gorgovan, Cosmin and Luj{\'a}n, Mikel},
+  year = {2020},
+  month = mar,
+  journal = {Proceedings of the 16th ACM SIGPLAN/SIGOPS International Conference on Virtual Execution Environments},
+  pages = {185--197},
+  publisher = {{ACM}},
+  address = {{Lausanne Switzerland}},
+  doi = {10.1145/3381052.3381322},
+  url = {https://dl.acm.org/doi/10.1145/3381052.3381322},
+  urldate = {2023-12-07},
+  abstract = {A common optimisation used in most Dynamic Binary Modification (DBM) systems is trace generation as these traces improve locality and code layout. We describe an optimised code layout for traces as well as present how to adapt the runtime algorithm to generate it. In this way, we manage to reduce the overhead on all the Arm systems evaluated; 5 different microarchitectures. A major source of overhead for DBMs comes from handling indirect branches. Indirect Branch Inlining (IBI) is a mechanism that attempts to avoid this overhead by using predictions about the target of the indirect branch. We analyse the behaviour of the indirect branch inlining and propose a new predictor, Trace Restricted IBI (TRIBI), and how to optimise IBI given the new trace generation algorithm. Our evaluation shows a geometric mean overhead for SPEC CPU2006 of 9\% for a Cortex-A53 (in-order core), and for out-of-order cores 11\% on an X-Gene-2, 10\% on a Cortex-A57, 7\% on a Cortex-A72 and 8\% on a Cortex-A73, when compared to native execution. This is a reduction of the overhead between 30\% to 50\% compared to the publicly available DBM systems MAMBO, and, even higher, against DynamoRIO. Using PARSEC 3.0, we evaluate the scalability across threads on the X-Gene-2 system (server machine with the highest number of cores) and show a geomean overhead between 6--8\%.},
+  isbn = {9781450375542},
+  langid = {english}
+}
+
+@misc{CapstoneEngine2023,
+  title = {Capstone},
+  author = {{Capstone Engine}},
+  year = {2013},
+  url = {https://github.com/capstone-engine/capstone},
+  urldate = {2023-11-29},
+  abstract = {Capstone disassembly/disassembler framework for ARM, ARM64 (ARMv8), BPF, Ethereum VM, M68K, M680X, Mips, MOS65XX, PPC, RISC-V(rv32G/rv64G), SH, Sparc, SystemZ, TMS320C64X, TriCore, Webassembly, XCore and X86.},
+  howpublished = {Capstone Engine},
+  keywords = {arm,arm64,bpf,disassembler,ethereum,framework,m0s65xx,m680x,m68k,mips,powerpc,reverse-engineering,riscv,security,sparc,systemz,tms320c64x,webassembly,x86,x86-64}
+}
+
+@article{chernoffFX32Profiledirected1998,
+  title = {{{FX}}!32 a Profile-Directed Binary Translator},
+  author = {{Anton Chernoff} and {Mark Herdeg} and {Ray Hookway} and {Chris Reeve} and {Norman Rubin} and {Tony Tye} and {S. Bharadwaj Yadavalli} and {John Yates}},
+  year = {March-April/1998},
+  journal = {IEEE Micro},
+  volume = {18},
+  number = {2},
+  pages = {56--64},
+  issn = {02721732},
+  doi = {10.1109/40.671403},
+  url = {http://ieeexplore.ieee.org/document/671403/},
+  urldate = {2023-12-07},
+  abstract = {A new innovation from Digital allows most x86 Windows applications to run on Alpha platforms with good performance.}
+}
+
+@misc{Coremark2023,
+  title = {{{CoreMark}}},
+  author = {{EEMBC}},
+  year = {2023},
+  month = jan,
+  url = {https://github.com/eembc/coremark},
+  urldate = {2023-11-28},
+  abstract = {CoreMark{\textregistered} is an industry-standard benchmark that measures the performance of central processing units (CPU) and embedded microcrontrollers (MCU).},
+  howpublished = {Embedded Microprocessor Benchmark Consortium}
+}
+
+@article{cristinacifuentesBinaryTranslationStatic1996,
+  title = {Binary Translation: Static, Dynamic, Retargetable?},
+  shorttitle = {Binary Translation},
+  author = {{Cristina Cifuentes} and {Vishv Malhotra}},
+  year = {1996},
+  journal = {Proceedings of International Conference on Software Maintenance ICSM-96},
+  pages = {340--349},
+  publisher = {{IEEE}},
+  address = {{Monterey, CA, USA}},
+  doi = {10.1109/ICSM.1996.565037},
+  abstract = {The porting of software to newer and faster machines using static binary translation techniques has proved successful to a large extent. Current binary translators are static in nature and require a runtime environment to successfully support the execution of the translated programs on the new machine. On the other hand, dynamic binary translation has not been considered as an alternative to static translation-the authors argue that these translators can achieve at least the same performance as static translators but will require a simpler runtime environment. The paper presents techniques used to migrate legacy software running on register-based machines of the last 10 to 15 years to modern RISC machines. They have developed a second-generation disassembler to aid in the construction of a retargetable binary translation front-end. Retargetability of binary translators is on issue that has nor been addressed in present translators.},
+  isbn = {9780818676772}
+}
+
+@article{dantrasLowOverheadDynamic2017,
+  title = {Low Overhead Dynamic Binary Translation on {{ARM}}},
+  author = {{d'Antras}, Amanieu and Gorgovan, Cosmin and Garside, Jim and Luj{\'a}n, Mikel},
+  year = {2017},
+  month = jun,
+  journal = {Proceedings of the 38th ACM SIGPLAN Conference on Programming Language Design and Implementation},
+  pages = {333--346},
+  publisher = {{ACM}},
+  address = {{Barcelona Spain}},
+  doi = {10.1145/3062341.3062371},
+  url = {https://dl.acm.org/doi/10.1145/3062341.3062371},
+  urldate = {2023-11-28},
+  abstract = {The ARMv8 architecture introduced AArch64, a 64-bit execution mode with a new instruction set, while retaining binary compatibility with previous versions of the ARM architecture through AArch32, a 32-bit execution mode. Most hardware implementations of ARMv8 processors support both AArch32 and AArch64, which comes at a cost in hardware complexity. We present MAMBO-X64, a dynamic binary translator for Linux which executes 32-bit ARM binaries using only the AArch64 instruction set. We have evaluated the performance of MAMBO-X64 on three existing ARMv8 processors which support both AArch32 and AArch64 instruction sets. The performance was measured by comparing the running time of 32-bit benchmarks running under MAMBO-X64 with the same benchmark running natively. On SPEC CPU2006, we achieve a geometric mean overhead of less than 7.5\% on in-order Cortex-A53 processors and a performance improvement of 1\% on out-of-order X-Gene 1 processors. MAMBO-X64 achieves such low overhead by novel optimizations to map AArch32 floating-point registers to AArch64 registers dynamically, handle overflowing address calculations efficiently, generate traces that harness hardware return address prediction, and handle operating system signals accurately.},
+  isbn = {9781450349888},
+  langid = {english},
+  file = {/home/xieby1/Zotero/storage/95C5SS8I/D'Antras et al. - 2017 - Low overhead dynamic binary translation on ARM.pdf}
+}
+
+@article{dantrasOptimizingIndirectBranches2016,
+  title = {Optimizing {{Indirect Branches}} in {{Dynamic Binary Translators}}},
+  author = {{d'Antras}, Amanieu and Gorgovan, Cosmin and Garside, Jim and Luj{\'a}n, Mikel},
+  year = {2016},
+  month = apr,
+  journal = {ACM Transactions on Architecture and Code Optimization},
+  volume = {13},
+  number = {1},
+  pages = {1--25},
+  issn = {1544-3566, 1544-3973},
+  doi = {10.1145/2866573},
+  url = {https://dl.acm.org/doi/10.1145/2866573},
+  urldate = {2023-11-28},
+  abstract = {Dynamic binary translation is a technology for transparently translating and modifying a program at the machine code level as it is running. A significant factor in the performance of a dynamic binary translator is its handling of indirect branches. Unlike direct branches, which have a known target at translation time, an indirect branch requires translating a source program counter address to a translated program counter address every time the branch is executed. This translation can impose a serious runtime penalty if it is not handled efficiently.                            MAMBO-X64, a dynamic binary translator that translates 32-bit ARM (AArch32) code to 64-bit ARM (AArch64) code, uses three novel techniques to improve the performance of indirect branch translation. Together, these techniques allow MAMBO-X64 to achieve a very low performance overhead of only 10\% on average compared to native execution of 32-bit programs.               Hardware-assisted function returns               use a software return address stack to predict the targets of function returns, making use of several novel optimizations while also exploiting hardware return address prediction. This technique has a significant impact on most benchmarks, reducing binary translation overhead compared to native execution by 40\% on average and by 90\% on some benchmarks.               Branch table inference               , an algorithm for detecting and translating branch tables, can reduce the overhead of translated code by up to 40\% on some SPEC CPU2006 benchmarks. The remaining indirect branches are handled using a               fast atomic hash table               , which is optimized to work with multiple threads. This last technique translates indirect branches using a single shared hash table while avoiding expensive synchronization in performance-critical lookup code. This allows the performance to be on par with thread-private hash tables while having superior memory scalability.},
+  langid = {english},
+  file = {/home/xieby1/Zotero/storage/EKHBT3FU/d'Antras et al. - 2016 - Optimizing Indirect Branches in Dynamic Binary Tra.pdf}
+}
+
+@article{dehnertTransmetaCodeMorphing2003,
+  title = {The {{Transmeta Code Morphing}}{\texttrademark} {{Software}}: Using Speculation, Recovery, and Adaptive Retranslation to Address Real-Life Challenges},
+  shorttitle = {The {{Transmeta Code Morphing}}/Spl Trade/ {{Software}}},
+  author = {{James C. Dehnert} and {Brian K. Grant} and {John P. Banning} and {Richaard Johnson} and {Thomas Kistler} and {Alexander Klaiber} and {Jim Mattson}},
+  year = {2003},
+  journal = {International Symposium on Code Generation and Optimization, 2003. CGO 2003.},
+  pages = {15--24},
+  publisher = {{IEEE Comput. Soc}},
+  address = {{San Francisco, CA, USA}},
+  doi = {10.1109/CGO.2003.1191529},
+  url = {http://ieeexplore.ieee.org/document/1191529/},
+  urldate = {2023-12-07},
+  abstract = {Transmeta's Crusoe microprocessor is a full, system-level implementation of the x86 architecture, comprising a native VLIW microprocessor with a software layer, the Code Morphing Software (CMS), that combines an interpreter, dynamic binary translator, optimizer, and run-time system. In its general structure, CMS resembles other binary translation systems described in the literature, but it is unique in several respects. The wide range of PC workloads that CMS must handle gracefully in real-life operation, plus the need for full system-level x86 compatibility, expose several issues that have received little or no attention in previous literature, such as exceptions and interrupts, I/O, DMA, and self-modifying code. In this paper we discuss some of the challenges raised by these issues, and present the techniques developed in Crusoe and CMS to meet those challenges. The key to these solutions is the Crusoe paradigm of aggressive speculation, recovery to a consistent x86 state using unique hardware commit-and-rollback support, and adaptive retranslation when exceptions occur too often to be handled efficiently by interpretation.},
+  isbn = {9780769519135}
+}
+
+@article{difedericoRevNgUnified2017,
+  title = {Rev.Ng: A Unified Binary Analysis Framework to Recover {{CFGs}} and Function Boundaries},
+  shorttitle = {Rev.Ng},
+  author = {Di Federico, Alessandro and Payer, Mathias and Agosta, Giovanni},
+  year = {2017},
+  month = feb,
+  journal = {Proceedings of the 26th International Conference on Compiler Construction},
+  pages = {131--141},
+  publisher = {{ACM}},
+  address = {{Austin TX USA}},
+  doi = {10.1145/3033019.3033028},
+  url = {https://dl.acm.org/doi/10.1145/3033019.3033028},
+  urldate = {2023-12-07},
+  abstract = {Static binary analysis is a key tool to assess the security of third-party binaries and legacy programs. Most forms of binary analysis rely on the availability of two key pieces of information: the program's control-flow graph and function boundaries. However, current tools struggle to provide accurate and precise results, in particular when dealing with hand-written assembly functions and non-trivial control-flow transfer instructions, such as tail calls. In addition, most of the existing solutions are ad-hoc, rely on hand-coded heuristics, and are tied to a specific architecture. In this paper we highlight the challenges faced by an architecture agnostic static binary analysis framework to provide accurate information about a program's CFG and function boundaries without employing debugging information or symbols. We propose a set of analyses to address predicate instructions, noreturn functions, tail calls, and context-dependent CFG. rev.ng, our binary analysis framework based on QEMU and LLVM, handles all the 17 architectures supported by QEMU and produces a compilable LLVM IR. We implement our described analyses on top of LLVM IR. In an extensive evaluation, we test our tool on binaries compiled for MIPS, ARM, and x86-64 using GCC and clang and compare them to the industry's state of the art tool, IDA Pro, and two well-known academic tools, BAP/ByteWeight and angr. In all cases, the quality of the CFG and function boundaries produced by rev.ng is comparable to or improves over the alternatives.},
+  isbn = {9781450352338},
+  langid = {english},
+  file = {/home/xieby1/Zotero/storage/BPHDXGAL/Di Federico et al. - 2017 - rev.ng a unified binary analysis framework to rec.pdf}
+}
+
+@inproceedings{dinaburgMcsemaStaticTranslation2014,
+  title = {Mcsema: {{Static}} Translation of X86 Instructions to Llvm},
+  shorttitle = {Mcsema},
+  booktitle = {{{ReCon}} 2014 {{Conference}}, {{Montreal}}, {{Canada}}},
+  author = {Dinaburg, Artem and Ruef, Andrew},
+  year = {2014},
+  url = {https://recon.cx/2014/slides/McSema.pdf},
+  urldate = {2023-12-07},
+  file = {/home/xieby1/Zotero/storage/WYYWP27E/Dinaburg and Ruef - 2014 - Mcsema Static translation of x86 instructions to .pdf}
+}
+
+@article{ebciogluDynamicBinaryTranslation2001,
+  title = {Dynamic Binary Translation and Optimization},
+  author = {{Kemal Ebcioglu} and {Erik Altman} and {Michael Gschwind} and {Sumedh Sathaye}},
+  year = {2001},
+  month = jun,
+  journal = {IEEE Transactions on Computers},
+  volume = {50},
+  number = {6},
+  pages = {529--548},
+  issn = {00189340},
+  doi = {10.1109/12.931892},
+  url = {http://ieeexplore.ieee.org/document/931892/},
+  urldate = {2023-12-07},
+  abstract = {We describe a VLIW architecture designed specifically as a target for dynamic compilation of an existing instruction set architecture. This design approach offers the simplicity and high performance of statically scheduled architectures, achieves compatibility with an established architecture, and makes use of dynamic adaptation. Thus, the original architecture is implemented using dynamic compilation, a process we refer to as DAISY (Dynamically Architected Instruction Set from Yorktown). The dynamic compiler exploits runtime profile information to optimize translations so as to extract instruction level parallelism. This paper reports different design trade-offs in the DAISY system and their impact on final system performance. The results show high degrees of instruction parallelism with reasonable translation overhead and memory usage.}
+}
+
+@article{fengtangEfLAAlgorithmBased2007,
+  title = {基于动态反馈的标志位线性分析算法},
+  author = {{唐锋} and {武成岗} and {冯晓兵} and {张兆庆}},
+  year = {2007},
+  journal = {Journal of Software},
+  volume = {18},
+  number = {7},
+  pages = {1603},
+  issn = {1000-9825},
+  doi = {10.1360/jos181603},
+  url = {http://219.238.6.200/article?code=jos181603&jccode=52},
+  urldate = {2023-11-28},
+  abstract = {二进制翻译可以用于解决遗产代码的迁移问题,也可以实现不同硬件平台之间软件的通用.如果源平台通过标志位进行条件跳转,那么如何处理标志位就成为翻译中的一个重要问题,对翻译的代码质量起着决定性作用.提出标志位线性分析算法,复杂度为线性,基本上能够消除所有的标志位冗余计算,提高了动态执行的效率.基于动态 profiling 技术,消除了间接跳转的基本块标志位冗余计算.分析了 spec 2000 中的大部分整点测试例子,实验结果表明,EfLA(Eflag linear analysis)算法对于大运算量的程序是非常有效的.},
+  langid = {english}
+}
+
+@misc{FEXEmuFasta,
+  title = {{{FEX}}},
+  author = {{FEX-Emu}},
+  year = {2018},
+  url = {https://github.com/FEX-Emu/FEX},
+  urldate = {2023-11-28},
+  abstract = {A fast usermode x86 and x86-64 emulator for Arm64 Linux},
+  file = {/home/xieby1/Zotero/storage/26H2G9TH/FEX.html}
+}
+
+@article{Gem5SimulatorVersion2020,
+  title = {The Gem5 {{Simulator}}: {{Version}} 20.0+},
+  shorttitle = {The Gem5 {{Simulator}}},
+  author = {{Lowe-Power}, Jason and Ahmad, Abdul Mutaal and Akram, Ayaz and Alian, Mohammad and Amslinger, Rico and Andreozzi, M. and Armejach, Adri{\`a} and Asmussen, N. and Bharadwaj, Srikant and Black, Gabriel and Bloom, Gedare and Bruce, Bobby R. and Carvalho, Daniel Rodrigues and Castrill{\'o}n, J. and Chen, Lizhong and Derumigny, Nicolas and Diestelhorst, S. and Elsasser, Wendy and Fariborz, Marjan and {Farmahini-Farahani}, A. and Fotouhi, P. and Gambord, Ryan and Gandhi, Jayneel and Gope, Dibakar and Grass, Thomas and Hanindhito, Bagus and Hansson, Andreas and Haria, Swapnil and Harris, Austin and Hayes, Timothy and Herrera, Adri{\'a}n and Horsnell, Matthew and Jafri, Syed Ali Raza and Jagtap, R. and Jang, Hanhwi and Jeyapaul, Reiley and Jones, Timothy M. and Jung, Matthias and Kannoth, Subash and Khaleghzadeh, Hamidreza and Kodama, Yuetsu and Krishna, T. and Marinelli, Tom and Menard, Christian and Mondelli, Andrea and Muck, T. and Naji, Omar and Nathella, Krishnendra and Nguyen, H. and Nikoleris, Nikos and Olson, Lena E. and Orr, Marc S. and Pham, B. and Prieto, P. and Reddy, Trivikram and Roelke, A. and Samani, Mahyar and Sandberg, Andreas and Setoain, J. and Shingarov, Boris and Sinclair, Matthew D. and Ta, T. and Thakur, Rahul and Travaglini, G. and Upton, M. and Vaish, Nilay and Vougioukas, Ilias and Wang, Zhengrong and Wehn, N. and Weis, C. and Wood, D. and Yoon, Hongil and Zulian, 'Eder F.},
+  year = {2020},
+  month = jul,
+  journal = {ArXiv},
+  url = {https://www.semanticscholar.org/paper/The-gem5-Simulator%3A-Version-20.0%2B-Lowe-Power-Ahmad/c5e451dc916cf981b57250d2d77df51cd1f05bfd},
+  urldate = {2023-11-28},
+  abstract = {The open-source and community-supported gem5 simulator is one of the most popular tools for computer architecture research. This simulation infrastructure allows researchers to model modern computer hardware at the cycle level, and it has enough fidelity to boot unmodified Linux-based operating systems and run full applications for multiple architectures including x86, Arm, and RISC-V. The gem5 simulator has been under active development over the last nine years since the original gem5 release. In this time, there have been over 7500 commits to the codebase from over 250 unique contributors which have improved the simulator by adding new features, fixing bugs, and increasing the code quality. In this paper, we give and overview of gem5's usage and features, describe the current state of the gem5 simulator, and enumerate the major changes since the initial release of gem5. We also discuss how the gem5 simulator has transitioned to a formal governance model to enable continued improvement and community support for the next 20 years of computer architecture research.},
+  file = {/home/xieby1/Zotero/storage/58GPAN9S/Lowe-Power et al. - 2020 - The gem5 Simulator Version 20.0+.pdf}
+}
+
+@article{guanSINOFDynamicstaticCombined2012,
+  title = {{{SINOF}}: {{A}} Dynamic-Static Combined Framework for Dynamic Binary Translation},
+  shorttitle = {{{SINOF}}},
+  author = {Guan, Haibing and Zhu, Erzhou and Wang, Hongxi and Ma, Ruhui and Yang, Yindong and Wang, Bin},
+  year = {2012},
+  month = sep,
+  journal = {Journal of Systems Architecture},
+  volume = {58},
+  number = {8},
+  pages = {305--317},
+  issn = {13837621},
+  doi = {10.1016/j.sysarc.2012.05.002},
+  url = {https://linkinghub.elsevier.com/retrieve/pii/S1383762112000422},
+  urldate = {2023-12-07},
+  abstract = {Semantic Scholar extracted view of "SINOF: A dynamic-static combined framework for dynamic binary translation" by Haibing Guan et al.},
+  langid = {english}
+}
+
+@article{horspoolApproachProblemDetranslation1980,
+  title = {An {{Approach}} to the {{Problem}} of {{Detranslation}} of {{Computer Programs}}},
+  author = {Horspool, R. N. and Marovac, N.},
+  year = {1980},
+  month = aug,
+  journal = {The Computer Journal},
+  volume = {23},
+  number = {3},
+  pages = {223--229},
+  issn = {0010-4620, 1460-2067},
+  doi = {10.1093/comjnl/23.3.223},
+  url = {https://academic.oup.com/comjnl/article-lookup/doi/10.1093/comjnl/23.3.223},
+  urldate = {2023-12-07},
+  abstract = {A crucial problem in the decompilation or disassembly of computer programs is the identification of executable code, i.e. the separation of instructions from data. This problem, for most computer architectures, is equivalent to the Halting Problem and is therefore unsolvable in general. The problem of identifying instructions is examined in this paper and an algorithm that will 'usually' perform a correct analysis is described. In addition, other aspects of disassembly are discussed and algorithms outlined. (Received October 1978; revised May 1979)},
+  langid = {english},
+  file = {/home/xieby1/Zotero/storage/P6BU7ZHX/Horspool and Marovac - 1980 - An Approach to the Problem of Detranslation of Com.pdf}
+}
+
+@misc{howX86Emulation2023,
+  title = {How X86 Emulation Works on {{Arm}}},
+  author = {{Microsoft}},
+  year = {2023},
+  month = oct,
+  url = {https://learn.microsoft.com/en-us/windows/arm/apps-on-arm-x86-emulation},
+  urldate = {2023-11-23},
+  abstract = {Learn how emulation for x86 apps makes the rich ecosystem of existing Win32 apps available on Arm devices.},
+  langid = {american},
+  file = {/home/xieby1/Zotero/storage/NZZ6GRWD/apps-on-arm-x86-emulation.html}
+}
+
+@incollection{Intel64Chap35PT,
+  title = {{{Intel}}{\textregistered} {{Processor Trace}}},
+  booktitle = {{{Intel}}{\textregistered} 64 and Ia-32 Architectures Software Developer's Manual},
+  author = {{Intel Corporation}},
+  year = {2018},
+  volume = {3},
+  pages = {4025--4105},
+  abstract = {Intel Processor Trace (Intel PT) is an extension of Intel{\textregistered} Architecture that captures information about software execution using dedicated hardware facilities that cause only minimal performance perturbation to the software being traced. This information is collected in data packets. The initial implementations of Intel PT offer control flow tracing, which generates a variety of packets to be processed by a software decoder. The packets include timing, program flow information (e.g. branch targets, branch taken/not taken indications) and program-induced mode related information (e.g. Intel TSX state transitions, CR3 changes). These packets may be buffered internally before being sent to the memory subsystem or other output mechanism available in the platform. Debug software can process the trace data and reconstruct the program flow.},
+  file = {/home/xieby1/Zotero/storage/8565CX6V/Guide - 2011 - Intel® 64 and ia-32 architectures software develop.pdf}
+}
+
+@misc{klaiberTechnologyCrusoeTM2000,
+  title = {The {{Technology Behind Crusoe TM Processors Low-power}} X86-{{Compatible Processors Implemented}} with {{Code Morphing}}},
+  author = {{Alexander Klaiber}},
+  year = {2000},
+  publisher = {{Transmeta Corporation}},
+  url = {http://www.transmeta.com},
+  urldate = {2023-11-29},
+  file = {/home/xieby1/Zotero/storage/84XWKLQA/Klaiber - 2000 - The Technology Behind Crusoe TM Processors Low-pow.pdf}
+}
+
+@article{kotraImprovingUtilizationMicrooperation2020,
+  title = {Improving the {{Utilization}} of {{Micro-operation Caches}} in X86 {{Processors}}},
+  author = {{Jagadish B. Kotra} and {John Kalamatianos}},
+  year = {2020},
+  month = oct,
+  journal = {2020 53rd Annual IEEE/ACM International Symposium on Microarchitecture (MICRO)},
+  pages = {160--172},
+  publisher = {{IEEE}},
+  address = {{Athens, Greece}},
+  doi = {10.1109/MICRO50266.2020.00025},
+  url = {https://ieeexplore.ieee.org/document/9251990/},
+  urldate = {2023-12-05},
+  abstract = {Most modern processors employ variable length, Complex Instruction Set Computing (CISC) instructions to reduce instruction fetch energy cost and bandwidth requirements. High throughput decoding of CISC instructions requires energy hungry logic for instruction identification. Efficient CISC instruction execution motivated mapping them to fixed length micro-operations (also known as uops). To reduce costly decoder activity, commercial CISC processors employ a micro-operations cache (uop cache) that caches uop sequences, bypassing the decoder. Uop cache's benefits are: (1) shorter pipeline length for uops dispatched by the uop cache, (2) lower decoder energy consumption, and, (3) earlier detection of mispredicted branches.In this paper, we observe that a uop cache can be heavily fragmented under certain uop cache entry construction rules. Based on this observation, we propose two complementary optimizations to address fragmentation: Cache Line boundary AgnoStic uoP cache design (CLASP) and uop cache compaction. CLASP addresses the internal fragmentation caused by short, sequential uop sequences, terminated at the I-cache line boundary, by fusing them into a single uop cache entry. Compaction further lowers fragmentation by placing to the same uop cache entry temporally correlated, non-sequential uop sequences mapped to the same uop cache set. Our experiments on a x86 simulator using a wide variety of benchmarks show that CLASP improves performance up to 5.6\% and lowers decoder power up to 19.63\%. When CLASP is coupled with the most aggressive compaction variant, performance improves by up to 12.8\% and decoder power savings are up to 31.53\%.},
+  isbn = {9781728173832}
+}
+
+@misc{KunPengExaGear,
+  title = {{华为动态二进制翻译工具（ExaGear）}},
+  author = {{华为技术有限公司}},
+  year = {2023},
+  url = {https://www.hikunpeng.com/developer/devkit/exagear},
+  urldate = {2023-11-23},
+  abstract = {将x86传统平台应用指令动态翻译为鲲鹏平台指令并实时运行，实现软件迁移无感知。},
+  langid = {chinese},
+  file = {/home/xieby1/Zotero/storage/6BDCELDZ/exagear.html}
+}
+
+@article{LoongArch2023,
+  title = {{龙芯指令系统架构技术}},
+  author = {{胡伟武} and {汪文祥} and {吴瑞阳} and {王焕东} and {曾露} and {徐成华} and {高翔} and {张福新}},
+  year = {2023},
+  journal = {计算机研究与发展},
+  volume = {60},
+  number = {1},
+  pages = {2--16},
+  issn = {1000-1239},
+  doi = {10.7544/issn1000-1239.202220196},
+  url = {https://crad.ict.ac.cn/cn/article/doi/10.7544/issn1000-1239.202220196},
+  urldate = {2023-11-23},
+  abstract = {介绍了统筹考虑先进性和兼容性要求的龙芯指令系统架构{\textemdash}{\textemdash}龙架构(LoongArch). LoongArch吸纳了近年来指令系统设计领域诸多先进的技术发展成果，易于高性能低功耗的实现和编译优化;融合了各种国际主流指令系统的主要功能特性，不仅能够确保现有龙芯电脑上应用二进制的无损迁移，而且能够实现多种国际主流指令系统的高效二进制翻译.LoongArch已经被实现于龙芯中科技术股份有限公司研制的3A5000四核CPU.SPEC CPU2006的实验结果表明，在相同微结构下，LoongArch性能比龙芯CPU原指令系统MIPS平均提升超过7\%.在硬件辅助支持下，SPEC CPU2000程序从MIPS翻译到LoongArch可以实现无损翻译，其定点程序子集和浮点程序子集从x86翻译到LoongArch的效率分布达QEMU二进制翻译器的3.6倍和47.0倍.LoongArch有望消除指令系统之间的壁垒，使得不同指令集的软件能够融合到统一的LoongArch平台上，不加区别地高效运行.},
+  copyright = {http://creativecommons.org/licenses/by/3.0/},
+  langid = {chinese},
+  file = {/home/xieby1/Zotero/storage/E4725CHP/胡伟武 et al. - 2023 - 龙芯指令系统架构技术.pdf}
+}
+
+@article{LoongArchEnv2022,
+  title = {{龙芯指令系统架构及其软件生态建设}},
+  author = {{胡伟武} and {高翔} and {张戈}},
+  year = {2022},
+  month = apr,
+  journal = {信息通信技术与政策},
+  volume = {48},
+  number = {4},
+  pages = {43},
+  issn = {2096-5931},
+  doi = {10.12267/j.issn.2096-5931.2022.04.008},
+  url = {http://ictp.caict.ac.cn/CN/10.12267/j.issn.2096-5931.2022.04.008},
+  urldate = {2023-11-23},
+  abstract = {构建独立于 Wintel 体系和 AA 体系的安全可控的信息技术体系是龙芯的发展目标。 介绍龙芯自主指令系统架构 LoongArch；并从构建 LoongArch 的基础软件体系、研发兼容及自主编程框架、通过二进制翻译实现与 X86 等主流架构的应用兼容、LoongArch 开源社区建设方面介绍龙芯软件生态建设进展及计划。},
+  langid = {chinese}
+}
+
+@inproceedings{lukPinBuildingCustomized2005,
+  title = {Pin: Building Customized Program Analysis Tools with Dynamic Instrumentation},
+  shorttitle = {Pin},
+  booktitle = {Proceedings of the 2005 {{ACM SIGPLAN}} Conference on {{Programming}} Language Design and Implementation},
+  author = {Luk, Chi-Keung and Cohn, Robert and Muth, Robert and Patil, Harish and Klauser, Artur and Lowney, Geoff and Wallace, Steven and Reddi, Vijay Janapa and Hazelwood, Kim},
+  year = {2005},
+  month = jun,
+  pages = {190--200},
+  publisher = {{ACM}},
+  address = {{Chicago IL USA}},
+  doi = {10.1145/1065010.1065034},
+  url = {https://dl.acm.org/doi/10.1145/1065010.1065034},
+  urldate = {2023-11-28},
+  abstract = {Robust and powerful software instrumentation tools are essential for program analysis tasks such as profiling, performance evaluation, and bug detection. To meet this need, we have developed a new instrumentation system called Pin. Our goals are to provide easy-to-use, portable, transparent, and efficient instrumentation. Instrumentation tools (called Pintools) are written in C/C++ using Pin's rich API. Pin follows the model of ATOM, allowing the tool writer to analyze an application at the instruction level without the need for detailed knowledge of the underlying instruction set. The API is designed to be architecture independent whenever possible, making Pintools source compatible across different architectures. However, a Pintool can access architecture-specific details when necessary. Instrumentation with Pin is mostly transparent as the application and Pintool observe the application's original, uninstrumented behavior. Pin uses dynamic compilation to instrument executables while they are running. For efficiency, Pin uses several techniques, including inlining, register re-allocation, liveness analysis, and instruction scheduling to optimize instrumentation. This fully automated approach delivers significantly better instrumentation performance than similar tools. For example, Pin is 3.3x faster than Valgrind and 2x faster than DynamoRIO for basic-block counting. To illustrate Pin's versatility, we describe two Pintools in daily use to analyze production software. Pin is publicly available for Linux platforms on four architectures: IA32 (32-bit x86), EM64T (64-bit x86), Itanium{\textregistered}, and ARM. In the ten months since Pin 2 was released in July 2004, there have been over 3000 downloads from its website.},
+  isbn = {978-1-59593-056-9},
+  langid = {english}
+}
+
+@inproceedings{markprobstDynamicBinaryTranslation2003,
+  title = {Dynamic Binary Translation},
+  booktitle = {{{UKUUG Linux Developer}}'s {{Conference}}},
+  author = {{Mark Probst}},
+  year = {2003},
+  abstract = {This paper presents an overview of dynamic binary translation. Dynamic binary translation is the process of translating code for one instruction set architecture to code for another on the fly, i.e., dynamically. Dynamic binary translators are used for emulation, migration, and recently for the economic implementation of complex instruction set architectures. Most of the problems occuring in dynamic binary translation are discussed and solutions are presented and weighed against each other. Finally, the dynamic binary translator bintrans, developed by the author, is presented.},
+  file = {/home/xieby1/Zotero/storage/VAE63Y75/Probst - 2003 - Dynamic Binary Translation ∗.pdf}
+}
+
+@article{maTwoConditionCode2005,
+  title = {{二进制翻译中的标志位优化技术}},
+  author = {{马湘宁} and {武成岗} and {唐锋} and {冯晓兵} and {张兆庆}},
+  year = {2005},
+  journal = {计算机研究与发展},
+  volume = {42},
+  number = {2},
+  pages = {329},
+  issn = {1000-1239},
+  doi = {10.1360/crad20050222},
+  url = {http://219.238.6.200/article?code=crad20050222&jccode=58},
+  urldate = {2023-11-28},
+  abstract = {在二进制翻译技术中 , 如何有效降低对源指令集体系结构标志位的模拟开销是一个值得研究的课题.分别针对二进制翻译中的解释执行和动态翻译 , 提出了相应的标志位模拟优化算法 , 能够有效地减少翻译生成的目标代码数量 , 提高目标代码性能.经过大量测试验证 , 在应用该标志位模拟优化算法后 , Digit al Bridge 系统翻译生成的目标代码量是源体系结构目标代码量的 120 \%, 而没有应用该优化算法时该比例是 250 \%, 作为对比系统 UQDBT 系统的比例是 150 \%},
+  langid = {chinese}
+}
+
+@article{maTwoConditionCode2005En,
+  title = {Two {{Condition Code Optimization Approaches}} in {{Binary Translation}}},
+  author = {{Ma Xiangning} and {Wu Chenggang} and {Tang Feng} and {Feng Xiaobing} and {Zhang Zhaoqing}},
+  year = {2005},
+  journal = {Journal of Computer Research and Development},
+  volume = {42},
+  number = {2},
+  pages = {329},
+  issn = {1000-1239},
+  doi = {10.1360/crad20050222},
+  url = {http://219.238.6.200/article?code=crad20050222&jccode=58},
+  urldate = {2023-11-28},
+  abstract = {Semantic Scholar extracted view of "Two Condition Code Optimization Approaches in Binary Translation" by Ma Xiangning et al.},
+  langid = {english}
+}
+
+@inproceedings{nethercoteValgrindFrameworkHeavyweight2007,
+  title = {Valgrind: A Framework for Heavyweight Dynamic Binary Instrumentation},
+  shorttitle = {Valgrind},
+  booktitle = {Proceedings of the 28th {{ACM SIGPLAN Conference}} on {{Programming Language Design}} and {{Implementation}}},
+  author = {Nethercote, Nicholas and Seward, Julian},
+  year = {2007},
+  month = jun,
+  pages = {89--100},
+  publisher = {{ACM}},
+  address = {{San Diego California USA}},
+  doi = {10.1145/1250734.1250746},
+  url = {https://dl.acm.org/doi/10.1145/1250734.1250746},
+  urldate = {2023-12-07},
+  abstract = {Dynamic binary instrumentation (DBI) frameworks make it easy to build dynamic binary analysis (DBA) tools such as checkers and profilers. Much of the focus on DBI frameworks has been on performance; little attention has been paid to their capabilities. As a result, we believe the potential of DBI has not been fully exploited.  In this paper we describe Valgrind, a DBI framework designed for building heavyweight DBA tools. We focus on its unique support for shadow values-a powerful but previously little-studied and difficult-to-implement DBA technique, which requires a tool to shadow every register and memory value with another value that describes it. This support accounts for several crucial design features that distinguish Valgrind from other DBI frameworks. Because of these features, lightweight tools built with Valgrind run comparatively slowly, but Valgrind can be used to build more interesting, heavyweight tools that are difficult or impossible to build with other DBI frameworks such as Pin and DynamoRIO.},
+  isbn = {978-1-59593-633-2},
+  langid = {english}
+}
+
+@article{patilELFiesExecutableRegion2021,
+  title = {{{ELFies}}: {{Executable Region Checkpoints}} for {{Performance Analysis}} and {{Simulation}}},
+  shorttitle = {{{ELFies}}},
+  author = {Patil, Harish and Isaev, Alexander and Heirman, Wim and Sabu, Alen and Hajiabadi, Ali and Carlson, Trevor E.},
+  year = {2021},
+  month = feb,
+  journal = {2021 IEEE/ACM International Symposium on Code Generation and Optimization (CGO)},
+  pages = {126--136},
+  publisher = {{IEEE}},
+  address = {{Seoul, Korea (South)}},
+  doi = {10.1109/CGO51591.2021.9370340},
+  url = {https://ieeexplore.ieee.org/document/9370340/},
+  urldate = {2023-12-06},
+  abstract = {We address the challenge faced in characterizing long-running workloads, namely how to reliably focus the detailed analysis on interesting execution regions. We present a set of tools that allows users to precisely capture any region of interest in program execution, and create a stand-alone executable, called an ELFie, from it. An ELFie starts with the same program state captured at the beginning of the region of interest and then executes natively. With ELFies, there is no fast-forwarding to the region of interest needed or the uncertainty of reaching the region. ELFies can be fed to dynamic program-analysis tools or simulators that work with regular program binaries. Our tool-chain is based on the PinPlay framework and requires no special hardware, operating system changes, recompilation, or re-linking of test programs. This paper describes the design of our ELFie generation tool-chain and the application of ELFies in performance analysis and simulation of regions of interest in popular long-running single and multi-threaded benchmarks.},
+  isbn = {9781728186139}
+}
+
+@misc{ptitsebBox642023,
+  title = {Box64},
+  author = {{ptitSeb}},
+  year = {2021},
+  url = {https://github.com/ptitSeb/box64},
+  urldate = {2023-11-28},
+  abstract = {Box64 - Linux Userspace x86\_64 Emulator with a twist, targeted at ARM64 Linux devices},
+  copyright = {MIT},
+  keywords = {arm64,box64,dynarec,emulator,linux}
+}
+
+@misc{QEMUTCGPlugins,
+  title = {{{QEMU TCG Plugins}} {\textemdash} {{QEMU}} Documentation},
+  author = {{QEMU}},
+  year = {2023},
+  url = {https://www.qemu.org/docs/master/devel/tcg-plugins.html},
+  urldate = {2023-11-30},
+  abstract = {QEMU TCG plugins provide a way for users to run experiments taking advantage of the total system control emulation can have over a guest. It provides a mechanism for plugins to subscribe to events during translation and execution and optionally callback into the plugin during these events. TCG plugins are unable to change the system state only monitor it passively. However they can do this down to an individual instruction granularity including potentially subscribing to all load and store operations.},
+  file = {/home/xieby1/Zotero/storage/Z4Y4LNEG/tcg-plugins.html}
+}
+
+@article{renSeeDeadUops2021,
+  title = {I {{See Dead}} {$M$}ops: {{Leaking Secrets}} via {{Intel}}/{{AMD Micro-Op Caches}}},
+  shorttitle = {I {{See Dead}} {$M$}ops},
+  author = {{Xida Ren} and {Logan Moody} and {Mohammadkazem Taram} and {Matthew Jordan} and {Dean M. Tullsen} and {Ashish Venkat}},
+  year = {2021},
+  month = jun,
+  journal = {2021 ACM/IEEE 48th Annual International Symposium on Computer Architecture (ISCA)},
+  pages = {361--374},
+  publisher = {{IEEE}},
+  address = {{Valencia, Spain}},
+  doi = {10.1109/ISCA52012.2021.00036},
+  url = {https://ieeexplore.ieee.org/document/9499837/},
+  urldate = {2023-12-05},
+  abstract = {Modern Intel, AMD, and ARM processors translate complex instructions into simpler internal micro-ops that are then cached in a dedicated on-chip structure called the micro-op cache. This work presents an in-depth characterization study of the micro-op cache, reverse-engineering many undocumented features, and further describes attacks that exploit the micro-op cache as a timing channel to transmit secret information. In particular, this paper describes three attacks {\textendash} (1) a same thread cross-domain attack that leaks secrets across the user-kernel boundary, (2) a cross-SMT thread attack that transmits secrets across two SMT threads via the micro-op cache, and (3) transient execution attacks that have the ability to leak an unauthorized secret accessed along a misspeculated path, even before the transient instruction is dispatched to execution, breaking several existing invisible speculation and fencing-based solutions that mitigate Spectre.},
+  isbn = {9781665433334}
+}
+
+@misc{RosettaTranslationEnvironment,
+  title = {About the {{Rosetta Translation Environment}}},
+  author = {{Apple Inc.}},
+  year = {2023},
+  journal = {Apple Developer Documentation},
+  url = {https://developer.apple.com/documentation/apple-silicon/about-the-rosetta-translation-environment},
+  urldate = {2023-11-23},
+  abstract = {Learn how Rosetta translates executables, and understand what Rosetta can't translate.},
+  langid = {american},
+  file = {/home/xieby1/Zotero/storage/PRFSQ5SI/about-the-rosetta-translation-environment.html}
+}
+
+@misc{RunningIntelBinaries,
+  title = {Running {{Intel Binaries}} in {{Linux VMs}} with {{Rosetta}}},
+  author = {{Apple Inc.}},
+  year = {2023},
+  journal = {Apple Developer Documentation},
+  url = {https://developer.apple.com/documentation/virtualization/running_intel_binaries_in_linux_vms_with_rosetta},
+  urldate = {2023-11-23},
+  abstract = {Run x86\_64 Linux binaries under ARM Linux on Apple silicon.},
+  langid = {american},
+  file = {/home/xieby1/Zotero/storage/7ZAYKCXF/running_intel_binaries_in_linux_vms_with_rosetta.html}
+}
+
+@article{shenRetargetableStaticBinary2014,
+  title = {A {{Retargetable Static Binary Translator}} for the {{ARM Architecture}}},
+  author = {Shen, Bor-Yeh and Hsu, Wei-Chung and Yang, Wuu},
+  year = {2014},
+  month = jun,
+  journal = {ACM Transactions on Architecture and Code Optimization},
+  volume = {11},
+  number = {2},
+  pages = {1--25},
+  issn = {1544-3566, 1544-3973},
+  doi = {10.1145/2629335},
+  url = {https://dl.acm.org/doi/10.1145/2629335},
+  urldate = {2023-12-07},
+  abstract = {Machines designed with new but incompatible Instruction Set Architecture (ISA) may lack proper applications. Binary translation can address this incompatibility by migrating applications from one legacy ISA to a new one, although binary translation has problems such as code discovery for variable-length ISA and code location issues for handling indirect branches. Dynamic Binary Translation (DBT) has been widely adopted for migrating applications since it avoids those problems. Static Binary Translation (SBT) is a less general solution and has not been actively researched. However, SBT performs more aggressive optimizations, which could yield more compact code and better code quality. Applications translated by SBT can consume less memory, processor cycles, and power than DBT and can be started more quickly. These advantages are even more critical for embedded systems than for general systems.             In this article, we designed and implemented a new SBT tool, called LLBT, which translates ARM instructions into LLVM IRs and then retargets the LLVM IRs to various ISAs, including {\texttimes}86, {\texttimes}86--64, ARM, and MIPS. LLBT leverages two important functionalities from LLVM: comprehensive optimizations and retargetability. More importantly, LLBT solves the code discovery problem for ARM/Thumb binaries without resorting to interpretation. LLBT also effectively reduced the size of the address mapping table, making SBT a viable solution for embedded systems. Our experiments based on the EEMBC benchmark suite show that the LLBT-generated code can run more than 6{\texttimes} and 2.3{\texttimes} faster on average than emulation with QEMU and HQEMU, respectively.},
+  langid = {english},
+  file = {/home/xieby1/Zotero/storage/MBKQXIW7/Shen et al. - 2014 - A Retargetable Static Binary Translator for the AR.pdf}
+}
+
+@inproceedings{sherwoodAutomaticallyCharacterizingLarge2002,
+  title = {Automatically Characterizing Large Scale Program Behavior},
+  booktitle = {Proceedings of the 10th International Conference on {{Architectural}} Support for Programming Languages and Operating Systems},
+  author = {Sherwood, Timothy and Perelman, Erez and Hamerly, Greg and Calder, Brad},
+  year = {2002},
+  month = oct,
+  pages = {45--57},
+  publisher = {{ACM}},
+  address = {{San Jose California}},
+  doi = {10.1145/605397.605403},
+  url = {https://dl.acm.org/doi/10.1145/605397.605403},
+  urldate = {2023-12-06},
+  abstract = {Understanding program behavior is at the foundation of computer architecture and program optimization. Many programs have wildly different behavior on even the very largest of scales (over the complete execution of the program). This realization has ramifications for many architectural and compiler techniques, from thread scheduling, to feedback directed optimizations, to the way programs are simulated. However, in order to take advantage of time-varying behavior, we must first develop the analytical tools necessary to automatically and efficiently analyze program behavior over large sections of execution.Our goal is to develop automatic techniques that are capable of finding and exploiting the Large Scale Behavior of programs (behavior seen over billions of instructions). The first step towards this goal is the development of a hardware independent metric that can concisely summarize the behavior of an arbitrary section of execution in a program. To this end we examine the use of Basic Block Vectors. We quantify the effectiveness of Basic Block Vectors in capturing program behavior across several different architectural metrics, explore the large scale behavior of several programs, and develop a set of algorithms based on clustering capable of analyzing this behavior. We then demonstrate an application of this technology to automatically determine where to simulate for a program to help guide computer architecture research.},
+  isbn = {978-1-58113-574-9},
+  langid = {english},
+  file = {/home/xieby1/Zotero/storage/TMBRG8M4/Sherwood et al. - 2002 - Automatically characterizing large scale program b.pdf}
+}
+
+@article{solomonMicrooperationCachePower2001,
+  title = {Micro-Operation Cache: A Power Aware Frontend for Variable Instruction Length {{ISA}}},
+  shorttitle = {Micro-Operation Cache},
+  author = {{Baruch Solomon} and {Avi Mendelson} and {Doron Orenstien} and {Yoav Almog} and {Ronny Ronen}},
+  year = {2001},
+  journal = {ISLPED'01: Proceedings of the 2001 International Symposium on Low Power Electronics and Design (IEEE Cat. No.01TH8581)},
+  pages = {4--9},
+  publisher = {{ACM}},
+  address = {{Huntington Beach, CA, USA}},
+  doi = {10.1109/LPE.2001.945363},
+  url = {http://ieeexplore.ieee.org/document/945363/},
+  urldate = {2023-12-05},
+  abstract = {Introduces the micro-operation cache (Uop Cache-UC) designed to reduce the processor's frontend power and energy consumption without performance degradation. The UC caches basic blocks of instructions pre-decoded into micro-operations (uops). The UC fetches a single basic-block worth of uops per cycle. Fetching complete pre-decoded basic-blocks eliminates the need to repeatedly decode variable length instructions and simplifies the process of predicting, fetching, rotating and aligning fetched instructions. The UC design enables even a small structure to be quite effective. Results: a moderate-sized UC eliminates about 75\% instruction decodes across a broad range of benchmarks and over 90\% in multimedia applications and high-power tests. For existing Intel P6 family processors, the eliminated work may save about 10\% of the full-chip power consumption with no performance degradation.},
+  isbn = {9781581133714}
+}
+
+@inproceedings{souzaISAMAPInstructionMapping2011,
+  title = {{{ISAMAP}}: {{Instruction Mapping Driven}} by {{Dynamic Binary Translation}}},
+  shorttitle = {{{ISAMAP}}},
+  booktitle = {Computer {{Architecture}}},
+  author = {Souza, Maxwell and Nic{\'a}cio, Daniel and Ara{\'u}jo, Guido},
+  editor = {Varbanescu, Ana Lucia and Molnos, Anca and Van Nieuwpoort, Rob},
+  year = {2011},
+  volume = {6161},
+  pages = {117--138},
+  publisher = {{Springer Berlin Heidelberg}},
+  address = {{Berlin, Heidelberg}},
+  doi = {10.1007/978-3-642-24322-6_11},
+  url = {http://link.springer.com/10.1007/978-3-642-24322-6_11},
+  urldate = {2023-11-28},
+  abstract = {Dynamic Binary Translation (DBT) techniques have been largely used in the migration of legacy code and in the transparent execution of programs across different architectures. They have also been used in dynamic optimizing compilers, to collect runtime information so as to improve code quality. In many cases, DBT translation mechanism misses important low-level mapping opportunities available at the source/target ISAs. Hot code performance has been shown to be central to the overall program performance, as different instruction mappings can account for high performance gains. Hence, DBT techniques that provide efficient instruction mapping at the ISA level has the potential to considerably improve performance. This paper proposes ISAMAP, a flexible instruction mapping driven by dynamic binary translation. Its mapping mechanism, provides a fast translation between ISAs, under an easy-to-use description. At its current state, ISAMAP is capable of translating 32-bit PowerPC code to 32-bit x86 and to perform local optimizations on the resulting x86 code. Our experimental results show that ISAMAP is capable of executing PowerPC code on an x86 host faster than the processor emulator QEMU, achieving speedups of up to 3.16x for SPEC CPU2000 programs.},
+  isbn = {978-3-642-24321-9 978-3-642-24322-6},
+  file = {/home/xieby1/Zotero/storage/ACHU5GID/Souza et al. - 2011 - ISAMAP Instruction Mapping Driven by Dynamic Bina.pdf}
+}
+
+@misc{SPECCPU2000,
+  title = {{{SPEC CPU2000}}},
+  author = {{Standard Performance Evaluation Corporation}},
+  year = {2000},
+  url = {https://www.spec.org/cpu2000/},
+  urldate = {2023-11-28},
+  abstract = {SPEC CPU2000 is the next-generation industry-standardized CPU-intensive benchmark suite.},
+  howpublished = {Standard Performance Evaluation Corporation},
+  file = {/home/xieby1/Zotero/storage/B2N2AJ2R/cpu2000.html}
+}
+
+@misc{SPECCPU2017,
+  title = {{{SPEC CPU}}{\textregistered} 2017},
+  author = {{Standard Performance Evaluation Corporation}},
+  year = {2017},
+  url = {https://www.spec.org/cpu2017/},
+  urldate = {2023-11-28},
+  abstract = {The SPEC CPU{\textregistered} 2017 benchmark package contains SPEC's next-generation, industry-standardized, CPU intensive suites for measuring and comparing compute intensive performance, stressing a system's processor, memory subsystem and compiler.},
+  howpublished = {Standard Performance Evaluation Corporation},
+  file = {/home/xieby1/Zotero/storage/YQRH6M52/cpu2017.html}
+}
+
+@article{tangEfLAAlgorithmBased2007En,
+  title = {{{EfLA Algorithm Based}} on {{Dynamic Feedback}}},
+  author = {{Feng Tang} and {Wu Chenggang} and {Feng Xiaobing} and {Zhang Zhaoqing}},
+  year = {2007},
+  journal = {Journal of Software},
+  volume = {18},
+  number = {7},
+  pages = {1603},
+  issn = {1000-9825},
+  doi = {10.1360/jos181603},
+  url = {http://219.238.6.200/article?code=jos181603&jccode=52},
+  urldate = {2023-11-28},
+  abstract = {Binary translation is applied for the legacy code porting. Binary code can be executed in different hardware platforms by binary translation. If the source platform uses condition code to change the execution flow, it is an important performance issue to handle the condition code translation. This paper presents the algorithm of Eflag linear analysis. The complexity of the algorithm is linear and the algorithm reduces much of the flag computing and increases the performance of the dynamic execution. Through dynamic profiling, the algorithm solves to eliminate the Eflag calculation in the basic indirect jump block. Some integer test cases are analyzed in spec 2000. The experimental results prove the efficiency of the EfLA (Eflag linear analysis) for large calculation},
+  langid = {english}
+}
+
+@inproceedings{vanUQBTAdaptableBinary2000,
+  title = {{{UQBT}}: {{Adaptable Binary Translation}} at {{Low Cost}}},
+  shorttitle = {{{UQBT}}},
+  author = {Van, Mike},
+  year = {2000},
+  url = {https://www.semanticscholar.org/paper/UQBT%3A-Adaptable-Binary-Translation-at-Low-Cost-Van/3ef2e7b4d4199d12154bc1f2e2bb06bc965b8230},
+  urldate = {2023-12-07},
+  abstract = {ion Recovery from Binary Code, Tech. Report No. 448, Dept. of Computer Science, Univ. of Queensland, Brisbane, Australia, 1999. 4. D. Ung and C. Cifuentes, ``SRL{\textemdash}A Simple Retargetable Loader,'' Proc. Australian Software Eng. Conf., IEEE CS Press, Los Alamitos, Calif., 1997, pp. 60-69.},
+  file = {/home/xieby1/Zotero/storage/JKB8KJ84/Van - 2000 - UQBT Adaptable Binary Translation at Low Cost.pdf}
+}
+
+@inproceedings{wangBinaryTranslationBackend2018,
+  title = {A {{Binary Translation Backend Registers Allocation Algorithm Based}} on {{Priority}}},
+  booktitle = {Geo-{{Spatial Knowledge}} and {{Intelligence}}},
+  author = {Wang, Jun and Pang, Jianmin and Fu, Liguo and Shan, Zheng and Yue, Feng and Zhang, Jiahao},
+  editor = {Yuan, Hanning and Geng, Jing and Liu, Chuanlu and Bian, Fuling and Surapunt, Tisinee},
+  year = {2018},
+  volume = {849},
+  pages = {414--425},
+  publisher = {{Springer Singapore}},
+  address = {{Singapore}},
+  doi = {10.1007/978-981-13-0896-3_41},
+  url = {http://link.springer.com/10.1007/978-981-13-0896-3_41},
+  urldate = {2023-11-28},
+  abstract = {As most binary translation systems don't consider the difference of register requirements of basic blocks, which brings redundant memory access instructions caused by unnecessary registers overflow. To solve this problem, a binary translation backend registers allocation algorithm based on priority (BTBRAP) is proposed. Firstly, local global register is allocated statically to reduce the global register maintenance overhead, according to the statistical features of registers on the source platform. Then, the number of every register requested in basic blocks is determined, according to the relationship between intermediate representation and the source platform registers. So the priority of registers allocation is obtained. Conclusively, allocate the registers dynamically based on the priority to reduce the registers overflow. As the test results of nbench, representative recursive programs and SPEC2006 show, the algorithm effectively reduces the redundant memory access of local code, and improves the program performance with an average increase of 7.94\%.},
+  isbn = {9789811308956 9789811308963}
+}
+
+@article{wangDynamicTranslationOptimization2019,
+  title = {Dynamic {{Translation Optimization Method Based}} on {{Static Pre-Translation}}},
+  author = {Wang, Jun and Pang, Jianmin and Liu, Xiaonan and Yue, Feng and Tan, Jie and Fu, Liguo},
+  year = {2019},
+  journal = {IEEE Access},
+  volume = {7},
+  pages = {21491--21501},
+  issn = {2169-3536},
+  doi = {10.1109/ACCESS.2019.2897611},
+  url = {https://ieeexplore.ieee.org/document/8635523/},
+  urldate = {2023-12-07},
+  abstract = {Binary translation technology is an effective method to solve the problem of software cross-platform transplantation, especially for software porting without source code. Static binary translation has a good translation effect in general, but it faces the problem of code discovery. Dynamic binary translation can completely reproduce the execution process of the source program according to the execution order of the binary code. But it is severely limited by its low efficiency, as the time of translation is part of the whole runtime and it is no time for better code optimization in dynamic binary translation. This paper aims to optimize the execution process of dynamic binary translation by taking full advantage of the strengths of static binary translation. An optimization method of dynamic binary translation with static pre-translation was proposed in this paper. By pre-translating the source program and using more in-depth code optimization method to optimize the translated code, most of the code translation time can be cut down and the translated code will be more efficient. A new dynamic translation framework with the static pre-translation module, based on the dynamic translator named QEMU (a quick emulator), was designed to translate the  \${\textbackslash}times \$ 86 program to the Sunway platform. As the experimental results show, the framework and optimization method are valid to improve the efficiency of the general dynamic translator.},
+  file = {/home/xieby1/Zotero/storage/FKLJGJT2/Wang et al. - 2019 - Dynamic Translation Optimization Method Based on S.pdf}
+}
+
+@article{wangEnablingCrossISAOffloading2017,
+  title = {Enabling {{Cross-ISA Offloading}} for {{COTS Binaries}}},
+  author = {Wang, Wenwen and Yew, Pen-Chung and Zhai, Antonia and McCamant, Stephen and Wu, Youfeng and Bobba, Jayaram},
+  year = {2017},
+  month = jun,
+  journal = {Proceedings of the 15th Annual International Conference on Mobile Systems, Applications, and Services},
+  pages = {319--331},
+  publisher = {{ACM}},
+  address = {{Niagara Falls New York USA}},
+  doi = {10.1145/3081333.3081337},
+  url = {https://dl.acm.org/doi/10.1145/3081333.3081337},
+  urldate = {2023-11-28},
+  abstract = {Work offloading allows a mobile device, i.e., the client, to execute its computation-intensive code remotely on a more powerful server to improve its performance and to extend its battery life. However, the difference in instruction set architectures (ISAs) between the client and the server poses a great challenge to work offloading. Most of the existing solutions rely on language-level virtual machines to hide such differences. Therefore, they have to tie closely to the specific programming languages. Other approaches try to recompile the mobile applications to achieve the specific goal of offloading, so their applicability is limited to the availability of the source code. To overcome the above limitations, we propose to extend the capability of dynamic binary translation across clients and servers to offload the identified computation-intensive binary code regions automatically to the server at runtime. With this approach, the native binaries on the client can be offloaded to the server seamlessly without the limitations mentioned above. A prototype has been implemented using an existing retargetable dynamic binary translator. Experimental results show that our system achieves 1.93X speedup with 48.66\% reduction in energy consumption for six real-world applications, and 1.62X speedup with 42.4\% reduction in energy consumption for SPEC CINT2006 benchmarks.},
+  isbn = {9781450349284},
+  langid = {english}
+}
+
+@article{wangEnhancingCrossISADBT2018,
+  title = {Enhancing {{Cross-ISA DBT Through Automatically Learned Translation Rules}}},
+  author = {Wang, Wenwen and McCamant, Stephen and Zhai, Antonia and Yew, Pen-Chung},
+  year = {2018},
+  month = mar,
+  journal = {Proceedings of the Twenty-Third International Conference on Architectural Support for Programming Languages and Operating Systems},
+  pages = {84--97},
+  publisher = {{ACM}},
+  address = {{Williamsburg VA USA}},
+  doi = {10.1145/3173162.3177160},
+  url = {https://dl.acm.org/doi/10.1145/3173162.3177160},
+  urldate = {2023-11-28},
+  abstract = {This paper presents a novel approach for dynamic binary translation (DBT) to automatically learn translation rules from guest and host binaries compiled from the same source code. The learned translation rules are then verified via binary symbolic execution and used in an existing DBT system, QEMU, to generate more efficient host binary code. Experimental results on SPEC CINT2006 show that the average time of learning a translation rule is less than two seconds. With the rules learned from a collection of benchmark programs excluding the targeted program itself, an average 1.25X performance speedup over QEMU can be achieved for SPEC CINT2006. Moreover, the translation overhead introduced by this rule-based approach is very small even for short-running workloads.},
+  isbn = {9781450349116},
+  langid = {english}
+}
+
+@article{yadavalliRaisingBinariesLLVM2019,
+  title = {Raising Binaries to {{LLVM IR}} with {{MCTOLL}} ({{WIP}} Paper)},
+  author = {Yadavalli, S. Bharadwaj and Smith, Aaron},
+  year = {2019},
+  month = jun,
+  journal = {Proceedings of the 20th ACM SIGPLAN/SIGBED International Conference on Languages, Compilers, and Tools for Embedded Systems},
+  pages = {213--218},
+  publisher = {{ACM}},
+  address = {{Phoenix AZ USA}},
+  doi = {10.1145/3316482.3326354},
+  url = {https://dl.acm.org/doi/10.1145/3316482.3326354},
+  urldate = {2023-12-07},
+  abstract = {The need to analyze and execute binaries from legacy ISAs on new or different ISAs has been addressed in a variety of ways over the past few decades. Solutions using complementary static and dynamic binary translation techniques have been deployed in most real-world situations. As new ISAs are designed and legacy ISAs re-examined, the need for binary translation infrastructure re-emerges, and needs to be re- engineered all over again. Work is in progress with a goal to make such re-engineering efforts easier by using some of the software tools that would irrespectively be developed or available for a new or existing ISA. To that end, this paper presents a static binary raiser that translates binaries to LLVM IR. Native binaries for a new ISA are generated from the raised LLVM IR using the LLVM compiler backend. This technique enables development of a single raiser per legacy ISA, irrespective of the new target ISA. The result of such a raiser can then leverage compiler back-ends of new ISAs, thus simplifying the development of binary translator for the new ISA . This work leverages the existing LLVM infrastructure to implement a static raiser that currently supports raising x64 and Arm32 binaries to LLVM IR. The raiser is built as an LLVM tool {\textendash} similar to llvm-objdump or clang and does not have any dependencies outside of those needed to build LLVM. This paper describes the phases of the raiser and gives the current status and limitations.},
+  isbn = {9781450367240},
+  langid = {english}
+}
+
+@article{yiRegisterAllocationQEMU2015,
+  title = {Register {{Allocation}} for {{QEMU Dynamic Binary Translation Systems}}},
+  author = {Yi, Liang and Shao, Yuanhua and Yang, Guowu and Wu, Jinzhao},
+  year = {2015},
+  month = feb,
+  journal = {International Journal of Hybrid Information Technology},
+  volume = {8},
+  number = {2},
+  pages = {199--210},
+  issn = {17389968},
+  doi = {10.14257/ijhit.2015.8.2.18},
+  url = {http://gvpress.com/journals/IJHIT/vol8_no2/18.pdf},
+  urldate = {2023-11-28},
+  abstract = {Binary translation is an important step to solve the code migration, QEMU is more advanced and efficient binary translation system. It uses lighter TCG technology to achieve dynamic binary translation but analysis of the TCG internal process, we found that the excessive use of temporary variables meaningless in the TCG intermediate code, the backend generates host code does not take into account the efficient use of registers. Through these two aspects of improvement, especially increased a linear scan register allocation algorithm in the back-end, can be in an acceptable translation time, generates efficient host code. The experimental results show that the optimized program run time significantly reduced and the amount of generated host code reduced by an average of 8\%.}
+}
+
+
+@misc{llvm_project,
+  title={LLVM Project, a collection of modular and reusable compiler and toolchain technologies.},
+  url={https://github.com/llvm/llvm-project},
+  author={LLVM},
+  year={2003},
+  note = "Accessed: 2023-3-30"
+}
