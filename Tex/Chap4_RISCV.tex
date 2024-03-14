@@ -54,20 +54,21 @@ X86的系统调用号存储在rax寄存器中，返回值也存储在rax寄存�
 所有的黄色寄存器就是6个参数传递寄存器。系统调用号差异同理也可解决。
 
 
-\begin{table}[]
-  \centering
-  \caption{
-    X86和RISCV的系统调用号和参数传递方式的差异。
-  }
-  \label{tab:syscall}
-  \begin{tabular}{llllllllll}
-  \rowcolor[HTML]{FFCC67} 
-  \cellcolor[HTML]{FBE5D6}指令集 & \cellcolor[HTML]{FBE5D6}系统调用号 & \cellcolor[HTML]{FBE5D6}返回值 & 参数1 & 参数2 & 参数3 & 参数4 & 参数5 & 参数6 & 其他参数 \\
-  X86                         & rax                           & rax                         & rdi & rsi & rdx & r10 & r8  & r9  & 栈传递  \\
-  RISCV                       & a7                            & a0                          & a0  & a1  & a2  & a3  & a4  & a5  & 栈传递 
-  \end{tabular}
-  \end{table}
 
+\begin{table}[h]
+    \centering
+    \begin{adjustbox}{width=\textwidth}
+      \begin{tabular}{llllllllll}
+      \rowcolor[HTML]{FFCC67} 
+      \cellcolor[HTML]{FBE5D6}指令集 & \cellcolor[HTML]{FBE5D6}系统调用号 & \cellcolor[HTML]{FBE5D6}返回值 & 参数1 & 参数2 & 参数3 & 参数4 & 参数5 & 参数6 & 其他参数 \\
+      X86                         & rax                           & rax                         & rdi & rsi & rdx & r10 & r8  & r9  & 栈传递  \\
+      RISCV                       & a7                            & a0                          & a0  & a1  & a2  & a3  & a4  & a5  & 栈传递 
+      \end{tabular}
+    \end{adjustbox}
+    \caption{X86和RISCV的系统调用号和参数传递方式的差异。}
+    \label{tab:syscall}
+  \end{table}
+  
 
 \subsection{寄存器映射表}
 
@@ -90,6 +91,7 @@ X86的系统调用号存储在rax寄存器中，返回值也存储在rax寄存�
     X86和RISCV的寄存器映射表。
   }
   \label{tab:reg_map}
+  \begin{adjustbox}{width=\textwidth}
   \begin{tabular}{|
     >{\columncolor[HTML]{FFCCC9}}l |l|l|
     >{\columncolor[HTML]{FFCCC9}}l |
@@ -111,8 +113,9 @@ X86的系统调用号存储在rax寄存器中，返回值也存储在rax寄存�
     5                          & \cellcolor[HTML]{FFFFFF}RBP & \cellcolor[HTML]{FFFFFF}T0    & 13                         & R13                         & T2                            & 21                         & T5                          & S5                            & 29                         & DS                          & T4                            \\ \hline
     6                          & \cellcolor[HTML]{FFFC9E}RSI & \cellcolor[HTML]{FFFC9E}A1    & 14                         & R14                         & S0                            & 22                         & AH                          & S6                            & 30                         & FS                          & T5                            \\ \hline
     7                          & \cellcolor[HTML]{FFFC9E}RDI & \cellcolor[HTML]{FFFC9E}A0    & 15                         & R15                         & S1                            & 23                         & BH                          & S7                            & 31                         & GS                          & T6                            \\ \hline
-    \end{tabular}
-    \end{table}
+  \end{tabular}
+  \end{adjustbox}
+\end{table}
 
 % \subsection{栈的初始化}
 % 由于我们目前关注于用户态二进制翻译器，不太涉及系统态指令的翻译和处理操作系统等概念，

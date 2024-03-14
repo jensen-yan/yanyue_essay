@@ -61,8 +61,8 @@ Crusoe 运行的是一种称为代码转换器的软件抽象层或虚拟机，�
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=1\linewidth]{./plot/insts_inflt_breakdown_2017.pdf}
-  \caption{QEMU二进制翻译器架构图，能在宿主指令集机器上运行多种客户程序。}
+  \rotatebox{90}{\includegraphics[width=\textheight,height=\textwidth,keepaspectratio]{./plot/insts_inflt_breakdown_2017.pdf}}
+  \caption{各个二进制翻译器在运行SPEC2017的指令膨胀来源分析图。}
   \label{img:insts_inflt_breakdown_2017}
 \end{figure}
 
@@ -144,6 +144,6 @@ X86 微码缓存的引入和优化为 X86 架构的超标量乱序执行提供�
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.8\linewidth]{./image/ucache_line.pdf}
-  \caption{指令缓存和微码缓存关系}
+  \caption{微码缓存一行的内容}
   \label{img:ucache_line}
 \end{figure}
