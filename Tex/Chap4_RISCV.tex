@@ -1,4 +1,4 @@
-\chapter{RISCV指令支持}\label{chap:RISCV}
+\chapter{RISCV架构支持}\label{chap:RISCV}
 
 设计一套高效完备的融合微码“指令集”是一个长期的工程，这不是本文研究重点。
 为了快速验证微译器的实际效果，同时减少“指令集设计”产生的额外性能影响，
@@ -14,7 +14,7 @@
   \label{img:TISA}
 \end{figure}
 
-\section{RISCV指令翻译}
+\section{RISCV指令语义差异}
 
 目前已经完成所有的RISCV指令（包括IMAFDC指令集）到融合微码的翻译。
 
@@ -36,7 +36,7 @@
 为了添加272条RISCV指令，我们并没有简单添加272条微码指令，
 而只是添加了41条整数相关指令，10条浮点相关指令，累计添加51条微码指令。
 
-\section{处理ABI差异}
+\section{RISCV ABI差异}
 %介绍什么是ABI, 从而引出RISCV和X86的ABI差异。而我们的项目需要把RISCV的ABI转换成X86的ABI。
 ABI全称为Aplication Binary Interface，是程序和硬件的统一接口，不同指令集的ABI也是不同的，
 在二进制翻译系统中需要维护这种差异性，保证程序运行的正确性。
@@ -70,7 +70,7 @@ X86的系统调用号存储在rax寄存器中，返回值也存储在rax寄存�
   \end{table}
   
 
-\subsection{寄存器映射表}
+\subsection{寄存器映射}
 
 寄存器映射一直是二进制翻译中一个重要的研究课题。
 如表\ref{tab:reg_map}所示，展示了X86和RISCV映射到微码的的寄存器映射表。

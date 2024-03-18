@@ -1,10 +1,13 @@
-\chapter{实验}\label{chap:Epxeriment}
+\chapter{实验数据分析}\label{chap:Epxeriment}
 
-\section{实验数据分析}
+\section{实验环境}
+
+
+\section{调试环境}
 
 本章节首先展示微译器在X86上SPEC 2017上的翻译运行结果，然后介绍RISCV在CoreMark测试集上的运行效果。
 
-\subsection{微译器在X86上的翻译运行结果}
+\section{微译器在X86上的翻译运行结果}
 
 图\ref{img:ucache_ipc}展示了微译器在X86上SPEC 2017上的翻译运行结果，相对于未修改过的X86指令缓存模式进行了归一化。
 可以看到，微译器在SPEC 2017上的性能接近于原生运行，平均性能为92.3\%，并且一大半的浮点型测试集的性能损失在1\%以内。
@@ -27,7 +30,7 @@
   \label{img:new_cache_miss}
 \end{figure}
 
-\subsection{微译器在CoreMark测试集上的运行结果}
+\section{微译器在CoreMark测试集上的运行结果}
 
 \begin{table}[]
   \centering
@@ -57,7 +60,7 @@ RISCV 相对于X86的CoreMark 还有一定的性能差距，主要由于还没�
 同时RISCV目前对于压缩指令支持还不够完善，导致翻译出来的微码编码较长，导致AOT文件相对更大，也会导致性能下降。
 
 
-\subsection{微译器在RISCV上的翻译运行结果}
+\section{微译器在RISCV上的翻译运行结果}
 由于Gem5的模拟器的性能开销较大，我们选择了SPEC CPU 2000 test测试集作为测试基准。
 SPEC CPU 2000 test测试集包括了12个整数测试程序和14个浮点测试程序，是一个较为完备的测试集。
 目前已经成功运行了8个整数测试程序，剩下的整数测试程序由于指令翻译的问题暂时无法运行，目前还在修复中，浮点测试程序还没有测试。
