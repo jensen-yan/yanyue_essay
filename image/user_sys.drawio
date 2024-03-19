@@ -1,0 +1,43 @@
+<mxfile host="65bd71144e">
+    <diagram id="D4gepGXhUXd-UrXIAp4S" name="第 1 页">
+        <mxGraphModel dx="1130" dy="504" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="宿主机器" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="280" width="200" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="宿主操作系统" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="240" width="200" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="用户态二进制翻译" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="200" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="客户程序" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="160" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="系统态二进制翻译" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+                    <mxGeometry x="354" y="200" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="客户操作系统" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="354" y="160" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="客户程序" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="354" y="120" width="116" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="宿主程序" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="160" y="200" width="80" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="宿主程序" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="474" y="200" width="80" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="宿主机器" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+                    <mxGeometry x="354" y="280" width="200" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="宿主操作系统" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="354" y="240" width="200" height="40" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
