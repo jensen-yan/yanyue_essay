@@ -6,10 +6,10 @@
 
 \section{软硬协同二进制翻译器}
 
-软硬协同二进制翻译器中一个重要的代表是Transmeta公司开发的软硬协同二进制翻译系统，特别是其Crusoe处理器及Code Morphing Software (CMS)，是计算机体系结构和软件技术领域的一项重要创新。
+软硬协同二进制翻译器中一个重要的代表是Transmeta公司开发的软硬协同二进制翻译系统，特别是其Crusoe处理器及代码转换器(CMS)，是计算机体系结构和软件技术领域的一项重要创新。
 这项技术主要围绕动态二进制翻译（DBT），通过软件层实现对X86架构的全面模拟，使得基于超长指令字（VLIW）的微处理器能够执行X86指令集，从而实现了硬件与软件之间的无缝集成和协同工作。
 
-Transmeta的Code Morphing Software (CMS)充当了翻译器和优化器的角色，使得基于非X86的VLIW处理器能够执行X86二进制代码。
+Transmeta的CMS充当了翻译器和优化器的角色，使得基于非X86的VLIW处理器能够执行X86二进制代码。
 CMS层的引入不仅实现了架构间的兼容性，还提供了一个动态优化的执行环境，能够在运行时对代码进行优化，从而提高执行效率和能耗性能\cite{dehnertTransmetaCodeMorphing2003}。
 
 如图\ref{img:transmeta_arch}所示，代码转换器将从程序接收到的X86汇编代码指令翻译成微处理器的本机指令（超长指令字）。
@@ -38,18 +38,16 @@ CMS层的引入不仅实现了架构间的兼容性，还提供了一个动态�
 
 \subsection{QEMU}
 
-QEMU是一个广泛使用的开源虚拟化软件，特别在云计算环境中，它为Xen和KVM提供动力。
-QEMU同时支持系统态翻译和用户态翻译，我们主要关注用户态翻译部分，它允许在一个主机操作系统上模拟另一个操作系统的应用程序。
-用户态翻译（也称为用户模式仿真）能够在不需要特权访问的情况下执行跨架构的二进制程序翻译，这使得QEMU成为一个强大的工具，用于软件开发、测试以及安全研究。
+QEMU是一个广泛使用的开源虚拟化软件，特别在云计算环境中，它常和KVM一起使用，提供了一种高效的虚拟化解决方案。
+QEMU同时支持系统态翻译和用户态翻译，本文主要关注用户态翻译部分，它允许在一个主机操作系统上模拟另一个操作系统的应用程序。
 
-QEMU 同时支持多种架构，包括x86、ARM、MIPS等，使其成为开发跨平台应用程序的理想工具。
-如图\ref{img:qemu_arch}，其核心目标之一是提供多架构的虚拟化支持，使用户能够在不同的硬件平台上运行其应用程序。
-它通过将不同指令集的机器代码翻译成中间语言（IR，Intermediate Representation），再将IR翻译成宿主指令集，实现跨架构的兼容性。
-这种设计使得QEMU能够处理多种指令集，为用户提供了一定的灵活性。然而，QEMU的性能仅能达到原生性能的13\%，这主要归因于双层翻译的性能损失。
+QEMU也同时支持多种架构，包括x86、ARM、RISCV等，使其成为开发跨平台应用程序的理想工具， 也可用于软件开发、测试以及安全研究。
+如图\ref{img:qemu_arch}，它通过将不同指令集的机器代码翻译成中间语言（IR，Intermediate Representation），再将IR翻译成宿主指令集，实现跨架构的兼容性。
+这种设计使得QEMU能够处理多种指令集，为用户提供了一定的灵活性。然而，QEMU的性能仅能达到原生性能的13\%，这主要归因于双层翻译（客户代码翻译到IR，IR翻译到宿主代码）的性能损失。
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.8\linewidth]{./feishuImage/qemu_arch.png}
+  \includegraphics[width=0.6\linewidth]{./image/qemu-IR.pdf}
   \caption{QEMU二进制翻译器架构图，能在宿主指令集机器上运行多种客户程序。}
   \label{img:qemu_arch}
 \end{figure}
@@ -80,7 +78,7 @@ Rosetta2 的核心目标是保证MacOS上的软件能够在ARM架构下运行，
 由于x86和ARM指令集都采用小端法（little-endian），这简化了指令翻译过程，避免了复杂的字节序反转操作。
 这一点与苹果过去从PowerPC（大端法，big-endian）切换到x86的过程不同，后者在转换时面临更多的挑战。
 
-然而，x86（强内存序）与ARM（弱内存序）在内存一致性模型上的差异可能导致多线程软件运行结果出现差异，这是模拟x86的一个主要挑战【3】。
+然而，x86（强内存序）与ARM（弱内存序）在内存一致性模型上的差异可能导致多线程软件运行结果出现差异，这是模拟x86的一个主要挑战\cite{Risotto}。
 苹果通过在芯片内部额外实现一个Intel版本的强内存TSO模型，并通过后门开关在运行Rosetta2时切换到该内存模型，解决了这一问题。这种设计可能是Rosetta2性能优异的关键因素。
 
 综上所述，Rosetta2通过精巧的技术和优化，实现了在苹果的ARM架构处理器上运行原本为x86架构设计的MacOS软件的能力。
@@ -102,6 +100,15 @@ ExaGear主要包括两个关键组件：指令翻译引擎和x86运行环境。�
 
 \subsection{LATX}
 
+龙芯二进制翻译器（LATX）是龙芯公司开发的一款动态二进制翻译软件，用于在龙芯处理器（LoongArch架构）上运行x86架构的应用程序。
+结合LATX和Wine\cite{amstadt1994wine}（一 个 操 作 系 统 API翻译软件，它可以用Linux的系统调用来模拟实现Windows的系统调用，从而实现在Linux/ x86上运行Windows/x86的应用程序），
+用户可以在龙芯处理器上运行大量的x86应用程序，包括Windows应用程序，例如微信、WPS、部分游戏等。
+
+龙芯早期使用MIPS指令集，并添加了便于X86和ARM二进制翻译的一系列自定义指令集，例如对X86 EFLAGS的支持、对X87浮点指令的支持、非对齐访存的支持等，形成了LoongISA\cite{LoongISA}。
+但由于MIPS中用户定义指令（UDI）槽位有限，导致了LoongISA的指令集扩展受限，所以在2020年龙芯公司发布了全新的、自主可控的、支持更多指令集扩展的LoongArch架构\cite{LoongArch2023}。
+并从3A5000开始，龙芯处理器开始支持LoongArch架构，并配套使用LATX进行x86应用程序的翻译。
+LoongArch指令集中同样增加了对二进制翻译的扩展指令集，称为LBT（Loongson Binary Translation）指令集，用于支持x86、ARM、MIPS的二进制翻译。
+LBT扩展指令集与LATX软件配合使用，可以实现更高效的二进制翻译，提高了龙芯处理器的软件兼容性。
 
 
 \section{纯软件二进制翻译的性能开销分析}
@@ -124,28 +131,28 @@ ExaGear主要包括两个关键组件：指令翻译引擎和x86运行环境。�
   \end{tabular}
   \end{table}
 
-% \begin{figure}[h]
-%   \centering
-%   \rotatebox{90}{\includegraphics[width=\textheight,height=\textwidth,keepaspectratio]{./plot/insts_inflt_breakdown_2017.pdf}}
-%   \caption{各个二进制翻译器在运行SPEC2017的指令膨胀来源分析图。}
-%   \label{img:insts_inflt_breakdown_2017}
-% \end{figure}
+\begin{figure}[h]
+  \centering
+  \rotatebox{90}{\includegraphics[width=\textheight,height=\textwidth,keepaspectratio]{./plot/insts_inflt_breakdown_2017.pdf}}
+  \caption{各个二进制翻译器在运行SPEC2017的指令膨胀来源分析图。}
+  \label{img:insts_inflt_breakdown_2017}
+\end{figure}
 
-% 根据我们之前完成的一项工作，使用指令膨胀率来分析二进制翻译器的性能开销。指令膨胀率是指，每条客户指令平均翻译出的宿主指令数，是一个大于1的小数，计算方式为$\mbox{总体膨胀} = \mbox{生成的宿主指令数} / \mbox{客户指令数}$（这里用的是动态运行指令数）。指令膨胀率越高，翻译后的程序要执行的指令数越多，执行时间越长，性能越低。即便多发射处理器能在单拍内执行多条指令，缓解更多指令带来的性能开销，但根据我们的测试数据，指令膨胀率和性能下降值是保持正相关的。如图\ref{img:insts_inflt_breakdown_2017}，我们主要把开销分成了5类：
+根据我们之前完成的一项工作，使用指令膨胀率来分析二进制翻译器的性能开销。指令膨胀率是指，每条客户指令平均翻译出的宿主指令数，是一个大于1的小数，计算方式为$\mbox{总体膨胀} = \mbox{生成的宿主指令数} / \mbox{客户指令数}$（这里用的是动态运行指令数）。指令膨胀率越高，翻译后的程序要执行的指令数越多，执行时间越长，性能越低。即便多发射处理器能在单拍内执行多条指令，缓解更多指令带来的性能开销，但根据我们的测试数据，指令膨胀率和性能下降值是保持正相关的。如图\ref{img:insts_inflt_breakdown_2017}，我们主要把开销分成了5类：
 
-% %latex 使用1. 2. 3. 来编号
-% \begin{enumerate}
-%   \item \textbf{指令集间操作码差异：} 不同指令集的操作码差异引起Eflags计算等操作的额外指令翻译，增加了指令膨胀率。此外LoongArch对于子寄存器默认符号扩展，X86/ARM默认零扩展。对应图\ref{img:insts_inflt_breakdown_2017}中\textcolor{brown}{棕色}部分。
+%latex 使用1. 2. 3. 来编号
+\begin{enumerate}
+  \item \textbf{指令集间操作码差异：} 不同指令集的操作码差异引起Eflags计算等操作的额外指令翻译，增加了指令膨胀率。此外LoongArch对于子寄存器默认符号扩展，X86/ARM默认零扩展。对应图\ref{img:insts_inflt_breakdown_2017}中\textcolor{brown}{棕色}部分。
   
-%   \item \textbf{操作数据模式不同：} 复杂指令集（如X86）可以直接访问内存，而其他精简指令集只能操作寄存器，导致操作数模式不同。对应图\ref{img:insts_inflt_breakdown_2017}中\textcolor{orange}{橙色}部分。
+  \item \textbf{操作数据模式不同：} 复杂指令集（如X86）可以直接访问内存，而其他精简指令集只能操作寄存器，导致操作数模式不同。对应图\ref{img:insts_inflt_breakdown_2017}中\textcolor{orange}{橙色}部分。
   
-%   \item \textbf{地址计算不同：} 复杂地址计算方式（如X86）与其他指令集的简单计算方式导致在翻译时需要额外指令。例如X86计算地址$addr = base + index * scale +disp$; 其他的大多为$addr = base + offset$。 对应图\ref{img:insts_inflt_breakdown_2017}中\textcolor{green}{绿色}部分。
+  \item \textbf{地址计算不同：} 复杂地址计算方式（如X86）与其他指令集的简单计算方式导致在翻译时需要额外指令。例如X86计算地址$addr = base + index * scale +disp$; 其他的大多为$addr = base + offset$。 对应图\ref{img:insts_inflt_breakdown_2017}中\textcolor{green}{绿色}部分。
   
-%   \item \textbf{立即数加载：} X86支持编码64位立即数和32位地址偏移，而其他指令集编码空间有限，导致立即数加载的语义不同，需要额外的访存指令或者是多条立即数加载指令。对应图\ref{img:insts_inflt_breakdown_2017}中\textcolor{red}{红色}部分。
+  \item \textbf{立即数加载：} X86支持编码64位立即数和32位地址偏移，而其他指令集编码空间有限，导致立即数加载的语义不同，需要额外的访存指令或者是多条立即数加载指令。对应图\ref{img:insts_inflt_breakdown_2017}中\textcolor{red}{红色}部分。
   
-%   \item \textbf{间接跳转：} 客户指令地址到宿主指令地址是非线性的，而间接跳转的目标地址在运行时才能知道，需要查询间接跳转哈希表，导致性能开销。对应图\ref{img:insts_inflt_breakdown_2017}中\textcolor{purple}{紫色}部分。
+  \item \textbf{间接跳转：} 客户指令地址到宿主指令地址是非线性的，而间接跳转的目标地址在运行时才能知道，需要查询间接跳转哈希表，导致性能开销。对应图\ref{img:insts_inflt_breakdown_2017}中\textcolor{purple}{紫色}部分。
   
-% \end{enumerate}
+\end{enumerate}
 
 以上这5类主要开销很难通过软件优化来解决，需要借助硬件辅助的方式来解决。
 

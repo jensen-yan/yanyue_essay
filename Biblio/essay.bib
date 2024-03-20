@@ -906,3 +906,60 @@ month = {jan},
 pages = {48–60},
 numpages = {13}
 }
+
+@ARTICLE {Godson3,
+author = {J. Wang and X. Gao and G. Li and Q. Liu and W. Hu and Y. Chen},
+journal = {IEEE Micro},
+title = {Godson-3: A Scalable Multicore RISC Processor with x86 Emulation},
+year = {2009},
+volume = {29},
+number = {02},
+issn = {1937-4143},
+pages = {17-29},
+abstract = {The Godson-3 microprocessor aims at high-throughput server applications, high-performance scientific computing, and high-end embedded applications. It offers a scalable network on chip, hardware support for x86 emulation, and a reconfigurable architecture. The four-core Godson-3 chip is fabricated with 65-nm CMOS technology. Eight- and 16-core Godson-3 chips are in development.},
+keywords = {multicore processor;risc processor;scalable interconnection network;reconfigurable architecture;x86 emulation},
+doi = {10.1109/MM.2009.30},
+publisher = {IEEE Computer Society},
+address = {Los Alamitos, CA, USA},
+month = {mar}
+}
+
+@inproceedings{Risotto,
+author = {Gouicem, Redha and Sprokholt, Dennis and Ruehl, Jasper and Rocha, Rodrigo C. O. and Spink, Tom and Chakraborty, Soham and Bhatotia, Pramod},
+title = {Risotto: A Dynamic Binary Translator for Weak Memory Model Architectures},
+year = {2022},
+isbn = {9781450399159},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3567955.3567962},
+doi = {10.1145/3567955.3567962},
+abstract = {Dynamic Binary Translation (DBT) is a powerful approach to support cross-architecture emulation of unmodified binaries. However, DBT systems face correctness and performance challenges, when emulating concurrent binaries from strong to weak memory consistency architectures. As a matter of fact, we report several translation errors in QEMU, when emulating x86 binaries on Arm hosts. To address these challenges, we propose an end-to-end approach that provides correct and efficient emulation for weak memory model architectures. Our contributions are twofold: we formalize QEMU’s intermediate representation’s memory model, and use it to propose formally verified mapping schemes to bridge the strong-on-weak memory consistency mismatch. Secondly, we implement these verified mappings in Risotto, a QEMU-based DBT system that optimizes memory fence placement while ensuring correctness. Risotto further enhances the emulation performance via cross-architecture dynamic linking of native shared libraries, and fast and correct translation of compare-and-swap operations. We evaluate Risotto using multi-threaded benchmark suites and real-world applications, and show that Risotto improves the emulation performance by 6.7\% on average over ”erroneous” QEMU, while ensuring correctness.},
+booktitle = {Proceedings of the 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems, Volume 1},
+pages = {107–122},
+numpages = {16},
+keywords = {memory models, formal verification, Binary translation},
+location = {Vancouver, BC, Canada},
+series = {ASPLOS 2023}
+}
+
+
+
+@article{LoongISA,
+author = {胡伟武 and 靳国杰 and 汪文祥 and 等},
+title = {龙芯指令系统融合技术},
+journal = {中国科学：信息科学},
+year = {2015},
+number = {4},
+pages = {459-479},
+}
+
+@article{amstadt1994wine,
+  title={Wine},
+  author={Amstadt, Bob and Johnson, Michael K},
+  journal={Linux Journal},
+  volume={1994},
+  number={4es},
+  pages={3},
+  year={1994},
+  publisher={Belltown Media}
+}
