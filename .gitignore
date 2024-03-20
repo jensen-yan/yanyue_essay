@@ -9,3 +9,4 @@ snippets/*.pdf
 tables/*.tex
 tables/*.html
 Tmp
+!image/ucas_logo.pdf
