@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="51rfdcTQciJFHXt1mYzN" name="Page-1">
-        <mxGraphModel dx="822" dy="512" grid="1" gridSize="10" guides="0" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="681" dy="424" grid="1" gridSize="10" guides="0" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -23,10 +23,16 @@
                     <mxGeometry x="400" y="240" width="40" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="1CFGk_sMDlgsf0Qjuxhe-18" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;微码缓存行的数据字段&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=mono;" parent="1" vertex="1">
-                    <mxGeometry x="120" y="220" width="360" height="20" as="geometry"/>
+                    <mxGeometry x="120" y="200" width="360" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="BC2nT60XcqZUBK1BeU-Z-1" value="..." style="rounded=0;whiteSpace=wrap;html=1;fontFamily=mono;fillColor=none;strokeColor=none;" parent="1" vertex="1">
                     <mxGeometry x="300" y="240" width="100" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="元信息" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=mono;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" vertex="1" parent="1">
+                    <mxGeometry x="58" y="238" width="60" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;labelPosition=left;verticalLabelPosition=middle;align=right;verticalAlign=middle;direction=south;" vertex="1" parent="1">
+                    <mxGeometry x="119" y="218" width="362" height="20" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
