@@ -963,3 +963,19 @@ pages = {459-479},
   year={1994},
   publisher={Belltown Media}
 }
+
+@article{deflater,
+author = {Xie, Benyi and Yan, Yue and Yan, Chenghao and Tao, Sicheng and Zhang, Zhuangzhuang and Li, Xinyu and Lan, Yanzhi and Wu, Xiang and Liu, Tianyi and Zhang, Tingting and Zhang, Fuxin},
+title = {An Instruction Inflation Analyzing Framework for Dynamic Binary Translators},
+year = {2024},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+issn = {1544-3566},
+url = {https://doi.org/10.1145/3640813},
+doi = {10.1145/3640813},
+abstract = {Dynamic binary translators (DBTs) are widely used to migrate applications between different instruction set architectures (ISAs). Despite extensive research to improve DBT performance, noticeable overhead remains, preventing near-native performance, especially when translating from complex instruction set computer (CISC) to reduced instruction set computer (RISC). For computational workloads, the main overhead stems from translated code quality. Experimental data show state-of-the-art DBT products have dynamic code inflation of at least 1.46. This indicates on average over 1.46 host instructions are needed to emulate one guest instruction. Worse, inflation closely correlates with translated code quality. However, the detailed sources of instruction inflation remain unclear. To understand the sources of inflation, we present Deflater, an instruction inflation analysis framework comprising a mathematical model, a collection of black-box unit tests called BenchMIAOes, and a trace-based simulator called InflatSim. The mathematical model calculates overall inflation based on the inflation of individual instructions and translation block (TB) optimizations. BenchMIAOes extract model parameters from DBTs without accessing DBT source code. InflatSim implements the model and uses the extracted parameters from BenchMIAOes to simulate a given DBT’s behavior. Deflater is a valuable tool to guide DBT analysis and improvement. Using Deflater, we simulated inflation for three state-of-the-art CISC-to-RISC DBTs: ExaGear, Rosetta2, and LATX, with inflation errors of 5.63\%, 5.15\%, and 3.44\% respectively for SPEC CPU 2017, gaining insights into these commercial DBTs. Deflater also efficiently models inflation for the open-source DBT QEMU and suggests optimizations that can substantially reduce inflation. Implementing the suggested optimizations confirms Deflater’s effective guidance, with 4.65\% inflation error, and gains 5.47x performance improvement.},
+note = {Just Accepted},
+journal = {ACM Trans. Archit. Code Optim.},
+month = {jan},
+keywords = {Dynamic binary translation, translation inflation, overhead analysis}
+}
