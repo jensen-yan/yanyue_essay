@@ -1,0 +1,146 @@
+\begin{longtable}{lllll}
+    \caption{表格标题} \\
+    \hline
+    分类 & riscv 指令 & 翻译成的微码 & 新加微码 \\
+    \hline
+    \endfirsthead
+    
+    \multicolumn{4}{c}%
+    {{\bfseries \tablename\ \thetable\ 续表}} \\
+    \hline
+    分类 & riscv 指令 & 翻译成的微码 & 新加微码 \\
+    \hline
+    \endhead
+    
+    \hline
+    \endfoot
+    
+    \hline
+    \endlastfoot
+    \hline
+    移位                         & sll                              & sllflags                     &                                \\
+                               & slli                             & sllflagsimm                  &                                \\
+                               & sllw                             &                              & sllw                           \\
+                               & slliw                            &                              & sllwimm                        \\
+                               & srl                              & srlflags                     &                                \\
+                               & srli                             & srlflagsimm                  &                                \\
+                               & srlw                             &                              & srlw                           \\
+                               & srliw                            &                              & srlwimm                        \\
+                               & sra                              & sraflags                     &                                \\
+                               & srai                             & sraflagsimm                  &                                \\
+                               & sraw                             &                              & sraw                           \\
+                               & sraiw                            &                              & srawimm                        \\
+                               \hline
+    算数                         & add                              & addflags                     &                                \\
+                               & addi                             & addflagsimm                  &                                \\
+                               & addw                             &                              & addw                           \\
+                               & addiw                            &                              & addwimm                        \\
+                               & sub                              & subflags                     &                                \\
+                               & subw                             &                              & subw                           \\
+                               & lui                              & limm                         &                                \\
+                               & auipc                            &                              & auipcimm                       \\
+                               \hline
+    逻辑                         & xor                              & xorflags                     &                                \\
+                               & xori                             & xorflagsimm                  &                                \\
+                               & or                               & orflags                      &                                \\
+                               & ori                              & orflagsimm                   &                                \\
+                               & and                              & andflags                     &                                \\
+                               & andi                             & andflagsimm                  &                                \\
+                               \hline
+    比较                         & slt                              &                              & slt                            \\
+                               & slti                             &                              & sltimm                         \\
+                               & sltu                             &                              & sltu                           \\
+                               & sltiu                            &                              & sltuimm                        \\
+                               \hline
+    分支                       & beq                              &                              &                                \\
+                               & bne                              &                              &                                \\
+                               & blt                              &                              &                                \\
+                              & bge                              & \multirow{-4}{*}{}           & \multirow{-4}{*}{condjumpimm}  \\
+                               & bltu                             &                              &                                \\
+                              & bgeu                             & \multirow{-2}{*}{}           & \multirow{-2}{*}{condjumpuimm} \\
+    \hline
+    其他                         & jal                              &                              & jalimm/call            \\
+                               & jalr                             &                              & jalrimm/ret                 \\
+                               & fence                            & mfence                       &                                \\
+                               & fence.i                          & mfence                       &                                \\
+                               & ecall                            & syscall                      &                                \\
+                               & ebreak                           & syscall                      &                                \\
+                               \hline
+    乘除法指令                      & mul                              &                              & mul                            \\
+                               & mulw                             &                              & mulw                           \\
+                               & mulh                             &                              & mulh                           \\
+                               & mulhsu                           &                              & mulhsu                         \\
+                               & mulhu                            &                              & mulhu                          \\
+                               & div                              &                              & div                            \\
+                               & divu                             &                              & divu                           \\
+                               & divw                             &                              & divw                           \\
+                               & divuw                            &                              & divuw                          \\
+                               & rem                              &                              & rem                            \\
+                               & remu                             &                              & remu                           \\
+                               & remw                             &                              & remw                           \\
+                               & remuw                            &                              & remuw                          \\
+                               \hline
+    浮点移动                       & fmv.w.x                          &                              & mov2fpword                     \\
+                               & fmv.x.w                          &                              & mov2intword                    \\
+                               & fmv.d.x                          & mov2fp                       &                                \\
+                               & fmv.x.d                          & mov2int                      &                                \\
+                               & fcvt.s.w                         &                              &                                \\
+                               & fcvt.d.w                         &                              &                                \\
+                               & fcvt.s.wu                        &                              &                                \\
+                               & fcvt.d.wu                        &                              &                                \\
+                               & fcvt.s.l                         &                              &                                \\
+                               & fcvt.d.l                         &                              &                                \\
+                               & fcvt.s.lu                        &                              &                                \\
+                               \hline
+    浮点转换                     & fcvt.d.lu                        & \multirow{-8}{*}{}           & \multirow{-8}{*}{cvtgi2f}      \\
+                               & fcvt.w.s                         &                              &                                \\
+                               & fcvt.w.d                         &                              &                                \\
+                               & fcvt.wu.s                        &                              &                                \\
+                               & fcvt.wu.d                        &                              &                                \\
+                               & fcvt.l.s                         &                              &                                \\
+                               & fcvt.l.d                         &                              &                                \\
+                               & fcvt.lu.s                        &                              &                                \\
+                               & fcvt.lu.d                        & \multirow{-8}{*}{}           & \multirow{-8}{*}{cvtf2gi}      \\
+    \hline
+    浮点访存                       & flw                              &                              & lwfp                           \\
+                               & fld                              & ldfp                         &                                \\
+                               & fsw                              & stfp                         &                                \\
+                               & fsd                              & stfp                         &                                \\
+                               \hline
+    浮点运算                       & fadd.s/d                         & maddf                        &                                \\
+                               & fsub.s/d                         & msubf                        &                                \\
+                               & fmul.s/d                         & mmulf                        &                                \\
+                               & fdiv.s/d                         & mdivf                        &                                \\
+                               & fsqrt.s/d                        &                              & msqrtf                         \\
+                               \hline
+    浮点乘加                       & fmadd.s/d                        & mmaddf                       &                                \\
+                               & fmsub.s/d                        & mmsubf                       &                                \\
+                               & fnmadd.s/d                       &                              & mnmaddf                        \\
+                               & fnmsub.s/d                       &                              & mnmsubf                        \\
+                               \hline
+    浮点符号                       & fsgnj.s/d                        &                              & fsgnj                          \\
+                               & fsgnjn.s/d                       &                              & fsgnjn                         \\
+                               & fsgnjx.s/d                       &                              & fsgnjx                         \\
+                               \hline
+    浮点比较                       & fmin.s/d                         & mminf                        &                                \\
+                               & fmax.s/d                         & mmaxf                        &                                \\
+                               & feq.s/d                          &                              & mcmpf.eq                       \\
+                               & flt.s/d                          &                              & mcmpf.lt                       \\
+                               & fle.s/d                          &                              & mcmpf.le                       \\
+                               & fclass.s/d                       &                              & fclass                         \\
+                               \hline
+    原子指令                       & lr.w                             & lw                           &                                \\
+                               & sc.w                             & st                           &                                \\
+                               & lr.d                             & ld                           &                                \\
+                               & sc.d                             & st                           &                                \\
+                               & amoswap.w/d                      &                              &                                \\
+                               & amoadd.w/d                       &                              &                                \\
+                               & amoxor.w/d                       &                              &                                \\
+                               & amoand.w/d                       &                              &                                \\
+                               & amoor.w/d                        &                              &                                \\
+                               & amomin.w/d                       &                              &                                \\
+                               & amomax.w/d                       &                              &                                \\
+                               & amominu.w/d                      &                              &                                \\
+    \multirow{-9}{*}{}         & amomaxu.w/d                      & \multirow{-9}{*}{}           & \multirow{-9}{*}{翻译为多条指令}      \\
+
+\end{longtable}
