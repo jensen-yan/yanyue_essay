@@ -20,7 +20,7 @@
 
 \section{微译器整体架构}
 
-\begin{figure}[h]
+\begin{figure}[!htbp]
   \centering
   \includegraphics[width=1\linewidth]{./image/front_end_transutor.pdf}
   \caption{微译器整体架构图}
@@ -54,7 +54,7 @@
 
 接下来详细介绍微译器各个组成部分的设计与实现，包括融合微码、翻译缓存、预翻译文件、二进制翻译器。
 
-\section{融合微码}
+\section{融合微码}\label{sec:tisa}
 本节详细介绍重要的一个概念——融合微码。“融合”代表它能融合了多种指令集的特征，
 包括X86和RISCV，未来还可以支持ARM，MIPS等其他指令集，
 或许叫统一微码也更好理解。但融合并非简单的把所有指令集简单拼接就好，这会造成指令集冗余，挤占有限的编码空间。
@@ -76,7 +76,7 @@ CPU再从磁盘中加载融合微码指令，\textbf{解码}为CPU识别的信�
 
 本节讲解翻译缓存的设计与实现，翻译缓存是微译器的核心组件，用于存储预翻译的融合微码指令集。
 
-\begin{figure}[h]
+\begin{figure}[!htbp]
   \centering
   \includegraphics[width=1\linewidth]{./image/tcache_line.pdf}
   \caption{翻译缓存行组织形式}
@@ -116,7 +116,7 @@ CPU再从磁盘中加载融合微码指令，\textbf{解码}为CPU识别的信�
 在实现上，预翻译文件的作用和可执行文件（Linux中为ELF格式文件）类似，是存储程序的二进制指令的文件格式，处理器会从预翻译文件中加载融合微码指令集，进而译码执行。
 预翻译文件的数据段和ELF文件数据段相同，但是代码段相对于ELF文件的代码段会膨胀64倍（由于重复存储），接下来会举例介绍预翻译文件的代码段格式。
 
-\begin{figure}[h]
+\begin{figure}[!htbp]
   \centering
   \includegraphics[width=1\linewidth]{./image/aot_format.pdf}
   \caption{预翻译文件格式}
@@ -181,7 +181,7 @@ Addr_{AOT} = Base +  Addr_{ELF} \times 64
 
 
 
-\begin{figure}[h]
+\begin{figure}[!htbp]
   \centering
   \includegraphics[width=1\linewidth]{./image/mut_bt.pdf}
   \caption{静态二进制翻译器架构图}

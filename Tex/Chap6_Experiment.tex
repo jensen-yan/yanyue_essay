@@ -12,7 +12,7 @@
 图\ref{img:ucache_ipc}展示了微译器在X86上SPEC 2017上的翻译运行结果，相对于未修改过的X86指令缓存模式进行了归一化。
 可以看到，微译器在SPEC 2017上的性能接近于原生运行，平均性能为92.3\%，并且一大半的浮点型测试集的性能损失在1\%以内。
 
-\begin{figure}[h]
+\begin{figure}[!htbp]
   \centering
   \includegraphics[width=1\linewidth]{./plot/ucache_ipc.pdf}
   \caption{微译器运行SPEC CPU 2017的性能，相对于未修改过的X86指令缓存模式进行了归一化。}
@@ -23,7 +23,7 @@
 根据计算，每千条指令的未命中次数和性能之间的皮尔森相关系数为-0.93，说明未命中次数和性能之间存在很强的负相关性。
 这也说明了微译器的性能主要受到了未命中次数的影响。
 
-\begin{figure}[h]
+\begin{figure}[!htbp]
   \centering
   \includegraphics[width=1\linewidth]{./plot/new_cache_miss.pdf}
   \caption{微译器运行SPEC CPU 2017的每千条指令的未命中次数。}
@@ -73,7 +73,7 @@ SPEC CPU 2000 test测试集包括了12个整数测试程序和14个浮点测试�
 \end{itemize}
 注意这三个配置都是运行RISCV程序的测试，运行X86程序的对比测试会在之后进行。
 
-\begin{figure}[h]
+\begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.8\linewidth]{./plot/ipc.png}
   \caption{ipc对比图。}
@@ -89,7 +89,7 @@ SPEC CPU 2000 test测试集包括了12个整数测试程序和14个浮点测试�
 如图\ref{img:MPKI}所示，我们的微译器在运行SPEC CPU 2000 test测试集时，每千条指令的未命中次数（MPKI）表现如下：
 经过计算，未命中次数和性能之间的皮尔森相关系数为-0.91，说明未命中次数和性能之间存在很强的负相关性。目前的性能下降主要受到了未命中次数的影响。
 
-\begin{figure}[h]
+\begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.8\linewidth]{./plot/MPKI.png}
   \caption{MPKI对比图。}

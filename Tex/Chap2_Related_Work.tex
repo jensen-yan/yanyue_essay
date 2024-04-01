@@ -22,7 +22,7 @@ CMS层的引入不仅实现了架构间的兼容性，还提供了一个动态�
 \item 异常和中断的处理：CMS设计了独特的机制来处理在动态二进制翻译环境中的异常和中断，确保了系统的稳定性和兼容性\cite{dehnertTransmetaCodeMorphing2003}。
 \end{itemize}
 
-\begin{figure}[h]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.8\linewidth]{./feishuImage/transmeta_arch.png}
     \caption{Transmeta架构图，在超长指令字处理器上实现兼容X86的指令集，并支持JAVA程序。}
@@ -45,7 +45,7 @@ QEMU也同时支持多种架构，包括x86、ARM、RISCV等，使其成为开�
 如图\ref{img:qemu_arch}，它通过将不同指令集的机器代码翻译成中间语言（IR，Intermediate Representation），再将IR翻译成宿主指令集，实现跨架构的兼容性。
 这种设计使得QEMU能够处理多种指令集，为用户提供了一定的灵活性。然而，QEMU的性能仅能达到原生性能的13\%，这主要归因于双层翻译（客户代码翻译到IR，IR翻译到宿主代码）的性能损失。
 
-\begin{figure}[h]
+\begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.6\linewidth]{./image/qemu-IR.pdf}
   \caption{QEMU二进制翻译器架构图，能在宿主指令集机器上运行多种客户程序。}
@@ -136,7 +136,7 @@ LBT扩展指令集与LATX软件配合使用，可以实现更高效的二进制�
 \end{itemize}
 
 
-\begin{figure}[h]
+\begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.8\linewidth]{./feishuImage/overhead.png}
   \caption{二进制翻译器的性能开销分析。}
@@ -163,7 +163,7 @@ LBT扩展指令集与LATX软件配合使用，可以实现更高效的二进制�
   \end{tabular}
   \end{table}
 
-\begin{figure}[h]
+\begin{figure}[!htbp]
   \centering
   \rotatebox{90}{\includegraphics[width=\textheight,height=\textwidth,keepaspectratio]{./plot/insts_inflt_breakdown_2017.pdf}}
   \caption{各个二进制翻译器在运行SPEC2017的指令膨胀来源分析图。}
@@ -236,7 +236,7 @@ LBT扩展指令集与LATX软件配合使用，可以实现更高效的二进制�
 
 X86 微码缓存是为了在 X86 CPU 后端实现超标量乱序执行并降低译码功耗而引入的关键组件\cite{solomonMicrooperationCachePower2001}，如图\ref{img:front_end_ucache}。以下是关于 X86 微码缓存的主要工作和设计特点：
 
-\begin{figure}[h]
+\begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.8\linewidth]{./image/front_end_ucache.pdf}
   \caption{X86处理器前端架构图，包括指令缓存和微码缓存}
@@ -266,7 +266,7 @@ X86 微码缓存是为了在 X86 CPU 后端实现超标量乱序执行并降低�
 
 4. \textbf{缓存组织形式：}
 
-\begin{figure}[h]
+\begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.8\linewidth]{./image/ucache.pdf}
   \caption{微码缓存的组织形式}
@@ -291,7 +291,7 @@ X86 微码缓存是为了在 X86 CPU 后端实现超标量乱序执行并降低�
 
 总结起来，微码缓存行有3个结束条件：1. 遇到指令缓存行的结尾；2. 遇到控制流指令并预测会跳转；3. 微码缓存行已满。
 
-\begin{figure}[h]
+\begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.8\linewidth]{./image/IC-to-UC.pdf}
   \caption{指令缓存和微码缓存关系}
@@ -308,7 +308,7 @@ A指令译码为的微码为a0，B指令的微码为b0，C指令的微码为c0�
 
 X86 微码缓存的引入和优化为 X86 架构的超标量乱序执行提供了重要支持，使得 CPU 在执行 X86 指令集时能够更加高效地利用硬件资源，提高整体性能。
 
-\begin{figure}[h]
+\begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.8\linewidth]{./image/ucache_line.pdf}
   \caption{微码缓存一行的内容}
