@@ -1,9 +1,6 @@
 .direnv
 out
 __pycache__
-plot/*.svg
-plot/*.png
-plot/*.pdf
 image/*.pdf
 snippets/*.pdf
 tables/*.tex
