@@ -60,6 +60,18 @@
                                & bltu                             &                              &                                \\
                               & bgeu                             & \multirow{-2}{*}{}           & \multirow{-2}{*}{condjumpuimm} \\
     \hline
+    访存                         &lb                               &                                & lb  \\                    
+                                & lh                              &                                & lbu \\
+                                & lbu                             &                                & lh  \\
+                                & lhu                             &                                & lhu \\
+                                & lw                              &                                & lw  \\
+                                & lwu                             &                                & lwu \\
+                                & ld                              & ld                             &     \\
+                                & sb                              & st                             &     \\
+                                & sh                              & st                             &     \\
+                                & sw                              & st                             &     \\
+                                & sd                              & st                             &     \\
+    \hline
     其他                         & jal                              &                              & jalimm/call            \\
                                & jalr                             &                              & jalrimm/ret                 \\
                                & fence                            & mfence                       &                                \\
