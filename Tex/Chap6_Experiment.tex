@@ -1,13 +1,68 @@
 \chapter{实验数据分析}\label{chap:Epxeriment}
 
+本章首先介绍了微译器的实验环境，在添加指令翻译过程的调试环境。
+然后展示了微译器在X86和RISCV上的性能分析，
+最后分析了实施的优化方案的效果。
+
 \section{实验环境}
 
+本课题在Gem5模拟器\cite{gem5OriginalPaper}上进行了实验，Gem5是一个广泛使用的开源计算机系统体系结构模拟器，
+它具有如下特点：
+\begin{itemize}
+  \item 开源：Gem5是一个开源项目，每年都会有大量的开发者参与到Gem5的开发中并发布新的版本。
+  过去12年间，有超过250名开发者参与到Gem5的开发中，提交了超过7500次的commit\cite{Gem5SimulatorVersion2020}。
+  目前最新的版本是v23，也是我们使用的版本。
+  \item 广泛使用：Gem5被广泛用于学术界和工业界，用于研究新的计算机体系结构，新的内存层次结构，新的缓存替换算法等。
+  \item 周期精确：Gem5是一个周期精确的模拟器，可以模拟CPU的每一个周期，\cite{Butko2012AccuracyEO}表明Gem5与实际硬件的性能差距在5\%以内。
+  \item 多架构支持：Gem5支持多种指令集架构，包括X86、RISCV、ARM等，可以方便的进行不同架构的模拟，便于本课题的研究。
+  \item 模块化：Gem5的设计是模块化的，分为CPU模块、缓存模块、内存模块等，可以方便的进行模块的替换和扩展。
+  \item 高度可配置：Gem5在一次编译后，在动态运行时可以通过配置参数进行不同的配置，例如CPU类型、缓存大小等。
+  \item 事件驱动：Gem5是一个事件驱动的模拟器，它将时间的流逝模拟为一系列离散事件，只有在事件发生时才会进行模拟。
+  例如在模拟CPU时，只有在取指、译码、执行等事件发生时才会进行模拟，其余时间Gem5处于“休眠状态”，这样可以提高模拟器的效率。
+\end{itemize}
+
+Gem5有全系统模拟器和用户空间模拟器两种模式，全系统模拟器可以模拟整个计算机系统，包括CPU、内存、外设等，
+用户空间模拟器只模拟用户空间的部分，不模拟内核和硬件，只模拟用户空间的指令执行\cite{gem5OriginalPaper}。
+本课题使用\textbf{用户空间}模拟器进行实验，因为本课题主要关注用户态二进制翻译器优化，只翻译用户态的指令，不涉及内核态的指令。
+
+为了和真实的硬件环境更加接近，我们使用了和真实硬件校准过的Intel Haswell处理器参数进行模拟，
+\cite{akramValidationGem5Simulator2019}校准后的数据表明，Gem5模拟器和真实硬件的性能差距在6\%以内。
+我们将这个参数作为基准参数，然后在这个基准参数上进行微译器的实验。
+
+为了不引入额外的面积、功耗等开销，我们使用同样大小的翻译缓存\textbf{替换}了原有的指令缓存，这样可以保证硬件开销不变。
+表\ref{tab:specifications}展示了Gem5的硬件参数。
+
+% https://www.tablesgenerator.com/latex_tables
+\begin{table}[ht]
+  \centering
+  \caption{Gem5硬件参数，其中指令缓存模式为Intel Haswell处理器参数; 翻译缓存模式为微译器参数。}
+  \label{tab:specifications}
+  \begin{tabular}{|c|ll|}
+  \hline
+  \multicolumn{1}{|l|}{}         & \multicolumn{1}{l|}{\textbf{翻译缓存模式}} & \textbf{指令缓存模式} \\ \hline
+  \multirow{6}{*}{\textbf{处理器核}} & \multicolumn{1}{l|}{软件动静翻译+融合微码}           & 硬件译码 + X86微码    \\ \cline{2-3} 
+                                 & \multicolumn{2}{l|}{类型：乱序6发射处理器}                         \\ \cline{2-3} 
+                                 & \multicolumn{2}{l|}{译码：每拍6条}                         \\ \cline{2-3} 
+                                 & \multicolumn{2}{l|}{主频：3.4GHz}                         \\ \cline{2-3} 
+                                 & \multicolumn{2}{l|}{分发：每拍6条微码}                         \\ \cline{2-3} 
+                                 & \multicolumn{2}{l|}{发射队列：69条微码}                                 \\ \cline{2-3} 
+                                 & \multicolumn{2}{l|}{分支预测：4096项的锦标赛算法}                            \\ \hline
+  \multirow{5}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}内存层次\end{tabular}}} &
+                    \multicolumn{1}{l|}{
+                    \begin{tabular}[c]{@{}l@{}}翻译缓存: 32KB，\\8路组相连，2拍延迟\end{tabular}} &
+                    \begin{tabular}[c]{@{}l@{}}指令缓存: 32KB，\\8路组相连，2拍延迟\end{tabular} \\ \cline{2-3} 
+                                 & \multicolumn{2}{l|}{数据缓存: 32KB，8路组相连，2拍延迟}                    \\ \cline{2-3} 
+                                 & \multicolumn{2}{l|}{二级缓存: 256KB，8路组相连，12拍延迟}                \\ \cline{2-3} 
+                                 & \multicolumn{2}{l|}{三级缓存: 8MB，16路组相连，36拍延迟}                 \\ \cline{2-3} 
+                                 & \multicolumn{2}{l|}{内存: 4GB，DDR3-1600, 30ns延迟}                     \\ \hline
+  \end{tabular}
+  \end{table}
 
 \section{调试环境}
 
 本章节首先展示微译器在X86上SPEC 2017上的翻译运行结果，然后介绍RISCV在CoreMark测试集上的运行效果。
 
-\section{微译器在X86上的翻译运行结果}
+\section{微译器在X86上性能分析}
 
 图\ref{img:ucache_ipc}展示了微译器在X86上SPEC 2017上的翻译运行结果，相对于未修改过的X86指令缓存模式进行了归一化。
 可以看到，微译器在SPEC 2017上的性能接近于原生运行，平均性能为92.3\%，并且一大半的浮点型测试集的性能损失在1\%以内。
@@ -29,8 +84,6 @@
   \caption{微译器运行SPEC CPU 2017的每千条指令的未命中次数。}
   \label{img:new_cache_miss}
 \end{figure}
-
-\section{微译器在CoreMark测试集上的运行结果}
 
 \begin{table}[]
   \centering
@@ -60,7 +113,7 @@ RISCV 相对于X86的CoreMark 还有一定的性能差距，主要由于还没�
 同时RISCV目前对于压缩指令支持还不够完善，导致翻译出来的微码编码较长，导致AOT文件相对更大，也会导致性能下降。
 
 
-\section{微译器在RISCV上的翻译运行结果}
+\section{微译器在RISCV上性能分析}
 由于Gem5的模拟器的性能开销较大，我们选择了SPEC CPU 2000 test测试集作为测试基准。
 SPEC CPU 2000 test测试集包括了12个整数测试程序和14个浮点测试程序，是一个较为完备的测试集。
 目前已经成功运行了8个整数测试程序，剩下的整数测试程序由于指令翻译的问题暂时无法运行，目前还在修复中，浮点测试程序还没有测试。
@@ -95,3 +148,5 @@ SPEC CPU 2000 test测试集包括了12个整数测试程序和14个浮点测试�
   \caption{MPKI对比图。}
   \label{img:MPKI}
 \end{figure}
+
+\section{微译器优化方案分析}
