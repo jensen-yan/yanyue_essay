@@ -1,0 +1,41 @@
+\begin{table}[]
+    \centering
+    \caption{压缩指令列表}
+    \label{app:compact_insts}
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    \multicolumn{1}{|l|}{序号} & \multicolumn{3}{c|}{压缩指令名}                                                        \\ \hline
+    \multicolumn{1}{|l|}{}    & \multicolumn{1}{l|}{2操作数} & \multicolumn{1}{l|}{1操作数} & \multicolumn{1}{l|}{0操作数} \\ \hline
+    1                        & addflags\_sz8             & dec\_sz4                  & invalid                   \\
+    2                        & addflagsimm\_sz8          & dec\_sz8                  & halt                      \\
+    3                        & addimm\_sz8               & inc\_sz4                  & ldpop                     \\
+    4                        & addwimm\_sz8              & inc\_sz8                  & macroop\_movs1            \\
+    5                        & addw\_sz8                 & ld\_stack\_subssz\_sz9    & macroop\_movs2            \\
+    6                        & andflags\_sz8             & rdip                      & macroop\_movs4            \\
+    7                        & andflagsimm\_sz8          & st\_stack\_subssz\_sz9    & macroop\_movs8            \\
+    8                        & auipcimm                  & wripcalli                 & macroop\_stos1            \\
+    9                        & jalrimm                   & wripcalli\_call           & macroop\_stos2            \\
+    10                       & jalrimm\_T0               & wripi                     & macroop\_stos4            \\
+    11                       & jalrimm\_ret              & wripi\_call               & macroop\_stos8            \\
+    12                       & limm\_sz4                 & wripi\_ret                & mfence                    \\
+    13                       & limm\_sz8                 &                           & nop                       \\
+    14                       & mov\_sz4                  &                           & syscall                   \\
+    15                       & mov\_sz8                  &                           & stcall                    \\
+    16                       & orflags\_sz8              &                           &                           \\
+    17                       & sraflagsimm\_sz8          &                           &                           \\
+    18                       & srlflagsimm\_sz8          &                           &                           \\
+    19                       & sllflagsimm\_sz8          &                           &                           \\
+    20                       & stpp\_sz1                 &                           &                           \\
+    21                       & stpp\_sz2                 &                           &                           \\
+    22                       & stpp\_sz4                 &                           &                           \\
+    23                       & stpp\_sz8                 &                           &                           \\
+    24                       & subflags\_sz8             &                           &                           \\
+    25                       & subw\_sz8                 &                           &                           \\
+    26                       & subflagsimm\_sz8          &                           &                           \\
+    27                       & wripcallflagsi            &                           &                           \\
+    28                       & jalimm                    &                           &                           \\
+    29                       & jalimm\_call              &                           &                           \\
+    30                       & xorflags\_sz4             &                           &                           \\
+    31                       & xorflags\_sz8             &                           &                          \\ \hline
+    \end{tabular}
+    \end{table}
