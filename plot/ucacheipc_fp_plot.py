@@ -50,9 +50,9 @@ for (index, row) in processed.iterrows(): # 遍历行, index是行名，row是�
 ax1.legend(loc="upper left", ncol=processed_nrow, labels=["无优化", "开启所有优化"])
 ax1.set_xticks(x+width*processed_nrow/2, processed.columns, rotation=90)
 ax1.set_xlim(-0.3, processed_ncol)
-ax1.set_ylim(0, processed.max().max() * 1.4 * 100)
+ax1.set_ylim(40, processed.max().max() * 1.4 * 100)
 
-ax1.set_yticks([0, 20, 40, 60, 80, 100])
+ax1.set_yticks([40, 60, 80, 100])
 
 import os
 ext = ".svg"

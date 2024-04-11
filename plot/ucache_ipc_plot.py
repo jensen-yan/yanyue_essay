@@ -75,9 +75,9 @@ else:
 
 ax1.set_xticks(x+width*processed_nrow/2, processed.columns, rotation=90)  # 设置x轴刻度，位置，标签，旋转角度
 ax1.set_xlim(-0.3, processed_ncol)
-ax1.set_ylim(0, processed.max().max() * 1.4 * 100)
+ax1.set_ylim(40, processed.max().max() * 1.4 * 100)
 
-ax1.set_yticks([0, 20, 40, 60, 80, 100])
+ax1.set_yticks([40, 60, 80, 100])
 
 import os
 ext = ".svg"
