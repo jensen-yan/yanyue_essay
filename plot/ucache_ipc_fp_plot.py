@@ -7,17 +7,17 @@ from head import *
 
 # get and process data
 original: pd.DataFrame = pd.read_excel(args.file, index_col=0)
-processed = original.iloc[0:5]
+processed = original.iloc[0:6]
 # 只选中某些特定列，数据才有效
-processed = processed[["164.gzip", "175.vpr.0", "175.vpr.1", "176.gcc", "181.mcf", "186.crafty", "197.parser", "254.gap", "256.bzip2", "300.twolf"]]
-head_list = processed.columns.tolist()    # ['168.wupwise', '171.swim', '172.mgrid', '177.mesa', '178.galgel', '179.art', '183.equake', '187.facerec', '188.ammp', '301.apsi']
+processed = processed[["168.wupwise", "171.swim", "172.mgrid", "177.mesa", "178.galgel", "179.art", "183.equake", "187.facerec", "188.ammp", "301.apsi"]]
+head_list = processed.columns.tolist()    
 # index_list = processed.index.tolist()
 processed[head_list] = processed[head_list].div(processed.iloc[0][head_list]) # 除以第一行
 processed_nrow = len(processed.index)   # 行数=3
 processed_ncol = len(processed.columns)  # 列数=10
 
-# 只选择2,4行
-processed = processed.iloc[[1,3]]
+# 忽略第一行
+processed = processed.iloc[1:]
 
 f, (ax0, ax1) = plt.subplots(
   ncols=2, sharey=True, figsize=(5, 2),
@@ -47,8 +47,6 @@ for (index, row) in processed.iterrows(): # 遍历行, index是行名，row是�
   multiplier += 1
 
 # ax1.tick_params(axis='x', labelsize=8) 
-# ax1.legend(loc="upper left", ncol=processed_nrow)
-# 设置legend 内容
 ax1.legend(loc="upper left", ncol=processed_nrow, labels=["无优化", "开启所有优化"])
 ax1.set_xticks(x+width*processed_nrow/2, processed.columns, rotation=90)
 ax1.set_xlim(-0.3, processed_ncol)
