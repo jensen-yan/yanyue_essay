@@ -1,6 +1,6 @@
 .NOTINTERMEDIATE:
 
-all: out/Thesis.pdf
+all: ipc out/Thesis.pdf
 
 out/Thesis.pdf: \
 		Thesis.tex Tex/* Biblio/* Style/* \
@@ -19,6 +19,14 @@ out/Thesis.pdf: \
 	drawio -x -f svg $<
 %.pdf: %.drawio
 	drawio -x -f pdf --crop $<
+
+.PHONY: ipc
+ipc: $(addprefix plot/ucache_ipc, $(addsuffix .pdf, 0 1 2 3 4))
+
+plot/ucache_ipc%.svg: plot/ucache_ipc_plot.py plot/ucache_ipc.xlsx plot/head.py
+	$< -f $(word 2,$^) -m $(patsubst ucache_ipc%.svg,%,$(@F))
+plot/ucache_ipc%.pdf: plot/ucache_ipc%.svg
+	rsvg-convert -f pdf -o $@ $<
 
 plot/%.svg: plot/%_plot.py plot/%.xlsx plot/head.py
 	$< -f $(word 2,$^)

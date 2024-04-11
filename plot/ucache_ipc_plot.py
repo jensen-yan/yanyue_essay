@@ -7,17 +7,28 @@ from head import *
 
 # get and process data
 original: pd.DataFrame = pd.read_excel(args.file, index_col=0)
-processed = original.iloc[0:5]
+processed = original
 # 只选中某些特定列，数据才有效
 processed = processed[["164.gzip", "175.vpr.0", "175.vpr.1", "176.gcc", "181.mcf", "186.crafty", "197.parser", "254.gap", "256.bzip2", "300.twolf"]]
-head_list = processed.columns.tolist()    # ['168.wupwise', '171.swim', '172.mgrid', '177.mesa', '178.galgel', '179.art', '183.equake', '187.facerec', '188.ammp', '301.apsi']
-# index_list = processed.index.tolist()
+head_list = processed.columns.tolist()
 processed[head_list] = processed[head_list].div(processed.iloc[0][head_list]) # 除以第一行
 processed_nrow = len(processed.index)   # 行数=3
 processed_ncol = len(processed.columns)  # 列数=10
 
-# 只选择2,4行
-processed = processed.iloc[[1,3]]
+# 根据mode 选择 switch case
+if args.mode == 0:  # all opt
+  processed = processed.iloc[[1,2]]
+elif args.mode == 1:
+  processed = processed.iloc[[1,3]]
+elif args.mode == 2:
+  processed = processed.iloc[[1,4]]
+elif args.mode == 3:
+  processed = processed.iloc[[1,5]]
+elif args.mode == 4:
+  processed = processed.iloc[[1,6]]
+else:
+  processed = processed.iloc[[1,2]]
+# processed = processed.iloc[[1,3]]
 
 f, (ax0, ax1) = plt.subplots(
   ncols=2, sharey=True, figsize=(5, 2),
@@ -48,8 +59,20 @@ for (index, row) in processed.iterrows(): # 遍历行, index是行名，row是�
 
 # ax1.tick_params(axis='x', labelsize=8) 
 # ax1.legend(loc="upper left", ncol=processed_nrow)
-# 设置legend 内容
-ax1.legend(loc="upper left", ncol=processed_nrow, labels=["无优化", "开启所有优化"])
+# 根据mode设置legend 内容
+if args.mode == 0:
+  ax1.legend(loc="upper left", ncol=processed_nrow, labels=["无优化", "开启所有优化"])
+elif args.mode == 1:
+  ax1.legend(loc="upper left", ncol=processed_nrow, labels=["无优化", "放松缓存行优化"])
+elif args.mode == 2:
+  ax1.legend(loc="upper left", ncol=processed_nrow, labels=["无优化", "放松条件跳转优化"])
+elif args.mode == 3:
+  ax1.legend(loc="upper left", ncol=processed_nrow, labels=["无优化", "压缩指令优化"])
+elif args.mode == 4:
+  ax1.legend(loc="upper left", ncol=processed_nrow, labels=["无优化", "变长缓存行优化"])
+else:
+  ax1.legend(loc="upper left", ncol=processed_nrow, labels=["无优化", "开启所有优化"])
+
 ax1.set_xticks(x+width*processed_nrow/2, processed.columns, rotation=90)
 ax1.set_xlim(-0.3, processed_ncol)
 ax1.set_ylim(0, processed.max().max() * 1.4 * 100)
@@ -59,7 +82,7 @@ ax1.set_yticks([0, 20, 40, 60, 80, 100])
 import os
 ext = ".svg"
 plt.savefig(
-  os.path.splitext(args.file)[0] + ext,
+  os.path.splitext(args.file)[0] + (str(args.mode) if args.mode is not None else "") + ext,
   bbox_inches="tight",
   transparent=True
 )

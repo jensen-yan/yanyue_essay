@@ -11,6 +11,7 @@ import pathlib
 parser = argparse.ArgumentParser()
 parser.add_argument("-f", "--file", nargs="?", type=pathlib.Path,help="the path to xlsx file")
 parser.add_argument("-o","--output",nargs="?", type=pathlib.Path,help="name of outputfile")
+parser.add_argument("-m", "--mode", nargs="?", type=int, help="mode of plot, print 4 kinds of optimizations")
 args = parser.parse_args()
 if args.file is None and args.output is None:
     print("the path to xlsx file or name of outputfile")
