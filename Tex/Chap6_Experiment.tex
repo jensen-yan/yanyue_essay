@@ -202,30 +202,50 @@ SPEC CPU 2000 test测试集包括了12个整数测试程序和14个浮点测试�
 
 \section{优化方案分析}
 
+本节将对第\ref{chap:Opt}章中提出的四种优化方案进行分析，分别是放松指令缓存行优化、放松条件跳转优化、添加压缩指令优化、使用变长微码缓存行优化。
+由于Spec2000浮点测试在关闭和打开优化条件情况下，性能都接近原生性能，差异不大，因此这里不再分析。
+后文将分析Spec2000\textbf{整数}测试集的优化效果。
+为了防止不同优化条件相互影响，我们分别对每个优化方案单独进行分析，也就是单独开启其中一个优化方案，其余优化方案关闭。
+
+\subsection{放松指令缓存行优化}
+
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.8\linewidth]{./plot/ucache_ipc1.pdf}
-  \caption{SPEC2000整数性能对比图。}
+  \caption{放松指令缓存行条件后性能对比图。}
   \label{img:ipc1}
 \end{figure}
+
+\subsection{放松条件跳转优化}
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.8\linewidth]{./plot/ucache_ipc2.pdf}
-  \caption{SPEC2000整数性能对比图。}
+  \caption{放松条件跳转优化后性能对比图。}
   \label{img:ipc2}
 \end{figure}
+
+\subsection{添加压缩指令优化}
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.8\linewidth]{./plot/ucache_ipc3.pdf}
-  \caption{SPEC2000整数性能对比图。}
+  \caption{添加压缩指令优化后性能对比图。}
   \label{img:ipc3}
 \end{figure}
 
 \begin{figure}[!htbp]
   \centering
+  \includegraphics[width=0.8\linewidth]{./plot/tisa_avg_bytes.pdf}
+  \caption{添加压缩指令优化后平均指令长度变化。}
+  \label{img:avg_bytes}
+\end{figure}
+
+\subsection{使用变长微码缓存行优化}
+
+\begin{figure}[!htbp]
+  \centering
   \includegraphics[width=0.8\linewidth]{./plot/ucache_ipc4.pdf}
-  \caption{SPEC2000整数性能对比图。}
+  \caption{使用变长微码缓存行优化后性能对比图。}
   \label{img:ipc4}
 \end{figure}
