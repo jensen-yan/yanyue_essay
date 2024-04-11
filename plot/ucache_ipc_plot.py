@@ -12,10 +12,8 @@ processed = original
 processed = processed[["164.gzip", "175.vpr.0", "175.vpr.1", "176.gcc", "181.mcf", "186.crafty", "197.parser", "254.gap", "256.bzip2", "300.twolf"]]
 head_list = processed.columns.tolist()
 processed[head_list] = processed[head_list].div(processed.iloc[0][head_list]) # 除以第一行
-processed_nrow = len(processed.index)   # 行数=3
-processed_ncol = len(processed.columns)  # 列数=10
 
-# 根据mode 选择 switch case
+# 根据mode 选择要处理的数据
 if args.mode == 0:  # all opt
   processed = processed.iloc[[1,2]]
 elif args.mode == 1:
@@ -28,7 +26,9 @@ elif args.mode == 4:
   processed = processed.iloc[[1,6]]
 else:
   processed = processed.iloc[[1,2]]
-# processed = processed.iloc[[1,3]]
+  
+processed_nrow = len(processed.index)   # 行数=3
+processed_ncol = len(processed.columns)  # 列数=10
 
 f, (ax0, ax1) = plt.subplots(
   ncols=2, sharey=True, figsize=(5, 2),
@@ -73,7 +73,7 @@ elif args.mode == 4:
 else:
   ax1.legend(loc="upper left", ncol=processed_nrow, labels=["无优化", "开启所有优化"])
 
-ax1.set_xticks(x+width*processed_nrow/2, processed.columns, rotation=90)
+ax1.set_xticks(x+width*processed_nrow/2, processed.columns, rotation=90)  # 设置x轴刻度，位置，标签，旋转角度
 ax1.set_xlim(-0.3, processed_ncol)
 ax1.set_ylim(0, processed.max().max() * 1.4 * 100)
 
