@@ -216,6 +216,13 @@ SPEC CPU 2000 test测试集包括了12个整数测试程序和14个浮点测试�
   \label{img:ipc1}
 \end{figure}
 
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.8\linewidth]{./plot/ucacheline_nums1.pdf}
+  \caption{放松指令缓存行条件后翻译缓存行平均指令数量。}
+  \label{img:ucacheline_nums1}
+\end{figure}
+
 \subsection{放松条件跳转优化}
 
 \begin{figure}[!htbp]
@@ -223,6 +230,13 @@ SPEC CPU 2000 test测试集包括了12个整数测试程序和14个浮点测试�
   \includegraphics[width=0.8\linewidth]{./plot/ucache_ipc2.pdf}
   \caption{放松条件跳转优化后性能对比图。}
   \label{img:ipc2}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.8\linewidth]{./plot/ucacheline_nums2.pdf}
+  \caption{放松条件跳转后翻译缓存行平均指令数量。}
+  \label{img:ucacheline_nums2}
 \end{figure}
 
 \subsection{添加压缩指令优化}
