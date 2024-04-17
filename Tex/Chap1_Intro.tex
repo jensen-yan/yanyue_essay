@@ -185,7 +185,7 @@ Apple\cite{RunningIntelBinaries}、Intel\cite{noauthor_intel_nodate}
 
 翻译性能是衡量二进制翻译器优劣的重要指标，
 本文将翻译性能定义如下：
-\begin{equation}
+\begin{equation}\label{eq:bt_performance}
     \text{翻译性能} = \frac{\text{本地原生代码执行时间}}{\text{基于二进制翻译执行时间}} * 100\%
 \end{equation}
 对同一份测试程序的源代码用相同编译参数，直接编译到宿主指令集得到原生二进制代码$B_{host}$，
