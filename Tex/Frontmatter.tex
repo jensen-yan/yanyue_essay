@@ -19,7 +19,7 @@
 
 近年来国产处理器的发展日益迅猛，处理器设计能力已经接近国际先进水平，
 但是由于不同指令集的处理器之间生态互不兼容，
-新兴指令集处理器生态难以融入主流的X86和ARM生态，这阻碍了国产处理器的发展。
+新兴指令集处理器生态难以融入主流的x86和ARM生态，这阻碍了国产处理器的发展。
 二进制翻译器是实现指令集兼容性的主要方法，有助于新兴指令集生态建设，
 但是现有的主流二进制翻译器性能达到80\%的原生性能，仍然存在性能瓶颈，
 
@@ -33,7 +33,7 @@
 微译器消除了软件二进制翻译器中的间接跳转性能开销，缩小了客户指令集语义差异，
 提升了翻译性能。
 
-2. 在微译器已有的支持X86指令集翻译执行的框架下，添加了RISCV架构的支持，
+2. 在微译器已有的支持x86指令集翻译执行的框架下，添加了RISCV架构的支持，
 累计添加51条微码指令用于支持272条RISCV指令翻译，并设计了寄存器映射方案。
 实现了微译器对于多架构的高效支持，为添加更多指令集提供了技术支持。
 
@@ -53,7 +53,7 @@
 This article adds RISCV multi-architecture support to the existing new binary translation technology - micro-translator, aiming to solve the problem of instruction set fragmentation and performance bottlenecks between multi-architectures, and verify the micro-translator's ability to support multiple architectures. feasibility of support.
 The microtranslator combines the concepts of traditional microcode caching and binary translation, and achieves the coexistence of multiple instruction sets by introducing translation caching and fused microcode at the hardware level, and using static and dynamic binary translators at the software level.
 At the same time, this article continues to optimize the coding design of the integrated microcode and the boundary condition design of the translation cache to improve the performance of the microtranslator.
-The micro-translator verifies its effectiveness in supporting X86 and RISCV multi-architecture in the Gem5 simulator by running SPEC CPU 2017, SPEC CPU 2000 and CoreMark programs.
+The micro-translator verifies its effectiveness in supporting x86 and RISCV multi-architecture in the Gem5 simulator by running SPEC CPU 2017, SPEC CPU 2000 and CoreMark programs.
 Experimental results show that the performance and effect of the micro-translator have been significantly improved, reaching more than 90\% of the running performance of native programs.
 Compared with the performance of the multi-architecture translator QEMU 20\%, the performance is improved several times, which provides an innovative solution to solve the problem of software and hardware collaboration in a multi-architecture environment.
 
