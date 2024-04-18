@@ -17,7 +17,7 @@
 QEMU是一个广泛使用的开源多平台二进制翻译框架，特别在云计算环境中，它常和KVM一起使用，提供了一种高效的虚拟化解决方案。
 QEMU同时支持系统态翻译和用户态翻译，本文主要关注用户态翻译部分，它允许在一个主机操作系统上模拟另一个操作系统的应用程序。
 
-QEMU也同时支持多种架构，包括x86、ARM、RISCV等，使其成为开发跨平台应用程序的理想工具， 也可用于软件开发、测试以及安全研究。
+QEMU也同时支持多种架构，包括x86、ARM、RISC-V等，使其成为开发跨平台应用程序的理想工具， 也可用于软件开发、测试以及安全研究。
 如图\ref{img:qemu_arch}，它通过将不同指令集的机器代码翻译成中间语言（IR，Intermediate Representation），再将IR翻译成宿主指令集，实现跨架构的兼容性。
 这种设计使得QEMU能够处理多种指令集，为用户提供了一定的灵活性。然而，QEMU的性能仅能达到原生性能的10\%，
 这主要归因于双层翻译（客户代码翻译到IR，IR翻译到宿主代码）的性能损失以及Helper函数模拟浮点和向量指令的性能开销\cite{deflater}。
@@ -90,7 +90,7 @@ ExaGear主要包括两个关键组件：指令翻译引擎和x86运行环境。�
     \begin{tabular}{llll}
     \rowcolor[HTML]{FBE5D6} 
     二进制翻译器    & 公司   & 客户平台           & 宿主平台           \\
-    QEMU      & 开源项目 & x86，ARM，RISCV等 & x86，ARM，RISCV等  \\
+    QEMU      & 开源项目 & x86，ARM，RISC-V等 & x86，ARM，RISC-V等  \\
     ExaGear   & 华为   & x86            & ARM            \\
     Rosetta2  & 苹果   & x86            & ARM            \\
     LoongArch & 龙芯   & x86            & LoongArch      

@@ -24,7 +24,7 @@
 但是现有的主流二进制翻译器性能达到80\%的原生性能，仍然存在性能瓶颈，
 
 为此，本文合作提出一种新型的二进制翻译框架——微译器。
-为了验证微译器对多架构支持的可行性，本文在微译器中添加了RISCV翻译支持，设计了寄存器映射方案和指令翻译方案。
+为了验证微译器对多架构支持的可行性，本文在微译器中添加了RISC-V翻译支持，设计了寄存器映射方案和指令翻译方案。
 
 本文的主要工作及贡献如下：
 
@@ -33,14 +33,14 @@
 微译器消除了软件二进制翻译器中的间接跳转性能开销，缩小了客户指令集语义差异，
 提升了翻译性能。
 
-2. 在微译器已有的支持x86指令集翻译执行的框架下，添加了RISCV架构的支持，
-累计添加51条微码指令用于支持272条RISCV指令翻译，并设计了寄存器映射方案。
+2. 在微译器已有的支持x86指令集翻译执行的框架下，添加了RISC-V架构的支持，
+累计添加51条微码指令用于支持272条RISC-V指令翻译，并设计了寄存器映射方案。
 实现了微译器对于多架构的高效支持，为添加更多指令集提供了技术支持。
 
 3. 优化微译器的性能，添加了4种优化方案，包括放松缓存行结尾、放松条件跳转指令、支持压缩指令、支持变长微码行。
 测试显示4种优化方案降低了微码缓存的缺失率，提升了微译器的性能。
 
-本文在Gem5模拟器中实现了RISCV微译器的原型系统，同时添加了4种优化方案用以提升性能，
+本文在Gem5模拟器中实现了RISC-V微译器的原型系统，同时添加了4种优化方案用以提升性能，
 实验结果显示优化后的微译器在运行SPEC 2000测试的平均性能达到了原生程序的96.1\%，
 有效缓解了二进制翻译器的性能瓶颈问题。
 
@@ -50,10 +50,10 @@
 %-
 \intobmk\chapter*{Abstract}% 显示在书签但不显示在目录
 
-This article adds RISCV multi-architecture support to the existing new binary translation technology - micro-translator, aiming to solve the problem of instruction set fragmentation and performance bottlenecks between multi-architectures, and verify the micro-translator's ability to support multiple architectures. feasibility of support.
+This article adds RISC-V multi-architecture support to the existing new binary translation technology - micro-translator, aiming to solve the problem of instruction set fragmentation and performance bottlenecks between multi-architectures, and verify the micro-translator's ability to support multiple architectures. feasibility of support.
 The microtranslator combines the concepts of traditional microcode caching and binary translation, and achieves the coexistence of multiple instruction sets by introducing translation caching and fused microcode at the hardware level, and using static and dynamic binary translators at the software level.
 At the same time, this article continues to optimize the coding design of the integrated microcode and the boundary condition design of the translation cache to improve the performance of the microtranslator.
-The micro-translator verifies its effectiveness in supporting x86 and RISCV multi-architecture in the Gem5 simulator by running SPEC CPU 2017, SPEC CPU 2000 and CoreMark programs.
+The micro-translator verifies its effectiveness in supporting x86 and RISC-V multi-architecture in the Gem5 simulator by running SPEC CPU 2017, SPEC CPU 2000 and CoreMark programs.
 Experimental results show that the performance and effect of the micro-translator have been significantly improved, reaching more than 90\% of the running performance of native programs.
 Compared with the performance of the multi-architecture translator QEMU 20\%, the performance is improved several times, which provides an innovative solution to solve the problem of software and hardware collaboration in a multi-architecture environment.
 
