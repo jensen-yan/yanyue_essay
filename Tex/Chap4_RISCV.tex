@@ -10,7 +10,7 @@
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.8\linewidth]{./image/TISA_encoder.pdf}
-  \caption{融合微码编码方式}
+  \bicaption{\enspace 融合微码编码方式}{\enspace The encoding of the fused microcode}
   \label{img:TISA_encoder}
 \end{figure}
 
@@ -67,14 +67,14 @@
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.8\linewidth]{./plot_pdf/immsize_x86.pdf}
-  \caption{x86 SPEC CPU 2017 中立即数和地址偏移的分布}
+  \bicaption{\enspace x86 SPEC2017 中立即数和地址偏移的分布}{\enspace The immediate and displacement Distribution in x86 SPEC2017}
   \label{img:immsize_x86}
 \end{figure}
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.8\linewidth]{./plot_pdf/immsize_riscv.pdf}
-  \caption{RISC-V SPEC CPU 2017 中立即数分布}
+  \bicaption{\enspace RISC-V SPEC2017 中立即数分布}{\enspace The immediate Distribution in RISC-V SPEC2017}
   \label{img:immsize_riscv}
 \end{figure}
 
@@ -121,7 +121,8 @@ RISC-V有32个64位的浮点寄存器。综合考虑，在设计中，只支持3
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=1\linewidth]{./image/TISA.pdf}
-  \caption{指令翻译到融合微码过程，x86 add 和RISC-V add 指令都翻译成融合微码add指令，
+  \bicaption{\enspace 指令翻译到融合微码过程}{\enspace The process of translating instructions to fused microcode}
+  \fignote{x86 add 和RISC-V add 指令都翻译成融合微码add指令，
   而lbu（加载字节并无符合扩展）指令，需要额外添加lbu 微码指令。}
   \label{img:TISA}
 \end{figure}
@@ -160,7 +161,8 @@ RISC-V有32个64位的浮点寄存器。综合考虑，在设计中，只支持3
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.6\linewidth]{./image/amo_trans.pdf}
-  \caption{RISC-V原子加法指令翻译过程，会使用两个临时寄存器，需要前后都进行寄存器保存和寄存器恢复。
+  \bicaption{\enspace RISC-V原子加法指令翻译过程}{\enspace The translation process of RISC-V atomic addition instruction}
+  \fignote{会使用两个临时寄存器，需要前后都进行寄存器保存和寄存器恢复。
   暂未实现多线程，没有考虑原子性问题。}
   \label{img:amo_trans}
 \end{figure}
@@ -174,10 +176,9 @@ RISC-V有32个64位的浮点寄存器。综合考虑，在设计中，只支持3
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.7\linewidth]{./image/isa_num.pdf}
-  \caption{x86、RISC-V指令翻译到融合微码的数目统计。}
+  \bicaption{\enspace x86、RISC-V指令翻译到融合微码的数目统计}{\enspace The number of x86 and RISC-V instructions translated to fused microcode}
   \label{img:isa_num}
 \end{figure}
-
 
 
 \section{RISC-V ABI差异}
@@ -201,15 +202,19 @@ x86的系统调用号存储在rax寄存器中，返回值也存储在rax寄存�
 
 \begin{table}[h]
     \centering
-    \begin{adjustbox}{width=\textwidth}
+    \footnotesize% fontsize
+    \setlength{\tabcolsep}{4pt}% column separation
+    \renewcommand{\arraystretch}{1.2}%row space 
+    % \begin{adjustbox}{width=\textwidth}
       \begin{tabular}{llllllllll}
-      \rowcolor[HTML]{FFCC67} 
-      \cellcolor[HTML]{FBE5D6}指令集 & \cellcolor[HTML]{FBE5D6}系统调用号 & \cellcolor[HTML]{FBE5D6}返回值 & 参数1 & 参数2 & 参数3 & 参数4 & 参数5 & 参数6 & 其他参数 \\
-      x86                         & rax                           & rax                         & rdi & rsi & rdx & r10 & r8  & r9  & 栈传递  \\
-      RISC-V                       & a7                            & a0                          & a0  & a1  & a2  & a3  & a4  & a5  & 栈传递 
+      \hline
+      指令集 & 系统调用号 & 返回值 & 参数1 & 参数2 & 参数3 & 参数4 & 参数5 & 参数6 & 其他参数 \\ \hline
+      x86     & rax    & rax   & rdi & rsi & rdx & r10 & r8  & r9  & 栈传递  \\
+      RISC-V  & a7     & a0    & a0  & a1  & a2  & a3  & a4  & a5  & 栈传递 \\
+      \hline
       \end{tabular}
-    \end{adjustbox}
-    \caption{x86和RISC-V的系统调用号和参数传递方式的差异。}
+    % \end{adjustbox}
+    \bicaption{\enspace x86和RISC-V的系统调用差异}{\enspace The difference between x86 and RISC-V system calls}
     \label{tab:syscall}
   \end{table}
   
@@ -222,44 +227,34 @@ x86的系统调用号存储在rax寄存器中，返回值也存储在rax寄存�
 所以只需要把x86寄存器固定映射到前16个通用寄存器即可，还可以把一些常用的寄存器
 （例如AH，BH等子寄存器和段寄存器）映射到后面的寄存器中，剩余的一些寄存器作为临时寄存器供二进制翻译器使用。
 
+\begin{table}[!htbp]
+  \centering
+  \bicaption{\enspace x86和RISC-V到微码的寄存器映射表}{\enspace The register mapping table from x86 and RISC-V to microcode}
+  \label{tab:reg_map}
+  \footnotesize% fontsize
+  \setlength{\tabcolsep}{4pt}% column separation
+  \renewcommand{\arraystretch}{1.2}%row space 
+  % \begin{adjustbox}{width=\textwidth}
+      \begin{tabular}{lll|lll|lll|lll}
+  \hline
+  微码                        & x86                         & RISC-V                     & 微码                         & x86                         & RISC-V                     & 微码 & x86 & RISC-V & 微码 & x86 & RISC-V \\ \hline
+  \cellcolor[HTML]{FFCC67}0 & \cellcolor[HTML]{FFCC67}RAX & \cellcolor[HTML]{FFCC67}A7 & \cellcolor[HTML]{FFCC67}8  & \cellcolor[HTML]{FFCC67}R8  & \cellcolor[HTML]{FFCC67}A4 & 16 & T0  & Zero   & 24 & T8  & S8     \\
+  1                         & RCX                         & TP                         & \cellcolor[HTML]{FFCC67}9  & \cellcolor[HTML]{FFCC67}R9  & \cellcolor[HTML]{FFCC67}A5 & 17 & T1  & RA     & 25 & T9  & S9     \\
+  \cellcolor[HTML]{FFCC67}2 & \cellcolor[HTML]{FFCC67}RDX & \cellcolor[HTML]{FFCC67}A2 & \cellcolor[HTML]{FFCC67}10 & \cellcolor[HTML]{FFCC67}R10 & \cellcolor[HTML]{FFCC67}A3 & 18 & T2  & S2     & 26 & T10 & S10    \\
+  3                         & RBX                         & GP                         & 11                         & R11                         & A6                         & 19 & T3  & S3     & 27 & T11 & S11    \\
+  4                         & RSP                         & SP                         & 12                         & R12                         & T1                         & 20 & T4  & S4     & 28 & T12 & T3     \\
+  5                         & RBP                         & T0                         & 13                         & R13                         & T2                         & 21 & T5  & S5     & 29 & T13 & T4     \\
+  \cellcolor[HTML]{FFCC67}6 & \cellcolor[HTML]{FFCC67}RSI & \cellcolor[HTML]{FFCC67}A1 & 14                         & R14                         & S0                         & 22 & T6  & S6     & 30 & T14 & T5     \\
+  \cellcolor[HTML]{FFCC67}7 & \cellcolor[HTML]{FFCC67}RDI & \cellcolor[HTML]{FFCC67}A0 & 15                         & R15                         & S1                         & 23 & T7  & S7     & 31 & T15 & T6     \\ \hline
+  \end{tabular}
+  % \end{adjustbox}
+\end{table}
+
 但是对于RISC-V映射到微码方案，由于RISC-V本身就有32个通用寄存器，固定映射到32个微码寄存器后，
 就没有额外的临时寄存器供二进制翻译器使用了。对于微译器项目，得益于软硬件协同设计的基本原则，
 本文额外添加了两个微码寄存器作为临时寄存器，
 这两个寄存器只对二进制翻译器可见，不对RISC-V应用程序可见，类似于x86“段寄存器”，属于特殊寄存器，具体的使用场景参考图\ref{img:amo_trans}。
 
-
-
-\begin{table}[]
-  \centering
-  \caption{
-    x86和RISC-V的寄存器映射表。
-  }
-  \label{tab:reg_map}
-  \begin{adjustbox}{width=\textwidth}
-  \begin{tabular}{|
-    >{\columncolor[HTML]{FFCCC9}}l |l|l|
-    >{\columncolor[HTML]{FFCCC9}}l |
-    >{\columncolor[HTML]{FFFFFF}}l |
-    >{\columncolor[HTML]{FFFFFF}}l |
-    >{\columncolor[HTML]{FFCCC9}}l |
-    >{\columncolor[HTML]{FFFFFF}}l |
-    >{\columncolor[HTML]{FFFFFF}}l |
-    >{\columncolor[HTML]{FFCCC9}}l |
-    >{\columncolor[HTML]{FFFFFF}}l |
-    >{\columncolor[HTML]{FFFFFF}}l |}
-    \hline
-    \cellcolor[HTML]{FBE5D6}微码 & \cellcolor[HTML]{FBE5D6}x86 & \cellcolor[HTML]{FBE5D6}RISC-V & \cellcolor[HTML]{FBE5D6}微码 & \cellcolor[HTML]{FBE5D6}x86 & \cellcolor[HTML]{FBE5D6}RISC-V & \cellcolor[HTML]{FBE5D6}微码 & \cellcolor[HTML]{FBE5D6}x86 & \cellcolor[HTML]{FBE5D6}RISC-V & \cellcolor[HTML]{FBE5D6}微码 & \cellcolor[HTML]{FBE5D6}x86 & \cellcolor[HTML]{FBE5D6}RISC-V \\ \hline
-    0                          & \cellcolor[HTML]{FFFC9E}RAX & \cellcolor[HTML]{FFFC9E}A7    & 8                          & \cellcolor[HTML]{FFFC9E}R8  & \cellcolor[HTML]{FFFC9E}A4    & 16                         & T0                          & Zero                          & 24                         & CH                          & S8                            \\ \hline
-    1                          & \cellcolor[HTML]{FFFFFF}RCX & \cellcolor[HTML]{FFFFFF}TP    & 9                          & \cellcolor[HTML]{FFFC9E}R9  & \cellcolor[HTML]{FFFC9E}A5    & 17                         & T1                          & RA                            & 25                         & DH                          & S9                            \\ \hline
-    2                          & \cellcolor[HTML]{FFFC9E}RDX & \cellcolor[HTML]{FFFC9E}A2    & 10                         & \cellcolor[HTML]{FFFC9E}R10 & \cellcolor[HTML]{FFFC9E}A3    & 18                         & T2                          & S2                            & 26                         & ES                          & S10                           \\ \hline
-    3                          & \cellcolor[HTML]{FFFFFF}RBX & \cellcolor[HTML]{FFFFFF}GP    & 11                         & R11                         & A6                            & 19                         & T3                          & S3                            & 27                         & CS                          & S11                           \\ \hline
-    4                          & \cellcolor[HTML]{FFFFFF}RSP & \cellcolor[HTML]{FFFFFF}SP    & 12                         & R12                         & T1                            & 20                         & T4                          & S4                            & 28                         & SS                          & T3                            \\ \hline
-    5                          & \cellcolor[HTML]{FFFFFF}RBP & \cellcolor[HTML]{FFFFFF}T0    & 13                         & R13                         & T2                            & 21                         & T5                          & S5                            & 29                         & DS                          & T4                            \\ \hline
-    6                          & \cellcolor[HTML]{FFFC9E}RSI & \cellcolor[HTML]{FFFC9E}A1    & 14                         & R14                         & S0                            & 22                         & AH                          & S6                            & 30                         & FS                          & T5                            \\ \hline
-    7                          & \cellcolor[HTML]{FFFC9E}RDI & \cellcolor[HTML]{FFFC9E}A0    & 15                         & R15                         & S1                            & 23                         & BH                          & S7                            & 31                         & GS                          & T6                            \\ \hline
-  \end{tabular}
-  \end{adjustbox}
-\end{table}
 
 % \subsection{栈的初始化}
 % 由于我们目前关注于用户态二进制翻译器，不太涉及系统态指令的翻译和处理操作系统等概念，

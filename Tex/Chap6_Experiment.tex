@@ -35,8 +35,8 @@ Gem5有全系统模拟器和用户空间模拟器两种模式，全系统模拟�
 % https://www.tablesgenerator.com/latex_tables
 \begin{table}[ht]
   \centering
-  \caption{Gem5硬件参数，其中指令缓存模式为Intel Haswell处理器参数; 翻译缓存模式为微译器参数。
-        仅替换了前端的指令缓存，其余参数保持不变。}
+  \bicaption{\enspace Gem5硬件参数，其中指令缓存模式为Intel Haswell处理器参数; 翻译缓存模式为微译器参数。
+        仅替换了前端的指令缓存，其余参数保持不变。}{\enspace Gem5 hardware parameters}
   \label{tab:specifications}
   \begin{tabular}{|c|ll|}
   \hline
@@ -171,7 +171,7 @@ SPEC CPU 2000 test测试集包括了12个整数测试程序和14个浮点测试�
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.8\linewidth]{./plot/ucache_ipc0.pdf}
-  \caption{SPEC2000整数性能对比图。}
+  \bicaption{\enspace  SPEC2000整数性能对比图}{\enspace The performance comparison of SPEC2000 integer}
   \label{img:ipc}
 \end{figure}
 
@@ -183,7 +183,7 @@ SPEC CPU 2000 test测试集包括了12个整数测试程序和14个浮点测试�
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.8\linewidth]{./plot/miss_rate.pdf}
-  \caption{SPEC2000整数测试下缓存缺失率。}
+  \bicaption{\enspace  SPEC2000整数测试下缓存缺失率}{\enspace The cache miss rate of SPEC2000 integer}
   \label{img:miss_rate}
 \end{figure}
 
@@ -196,7 +196,7 @@ SPEC CPU 2000 test测试集包括了12个整数测试程序和14个浮点测试�
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.8\linewidth]{./plot/ucacheipc_fp.pdf}
-  \caption{SPEC2000浮点性能对比图。}
+  \bicaption{\enspace  SPEC2000浮点性能对比图}{\enspace The performance comparison of SPEC2000 floating point}
   \label{img:ipc_fp}
 \end{figure}
 
@@ -213,14 +213,14 @@ SPEC CPU 2000 test测试集包括了12个整数测试程序和14个浮点测试�
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.8\linewidth]{./plot/ucache_ipc1.pdf}
-  \caption{放松指令缓存行条件后性能对比图。}
+  \bicaption{\enspace  放松指令缓存行条件后性能对比图}{\enspace The performance comparison of relaxing instruction cache line}
   \label{img:ipc1}
 \end{figure}
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.8\linewidth]{./plot/ucacheline_nums1.pdf}
-  \caption{放松指令缓存行条件后翻译缓存行平均指令数量。}
+  \bicaption{\enspace  放松指令缓存行条件后翻译缓存行平均指令数量}{\enspace The average number of instructions in translation cache line after relaxing instruction cache line}
   \label{img:ucacheline_nums1}
 \end{figure}
 
@@ -237,14 +237,14 @@ SPEC CPU 2000 test测试集包括了12个整数测试程序和14个浮点测试�
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.8\linewidth]{./plot/ucache_ipc2.pdf}
-  \caption{放松条件跳转优化后性能对比图。}
+  \bicaption{\enspace  放松条件跳转优化后性能对比图}{\enspace The performance comparison of relaxing conditional jump optimization}
   \label{img:ipc2}
 \end{figure}
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.8\linewidth]{./plot/ucacheline_nums2.pdf}
-  \caption{放松条件跳转后翻译缓存行平均指令数量。}
+  \bicaption{\enspace  放松条件跳转后翻译缓存行平均指令数量}{\enspace The average number of instructions in translation cache line after relaxing conditional jump}
   \label{img:ucacheline_nums2}
 \end{figure}
 
@@ -264,14 +264,14 @@ SPEC CPU 2000 test测试集包括了12个整数测试程序和14个浮点测试�
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.8\linewidth]{./plot/ucache_ipc3.pdf}
-  \caption{添加压缩指令优化后性能对比图。}
+  \bicaption{\enspace  添加压缩指令优化后性能对比图}{\enspace The performance comparison of adding compression instruction optimization}
   \label{img:ipc3}
 \end{figure}
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.8\linewidth]{./plot/tisa_avg_bytes.pdf}
-  \caption{添加压缩指令优化后平均指令长度变化。}
+  \bicaption{\enspace  添加压缩指令优化后平均指令长度变化}{\enspace The average instruction length change after adding compression instruction optimization}
   \label{img:avg_bytes}
 \end{figure}
 
@@ -288,7 +288,7 @@ SPEC CPU 2000 test测试集包括了12个整数测试程序和14个浮点测试�
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.8\linewidth]{./plot/ucache_ipc4.pdf}
-  \caption{使用变长微码缓存行优化后性能对比图。}
+  \bicaption{\enspace  使用变长微码缓存行优化后性能对比图}{\enspace The performance comparison of using variable length microcode cache line optimization}
   \label{img:ipc4}
 \end{figure}
 

@@ -19,8 +19,9 @@
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=1\linewidth]{./image/aot_format.pdf}
-  \caption{预翻译文件格式，A、B、C、D为客户指令，a0、b0、c0、d0为翻译出的融合微码指令，由于重复存储，会存储a0-b0-c0-d0、b0-c0-d0、c0-d0、d0这
-    四行融合微码指令，并填充对齐。}
+  \bicaption{\enspace 预翻译文件格式}{\enspace The format of the Ahead-of-Time file}
+  \fignote{A、B、C、D为客户指令，a0、b0、c0、d0为翻译出的融合微码指令，由于重复存储，会存储a0-b0-c0-d0、b0-c0-d0、c0-d0、d0这
+  四行融合微码指令，并填充对齐。}
   \label{img:aot_format}
 \end{figure}
 
@@ -85,9 +86,9 @@ Addr_{AOT} = Base +  Addr_{ELF} \times 64
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=1\linewidth]{./image/aot_relaxed_icache.pdf}
-    \caption{放松指令缓存行结尾的翻译缓存行组织形式，允许连续的两行指令缓存行的指令填充到同一组翻译缓存行中。
-    下一行的指令e0和指令f0可以填充到上一个指令缓存行对应的翻译缓存行中。
-    }
+    \bicaption{\enspace 放松指令缓存行结尾}{\enspace Relaxing the end of the instruction cache line}
+    \fignote{允许连续的两行指令缓存行的指令填充到同一组翻译缓存行中，
+    下一行的指令e0和指令f0可以填充到上一个指令缓存行对应的翻译缓存行中。}
     \label{img:aot_relaxed_icache}
   \end{figure}
 
@@ -119,7 +120,8 @@ Addr_{AOT} = Base +  Addr_{ELF} \times 64
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.6\linewidth]{./image/aot_relaxed_cond.pdf}
-    \caption{放松条件跳转的翻译缓存行（忽略了元信息和立即数），对于条件跳转beq指令，后续还能放微码；对于无条件跳转jr指令，后续不能放微码。}
+    \bicaption{\enspace 放松条件跳转}{\enspace Relaxing the conditional jump}
+    \fignote{翻译缓存行忽略了元信息和立即数。对于条件跳转beq指令，后续还能放微码；对于无条件跳转jr指令，后续不能放微码。}
     \label{img:aot_relaxed_cond}
   \end{figure}
 
@@ -138,7 +140,8 @@ Addr_{AOT} = Base +  Addr_{ELF} \times 64
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.8\linewidth]{./image/tcache_32.pdf}
-    \caption{可变长翻译缓存行组织形式，有32字节和64字节两种长度，根据基本块的长度动态选择合适的翻译缓存行。}
+    \bicaption{\enspace 可变长翻译缓存行组织形式}{\enspace The organization form of the variable-length translation cache line}
+    \fignote{有32字节和64字节两种长度，根据基本块的长度动态选择合适的翻译缓存行。}
     \label{img:tcache_32}
   \end{figure}
 
@@ -156,9 +159,10 @@ Addr_{AOT} = Base +  Addr_{ELF} \times 64
 
 \begin{table}[]
   \centering
-  \caption{SPEC 2017中x86和RISC-V指令集的前15个常用指令}
+  \bicaption{\enspace x86和RISC-V在SPEC2017中前15个常用指令}{\enspace The top 15 most common instructions in SPEC2017 for x86 and RISC-V}
   \label{tab:spec_insts}
   \begin{tabular}{l|ll|ll}
+    \hline
      & x86指令            & 比例     & RISC-V指令             & 比例     \\ \hline
   1  & mov\_R8\_M8      & 5.64\% & c.add\_R\_R         & 5.49\% \\
   2  & movsd\_R16\_M8   & 4.28\% & fld\_R\_M           & 4.64\% \\
@@ -174,7 +178,7 @@ Addr_{AOT} = Base +  Addr_{ELF} \times 64
   12 & cmp\_R8\_R8      & 2.01\% & c.ld\_R\_IMM\_R     & 2.56\% \\
   13 & mov\_R4\_R4      & 1.91\% & ld\_R\_M            & 2.52\% \\
   14 & lea\_R8\_M8      & 1.83\% & bne\_R\_R\_IMM      & 2.25\% \\
-  15 & subsd\_R16\_R16  & 1.67\% & fadd.d\_R\_R\_R     & 2.22\% \\
+  15 & subsd\_R16\_R16  & 1.67\% & fadd.d\_R\_R\_R     & 2.22\% \\ \hline
   \end{tabular}
   \end{table}
 
