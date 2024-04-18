@@ -558,7 +558,9 @@
 \ifucas@plain%
     \def\contentsname{\ucas@label@en@tocname}
     \def\listfigurename{\ucas@label@en@lsfigname}
+    \def\listappfigname{}
     \def\listtablename{\ucas@label@en@lstabname}
+    \def\listapptabname{}
     \def\bibname{\ucas@label@en@bibname}
     \def\refname{\ucas@label@en@bibname}
     \def\algname{\ucas@label@en@algname}
@@ -580,7 +582,9 @@
 \else
     \def\contentsname{\ucas@label@ch@tocname}
     \def\listfigurename{\ucas@label@ch@lsfigname}
+    \def\listappfigname{}
     \def\listtablename{\ucas@label@ch@lstabname}
+    \def\listapptabname{}
     \def\algname{\ucas@label@ch@algname}
     \def\bibname{\ucas@label@ch@bibname}
     \def\refname{\ucas@label@ch@bibname}
@@ -650,8 +654,8 @@
 %- appendix
 \ctexset {
     appendix = {
-        %numbering = true|false,
-        %number = \rmfamily\Alph{chapter},
+        numbering = true,
+        number = \rmfamily\zhnum{chapter},
     }
 }
 %---------------------------------------------------------------------------%

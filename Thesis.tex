@@ -21,7 +21,8 @@
 %---------------------------------------------------------------------------%
 %->> Document settings
 %---------------------------------------------------------------------------%
-\usepackage[numbers,list]{Style/artratex}% document settings
+\usepackage{caption}
+\usepackage[super,numbers, list,table,math]{Style/artratex}
 %- usage: \usepackage[option1,option2,...,optionN]{artratex}
 %- Multiple optional arguments:
 %- [bibtex|biber]% set bibliography processor and package
@@ -57,44 +58,56 @@
 %-
 %-> Titlepage information
 %-
+
 \input{Tex/Frontinfo}%
 \begin{document}
 %-
 %-> Frontmatter: title page, abstract, content list, symbol list, preface
 %-
+
 \frontmatter% initialize the environment
+
 \input{Tex/Frontmatter}% title page, abstract
+
 {% content list region
 \linespread{1.2}% local line space
 \intobmk*{\cleardoublepage}{\contentsname}% add link to bookmark
+\newpage
+
 \tableofcontents% content catalog
-\intobmk*{\cleardoublepage}{\listfigurename}% add link to bookmark
-\listoffigures% figure catalog
-\intobmk*{\cleardoublepage}{\listtablename}% add link to bookmark
-\listoftables% table catalog
+\intobmk*{\cleardoublepage}{图表目录}
+\pagestyle{figureheader}
+\input{Tex/figuretable}
+
 }
+% \thispagestyle{figureheader}
 % \input{Tex/Prematter}% symbol list, preface content
 %-
 %-> Mainmatter
 %-
 \mainmatter% initialize the environment
+
 \input{Tex/Mainmatter}% main content
 %-
 %-> Appendix
 %-
-\cleardoublepage%
-\appendix% initialize the environment
-\input{Tex/Appendix}% appendix content
+
 %-
 %-> Backmatter: bibliography, glossary, index
 %-
-\backmatter% initialize the environment
+
 \intotoc*{\cleardoublepage}{\bibname}% add link to toc
 \artxifstreq{\artxbib}{bibtex}{% enable bibtex
     \bibliography{Biblio/essay.bib}% bibliography
 }{%
     \printbibliography% bibliography
 }
+\cleardoublepage%
+\appendix% initialize the environment
+\input{Tex/Appendix}% appendix content
+
+\thispagestyle{appendixheader}
+\backmatter% initialize the environment
 \input{Tex/Backmatter}% other information
 \end{document}
 %---------------------------------------------------------------------------%

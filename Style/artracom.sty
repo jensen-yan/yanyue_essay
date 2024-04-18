@@ -95,16 +95,65 @@
 \providecommand{\Soptr}{\operatorname{\mathcal{S}}}% solution operator
 \providecommand{\Des}[1]{\mathrm{#1}}% descriptive superscripts and subscripts in roman type 
 \providecommand{\Rev}[1]{\begingroup\color{blue}{#1}\endgroup}% revision highlight
+
+\newcommand{\fignote}[1]{\begin{flushleft}{{\quad\quad}\linespread{1.25}\zihao{5}\sffamily \textbf{注:} \zihao{5}\sffamily{#1}}\end{flushleft}}
 %-
 %-> Graphical length factor
 %-
 \providecommand*{\onef}{0.6}% for single figure
 \providecommand*{\twof}{0.45}% for two subfigures
 \providecommand*{\trif}{0.32}% for three subfigures
+
 %-
 %-> Add dots before equation number
 %-
 \newcommand{\adddotsbeforeeqnnum}{\def\maketag@@@##1{\hbox{\m@th\normalfont\dots\ ##1}}}%
+\captionsetup[appfig][bi-second]{name=App Figure, font={small,bf,stretch=1.25}} %设置图的英文编号前缀
+\captionsetup[apptab][bi-second]{name=App Table, font={small,bf,stretch=1.25}} %设置表的英文编号前缀
+\captionsetup[appfig][bi-first]{name=附图, font={small,bf,stretch=1.25}} 
+\captionsetup[apptab][bi-first]{name=附表, font={small,bf,stretch=1.25}} 
+
+\DeclareCaptionType{appfig}[附图]
+\DeclareCaptionType{apptab}[附表]
+\newcounter{app}
+\newcounter{app_fig}
+\newcounter{app_tab}
+
+\setcounter{app}{0}
+\renewcommand\theappfig{\arabic{app}-\arabic{app_fig}}  
+\renewcommand\theapptab{\arabic{app}-\arabic{app_tab}} 
+ 
+\renewcommand{\labelenumi}{(\arabic{enumi}) }
+\renewcommand{\labelenumii}{(\arabic{enumi}).\arabic{enumii}}
+\renewcommand{\labelenumiii}{(\arabic{enumi}).\arabic{enumii}.\arabic{enumiii}}
+\renewcommand{\labelenumiv}{(\arabic{enumi}).\arabic{enumii}.\arabic{enumiii}.\arabic{enumiv}}
+
+\fancypagestyle{figureheader}{
+  \fancyhf{}
+  \fancyhead[CO]{\footnotesize 图表目录}%此处填写中文标题
+  \fancyhead[CE]{\footnotesize \@title}%此处填写中文标题
+  \fancyfoot[C]{\footnotesize \thepage}% page number
+    \renewcommand{\headrulewidth}{0.8pt}% header rule
+    \renewcommand{\footrulewidth}{0pt}% footer rule
+}
+
+\fancypagestyle{symbolheader}{
+  \fancyhf{}
+  \fancyhead[CO]{\footnotesize 符号列表}%此处填写中文标题
+  \fancyhead[CE]{\footnotesize \@title}%此处填写中文标题
+  \fancyfoot[C]{\footnotesize \thepage}% page number
+    \renewcommand{\headrulewidth}{0.8pt}% header rule
+    \renewcommand{\footrulewidth}{0pt}% footer rule
+}
+
+
+\fancypagestyle{appendixheader}{
+  \fancyhf{}
+  \fancyhead[C]{\footnotesize 附\quad 录}%此处填写中文标题
+  \fancyfoot[C]{\footnotesize \thepage}% page number
+    \renewcommand{\headrulewidth}{0.8pt}% header rule
+    \renewcommand{\footrulewidth}{0pt}% footer rule
+}
 %---------------------------------------------------------------------------%
 \endinput
 
