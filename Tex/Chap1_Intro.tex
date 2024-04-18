@@ -28,19 +28,22 @@ David Patterson也宣称我们正处于计算机体系结构的一个“黄金�
 中国国产CPU在多个架构上展现出丰富多彩的发展，其中x86、ARM、LoongArch\cite{LoongArch2023}和RISC-V等架构代表了不同的技术路线，由各个公司推动。参见表\ref{tab:CPUs}，以下是各架构的特点：
 
 % https://www.tablesgenerator.com/latex_tables 生成latex表格
-\begin{table}[]
-\centering
-\caption{国产CPU的发展现状}
+\begin{table}[!htbp]
+\bicaption{\enspace 国产CPU的发展现状}{\enspace Development status of domestic CPUs}
 \label{tab:CPUs}
+\centering
+\footnotesize% fontsize
+\setlength{\tabcolsep}{4pt}% column separation
+\renewcommand{\arraystretch}{1.2}%row space 
     \begin{tabular}{llll}
-    \rowcolor[HTML]{FBE5D6} 
-    指令集       & 代表公司   & 优势        & 不足         \\
+    \hline
+    指令集       & 代表公司   & 优势        & 不足         \\ \hline
     x86       & 兆芯，海光  & 兼容Windows & 授权问题 \\
     ARM       & 华为，飞腾  & 兼容安卓      & 授权问题       \\
     LoongArch & 龙芯     & 自主可控      & 生态不足       \\
-    RISC-V     & 开芯院，阿里 & 开源开放      & 生态不足      
+    RISC-V     & 开芯院，阿里 & 开源开放      & 生态不足    \\ \hline  
     \end{tabular}
-    \end{table}
+\end{table}
 
 
     \begin{itemize}
@@ -57,7 +60,9 @@ David Patterson也宣称我们正处于计算机体系结构的一个“黄金�
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.8\linewidth]{./image/allCPU_arch.pdf}
-    \caption{不同指令集CPU的架构图，图中白色为软件层，红色为硬件层，并忽略了操作系统，这不是本文研究重点。对于复杂指令集x86，硬件层内部实现了微码层，而精简指令集架构（RISC）的CPU，内部一般没有微码层。}
+    \bicaption{\enspace 不同指令集CPU的架构图}{\enspace Architecture of CPUs with different instruction sets}
+    \fignote{图中白色为软件层，红色为硬件层，并忽略了操作系统，这不是本文研究重点。
+    对于复杂指令集x86，硬件层内部实现了微码层，而精简指令集架构（RISC）的CPU，内部一般没有微码层。}
     \label{img:allCPU_arch}
   \end{figure}
 
@@ -110,7 +115,9 @@ Apple\cite{RunningIntelBinaries}、Intel\cite{noauthor_intel_nodate}
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=1\linewidth]{./image/sbt_dbt.pdf}
-  \caption{左图为静态二进制翻译器，在运行前提前翻译成预翻译文件，运行时直接执行。右图为动态二进制翻译器，在运行时翻译基本块并存入代码缓存，翻译过的基本块就直接执行。}
+  \bicaption{\enspace 静态与动态二进制翻译器}{\enspace Static and Dynamic Binary Translators}
+  \fignote{左图为静态二进制翻译器，在运行前提前翻译成预翻译文件，运行时直接执行。
+  右图为动态二进制翻译器，在运行时翻译基本块并存入代码缓存，翻译过的基本块就直接执行。}
   \label{img:sbt_dbt}
 \end{figure}
 
@@ -126,7 +133,7 @@ Apple\cite{RunningIntelBinaries}、Intel\cite{noauthor_intel_nodate}
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.8\linewidth]{./image/user_sys.pdf}
-  \caption{左图为用户态二进制翻译器，只需运行客户程序。右图为系统态二进制翻译器，其上需要运行整个客户操作系统。}
+  \bicaption{\enspace 用户态与系统态二进制翻译器}{\enspace User and System Binary Translators}
   \label{img:user_sys}
 \end{figure}
 
@@ -140,7 +147,8 @@ Apple\cite{RunningIntelBinaries}、Intel\cite{noauthor_intel_nodate}
 \begin{figure}[h]
   \centering
   \includegraphics[width=1\linewidth]{./image/inter_bt.pdf}
-  \caption{左图为解释型二进制翻译器，以单条指令为单位，解释指令语义执行。右图为翻译型二进制翻译器，以基本块为单位，翻译整个基本块并进行优化后执行。}
+  \bicaption{\enspace 解释型与翻译型二进制翻译器}{\enspace Interpretive and Translational Binary Translators}
+  \fignote{左图为解释型二进制翻译器，以单条指令为单位，解释指令语义执行。右图为翻译型二进制翻译器，以基本块为单位，翻译整个基本块并进行优化后执行。}
   \label{img:inter_bt}
 \end{figure}
 
@@ -157,25 +165,27 @@ Apple\cite{RunningIntelBinaries}、Intel\cite{noauthor_intel_nodate}
 各种二进制翻译技术的选择取决于特定应用的需求、目标架构的特性以及性能和兼容性之间的权衡。
 
 \begin{table}[!htbp]
-  \caption{二进制翻译技术的分类及优劣势比较}
+  \bicaption{\enspace 二进制翻译技术的分类及优劣势比较}{\enspace Classification and Pros and Cons of Binary Translation Technologies}
   \label{tab:BTs}
-  \begin{adjustbox}{width=\textwidth}
+\centering
+\footnotesize% fontsize
+\setlength{\tabcolsep}{4pt}% column separation
+\renewcommand{\arraystretch}{1.2}%row space 
   \begin{tabular}{llll}
-  \rowcolor[HTML]{FFCE93} 
-      & 说明                  & 优势           & 不足                  \\
-  静态  & 提前翻译                & 深入的代码分析和优化   & 无法处理动态生成代码，首次翻译时间长  \\
-  动态  & 运行时翻译和优化            & 能处理动态生成代码    & 额外的运行时开销，无法做重型优化    \\
   \hline
-  用户态 & 只翻译用户态指令            & 实现简单，性能较高    & 不能翻译操作系统，支持应用有限     \\
+      & 说明                  & 优势           & 不足                  \\ \hline
+  静态  & 提前翻译                & 深入的代码分析和优化   & 使用场景受限  \\
+  动态  & 运行时翻译和优化            & 能处理动态生成代码    & 额外的运行时开销    \\
+  \hline
+  用户态 & 只翻译用户态指令            & 实现简单，性能较高    & 支持应用有限     \\
   系统态 &  模拟整个系统 & 能直接跨架构运行操作系统 & 性能较低                \\
   \hline
-  解释型 & 逐条指令解释执行            & 方便调试模拟等      & 性能很低，一条指令会解释为10余条指令 \\
-  翻译型 & 一般以基本块为单位翻译执行       & 性能较高         & 设计更加复杂              \\
+  解释型 & 逐条指令解释执行            & 方便调试模拟等      & 性能很低 \\
+  翻译型 & 以基本块为单位翻译执行       & 性能较高         & 设计更加复杂              \\
   \hline
   软件  & 纯软件实现               & 灵活性和可移植性     & 性能不高                \\
-  软硬件 & 特定硬件支持    & 特定硬件加速提升性能   & 增加硬件设计复杂性          
+  软硬件 & 特定硬件支持    & 特定硬件加速提升性能   & 增加硬件设计复杂性      \\ \hline   
   \end{tabular}
-  \end{adjustbox}
   \end{table}
 
 目前主流的二进制翻译器主要采用\textbf{动态、用户态、翻译型和软件实现}的方式，如QEMU\cite{bellardQEMUFastPortable2005}、Rosetta2\cite{RosettaTranslationEnvironment, RunningIntelBinaries}、ExaGear\cite{KunPengExaGear}、LATX\cite{LoongArchEnv2022, LoongArch2023}等（Rosetta2也有动静态结合优化，LATX有硬件指令集扩展支持），这是由于动态翻译可以在运行时进行优化并能支持JIT程序的翻译运行，用户态翻译、翻译型翻译可以实现更高的性能，软件实现可以实现更好的可移植性，对硬件修改较少。
@@ -223,7 +233,8 @@ Apple\cite{RunningIntelBinaries}、Intel\cite{noauthor_intel_nodate}
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.6\linewidth]{./image/my_arch.pdf}
-    \caption{多架构软硬协同的二进制翻译架构图，硬件仅对外暴露微码，软件层面的二进制翻译器可以实现多架构的支持，性能接近原生运行性能。}
+    \bicaption{\enspace 微译器架构简图}{\enspace The architecture of Micro-Translator}
+    \fignote{硬件仅对外暴露微码，软件层面的二进制翻译器可以实现多架构的支持，性能接近原生运行性能。}
     \label{img:my_arch}
   \end{figure}
 
