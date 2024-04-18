@@ -25,7 +25,8 @@ QEMU也同时支持多种架构，包括x86、ARM、RISC-V等，使其成为开�
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.6\linewidth]{./image/qemu-IR.pdf}
-  \caption{QEMU二进制翻译器架构图，能在宿主指令集机器上运行多种客户程序。}
+  \bicaption{\enspace QEMU二进制翻译器架构图}{\enspace The architecture of QEMU binary translator}
+  \fignote{通过中间代码，QEMU能在多种宿主指令集机器上运行多种客户程序。}
   \label{img:qemu_arch}
 \end{figure}
 
@@ -85,15 +86,18 @@ ExaGear主要包括两个关键组件：指令翻译引擎和x86运行环境。�
 
 \begin{table}[!htbp]
   \centering
-  \caption{主流二进制翻译器}
+  \bicaption{\enspace 主流二进制翻译器}{\enspace The mainstream binary translators}
+  \footnotesize% fontsize
+  \setlength{\tabcolsep}{4pt}% column separation
+  \renewcommand{\arraystretch}{1.2}%row space 
   \label{tab:BTs}
     \begin{tabular}{llll}
-    \rowcolor[HTML]{FBE5D6} 
-    二进制翻译器    & 公司   & 客户平台           & 宿主平台           \\
-    QEMU      & 开源项目 & x86，ARM，RISC-V等 & x86，ARM，RISC-V等  \\
+    \hline
+    二进制翻译器    & 公司   & 客户平台           & 宿主平台           \\ \hline
+    QEMU      & 开源项目 & x86、ARM、RISC-V等 & x86、ARM、RISC-V等  \\
     ExaGear   & 华为   & x86            & ARM            \\
     Rosetta2  & 苹果   & x86            & ARM            \\
-    LoongArch & 龙芯   & x86            & LoongArch      
+    LoongArch & 龙芯   & x86            & LoongArch      \\ \hline
     \end{tabular}
     \end{table}
 
@@ -107,7 +111,7 @@ ExaGear主要包括两个关键组件：指令翻译引擎和x86运行环境。�
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.7\linewidth]{./feishuImage/overhead_all.pdf}
-  \caption{二进制翻译器的性能开销分析。}
+  \bicaption{\enspace 二进制翻译器的性能开销分析}{\enspace The anaylsis of binary translator overhead}
   \label{img:bt_overhead}
 \end{figure}
 
@@ -129,8 +133,9 @@ ExaGear主要包括两个关键组件：指令翻译引擎和x86运行环境。�
 
 \begin{figure}[!htbp]
   \centering
-  \includegraphics[width=0.8\linewidth]{./image/indirect_jump.pdf}
-  \caption{间接跳转开销，由于翻译后的代码地址发生了非线性偏移，间接跳转的目标地址只能在运行时查询哈希表获取。}
+  \includegraphics[width=0.6\linewidth]{./image/indirect_jump.pdf}
+  \bicaption{\enspace 间接跳转开销}{\enspace The overhead of indirect jump}
+  \fignote{由于翻译后的代码地址发生了非线性偏移，间接跳转的目标地址只能在运行时查询哈希表获取，通常需要10余拍\cite{dantrasOptimizingIndirectBranches2016}。}
   \label{img:indirect_jump}
 \end{figure}
 
@@ -144,7 +149,8 @@ ExaGear主要包括两个关键组件：指令翻译引擎和x86运行环境。�
 \begin{figure}[!htbp]
   \centering
   \rotatebox{90}{\includegraphics[width=\textheight,height=\textwidth,keepaspectratio]{./plot_pdf/insts_inflt_breakdown_2017.pdf}}
-  \caption{各个二进制翻译器在运行SPEC2017的指令膨胀来源分析图\cite{deflater}。}
+  \bicaption{\enspace 三个主流二进制翻译器指令膨胀来源分析图\cite{deflater}}
+      {\enspace The breakdown of instruction inflation for three major binary translators\cite{deflater}}
   \label{img:insts_inflt_breakdown_2017}
 \end{figure}
 
@@ -224,7 +230,8 @@ Transmeta的CMS充当了翻译器和优化器的角色，使得基于非x86的VL
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.8\linewidth]{./feishuImage/transmeta_arch.png}
-    \caption{Transmeta架构图，在超长指令字处理器上实现兼容x86的指令集，并支持JAVA程序。}
+    \bicaption{\enspace Transmeta架构图}{\enspace The architecture of Transmeta}
+    \fignote{在超长指令字处理器上实现兼容x86的指令集，并支持JAVA程序。}
     \label{img:transmeta_arch}
   \end{figure}
 这种架构有如下特点：
@@ -263,7 +270,8 @@ x86 微码缓存是为了在 x86 CPU 后端实现超标量乱序执行并降低�
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.6\linewidth]{./image/front_end_ucache.pdf}
-  \caption{x86处理器前端架构图，包括指令缓存和微码缓存。
+  \bicaption{\enspace x86处理器前端架构图}{\enspace The architecture of x86 processor front end}
+  \fignote{前端包括指令缓存和微码缓存。
   如果微码已缓存则直接使用；如果微码未缓存则从指令缓存中取得指令，进行译码并存入微码缓存中。}
   \label{img:front_end_ucache}
 \end{figure}
@@ -295,7 +303,7 @@ x86 微码缓存是为了在 x86 CPU 后端实现超标量乱序执行并降低�
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.8\linewidth]{./image/ucache.pdf}
-  \caption{微码缓存的组织形式}
+  \bicaption{\enspace 微码缓存的组织形式}{\enspace The organization of uop cache}
   \label{img:ucache}
 \end{figure}
 
@@ -313,7 +321,7 @@ x86 微码缓存是为了在 x86 CPU 后端实现超标量乱序执行并降低�
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.8\linewidth]{./image/ucache_line.pdf}
-  \caption{微码缓存一行的内容}
+  \bicaption{\enspace 微码缓存一行的内容}{\enspace The content of a uop cache line}
   \label{img:ucache_line}
 \end{figure}
 
@@ -333,7 +341,7 @@ x86 微码缓存是为了在 x86 CPU 后端实现超标量乱序执行并降低�
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.8\linewidth]{./image/IC-to-UC.pdf}
-  \caption{指令缓存和微码缓存关系}
+  \bicaption{\enspace 指令缓存和微码缓存关系}{\enspace The relationship between instruction cache and uop cache}
   \label{img:IC_to_UC}
 \end{figure}
 
@@ -357,12 +365,12 @@ x86 微码缓存的引入和优化为 x86 架构的超标量乱序执行提供�
 % 而对于二进制翻译中间接跳转的复杂处理，本质上是由于客户地址到宿主地址的非线性映射导致的，需要额外的指令来查询哈希表。
 % 但微码缓
 
-% \section{本章小结}
+\section{本章小结}
 
-% 本文采用了硬件辅助的策略。其中，一些关键的工作包括：
+本文采用了硬件辅助的策略。其中，一些关键的工作包括：
 
-% 1. 融合微码以缩小指令集语义差距： 针对指令集间操作码差异、操作数据模式不同以及地址计算不同等问题，通过融合微码的方式，减小不同指令集之间的语义差距，从而降低翻译的开销。
+1. 融合微码以缩小指令集语义差距： 针对指令集间操作码差异、操作数据模式不同以及地址计算不同等问题，通过融合微码的方式，减小不同指令集之间的语义差距，从而降低翻译的开销。
 
-% 2. 微码缓存的思路应用： 针对立即数加载和间接跳转的性能开销，借鉴了x86微码缓存的思想，将立即数放入微码缓存行中直接加载，用微码缓存直接查询非线性的地址空间映射，消除这两类开销。
+2. 微码缓存的思路应用： 针对立即数加载和间接跳转的性能开销，借鉴了x86微码缓存的思想，将立即数放入微码缓存行中直接加载，用微码缓存直接查询非线性的地址空间映射，消除这两类开销。
 
-% 本章首先介绍了软件二进制翻译器
+本章首先介绍了软件二进制翻译器
