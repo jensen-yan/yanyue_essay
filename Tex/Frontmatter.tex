@@ -52,13 +52,20 @@
 %-
 \intobmk\chapter*{Abstract}% 显示在书签但不显示在目录
 
-This article adds RISC-V multi-architecture support to the existing new binary translation technology - micro-translator, aiming to solve the problem of instruction set fragmentation and performance bottlenecks between multi-architectures, and verify the micro-translator's ability to support multiple architectures. feasibility of support.
-The microtranslator combines the concepts of traditional microcode caching and binary translation, and achieves the coexistence of multiple instruction sets by introducing translation caching and fused microcode at the hardware level, and using static and dynamic binary translators at the software level.
-At the same time, this article continues to optimize the coding design of the integrated microcode and the boundary condition design of the translation cache to improve the performance of the microtranslator.
-The micro-translator verifies its effectiveness in supporting x86 and RISC-V multi-architecture in the Gem5 simulator by running SPEC CPU 2017, SPEC CPU 2000 and CoreMark programs.
-Experimental results show that the performance and effect of the micro-translator have been significantly improved, reaching more than 90\% of the running performance of native programs.
-Compared with the performance of the multi-architecture translator QEMU 20\%, the performance is improved several times, which provides an innovative solution to solve the problem of software and hardware collaboration in a multi-architecture environment.
+In recent years, the design capabilities of various domestic processors have rapidly approached the international advanced level. 
+However, these processors often utilize different instruction sets, leading to software adaptation and ecosystem integration difficulties. This fragmentation impedes the development of domestic processors. Binary translation technology offers a potential solution to these issues, yet the performance of high-performance binary translators currently only reaches 80\% of native performance. With software optimization strategies becoming mature and difficult to further improve, there is an urgent need for optimization through hardware-software co-design.
 
+Addressing the issues of ecosystem fragmentation and the performance bottleneck of binary translators, this thesis introduces a multi-architecture, hardware-software co-designed binary translation technology—MicroTranslator. The core goal of this technology is to enable the coexistence of multiple instruction sets on a single hardware platform while achieving near-native execution efficiency. MicroTranslator already supports the x86 instruction set, and this thesis extends its capabilities to include the RISC-V architecture, demonstrating its efficient multi-architecture support.
+
+The main work and contributions of this thesis are as follows:
+
+1. The collaborative proposal and design of MicroTranslator: Combining a hardware-level translation cache with a software-level binary translator, this approach eliminates the overhead of indirect jumps in software translation, reduces the semantic differences between instruction sets, and enhances translation performance.
+
+2. Extension of MicroTranslator to support the RISC-V architecture: This includes the addition of 51 microcode instructions to support the translation of 272 RISC-V instructions, along with a designed register mapping scheme.
+
+3. Optimization of MicroTranslator's performance: Four optimization strategies were implemented, including relaxation of cache line endings, conditional jump instructions, support for compressed instructions, and support for variable-length microcode lines. Testing shows that these optimization strategies reduce the miss rate of microcode cache and enhance the performance of MicroTranslator.
+
+This thesis implements a prototype system of the RISC-V MicroTranslator on the Gem5 simulator. Experimental results demonstrate that the optimized MicroTranslator achieves an average performance of 96.1\% of native programs when running the SPEC 2000 benchmarks, effectively alleviating the performance bottleneck and achieving near-native execution efficiency. By supporting both x86 and RISC-V instruction sets, MicroTranslator provides a novel solution for multi-architecture binary translation.
 
 \KEYWORDS{Binary translation, multi-architecture, software and hardware collaboration}% 英文关键词
 
