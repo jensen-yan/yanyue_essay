@@ -58,18 +58,18 @@
 而RISC-V最多支持12位和20位立即数，AArch64支持12位和16位立即数，并且都没有偏移量的概念。
 因此融合微码需要支持多种立即数的编码方式，同时保持简洁性。
 
-如图\ref{img:immsize_x86}展示了x86的立即数和地址偏移的分布，
-可以看到接近10\%的指令都使用了超过12位的立即数（注意并不是每一条指令都会用到立即数和地址偏移，所以指令总和不是100\%），
-而地址偏移分布也比较分散，接近2\%指令使用了超过20位的地址偏移。
+% 如图\ref{img:immsize_x86}展示了x86的立即数和地址偏移的分布，
+% 可以看到接近10\%的指令都使用了超过12位的立即数（注意并不是每一条指令都会用到立即数和地址偏移，所以指令总和不是100\%），
+% 而地址偏移分布也比较分散，接近2\%指令使用了超过20位的地址偏移。
 对于图\ref{img:immsize_riscv}展示了RISC-V的立即数分布（包含了访存指令的地址偏移），同样发现接近10\%的指令使用了接近12位的立即数。
 如果直接将12位立即数直接编码到融合微码中，会导致编码空间不够，难以支持多种指令集、多种立即数的编码方式。
 
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.8\linewidth]{./plot_pdf/immsize_x86.pdf}
-  \bicaption{\enspace x86 SPEC2017 中立即数和地址偏移的分布}{\enspace The immediate and displacement Distribution in x86 SPEC2017}
-  \label{img:immsize_x86}
-\end{figure}
+% \begin{figure}[h]
+%   \centering
+%   \includegraphics[width=0.8\linewidth]{./plot_pdf/immsize_x86.pdf}
+%   \bicaption{\enspace x86 SPEC2017 中立即数和地址偏移的分布}{\enspace The immediate and displacement Distribution in x86 SPEC2017}
+%   \label{img:immsize_x86}
+% \end{figure}
 
 \begin{figure}[h]
   \centering

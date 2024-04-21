@@ -153,23 +153,3 @@ CPU再从磁盘中加载融合微码指令，\textbf{解码}为CPU识别的信�
 只是触发时机不同，因此我们可以复用静态二进制翻译器的代码，只需要添加一个触发机制即可。
 它有两个触发机制，一个是代码发现没有发现的代码，需要实时翻译；一个是由于自修改代码等原因，翻译缓存行失效，需要实时翻译。
 具体在硬件上，当翻译缓存行失效时，会触发例外（类似缺页异常），这时会调用动态二进制翻译器进行实时翻译，将翻译结果写入翻译缓存。
-
-% \section{微译器的优势}
-
-% \subsection{消除间接跳转开销}
-
-% \begin{figure}[!htbp]
-%   \centering
-%   \includegraphics[width=1\linewidth]{./image/indirect_jump_transutor.pdf}
-%   \bicaption{\enspace静态二进制翻译器架构图}
-%   \label{img:mut_bt}
-% \end{figure}
-
-% \subsection{消除立即数膨胀开销}
-
-% \begin{figure}[!htbp]
-%   \centering
-%   \includegraphics[width=1\linewidth]{./image/mut_bt.pdf}
-%   \bicaption{\enspace静态二进制翻译器架构图}
-%   \label{img:mut_bt}
-% \end{figure}
