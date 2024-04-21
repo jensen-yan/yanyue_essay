@@ -56,13 +56,15 @@ David Patterson也宣称我们正处于计算机体系结构的一个“黄金�
     \item{RISC-V架构：} 代表公司为开源芯片研究院和阿里平头哥，采用国际开源的RISC-V架构，具有相对精简的指令集架构，并遵循开源宽松的BSD协议，在国内得到了迅速发展，但同样生态不足，需要长时间生态建设。
     \end{itemize}
 
+其中，x86属于复杂指令集架构（Complex Instruction Set Computer, CISC），
+ARM、LoongArch和RISC-V属于精简指令集架构（Reduced Instruction Set Computer, RISC）。
 
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.8\linewidth]{./image/allCPU_arch.pdf}
     \bicaption{\enspace 不同指令集CPU的架构图}{\enspace Architecture of CPUs with different instruction sets}
     \fignote{图中白色为软件层，红色为硬件层，并忽略了操作系统，这不是本文研究重点。
-    对于复杂指令集x86，硬件层内部实现了微码层，而精简指令集架构（RISC）的CPU，内部一般没有微码层。}
+    对于复杂指令集x86，硬件层内部实现了微码层，而精简指令集架构的CPU，内部一般没有微码层。}
     \label{img:allCPU_arch}
   \end{figure}
 
