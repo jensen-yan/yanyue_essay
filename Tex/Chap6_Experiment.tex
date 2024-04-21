@@ -259,6 +259,25 @@ SPEC CPU 2000 test测试集包括了12个整数测试程序和14个浮点测试�
 
 
 
+
+
+\subsection{变长微码缓存行优化}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.8\linewidth]{./plot/ucache_ipc4.pdf}
+  \bicaption{\enspace  使用变长微码缓存行优化后性能对比图}{\enspace The performance comparison of using variable length microcode cache line optimization}
+  \label{img:ipc4}
+\end{figure}
+
+回顾第\ref{chap:Opt}章提出的优化方案4——使用变长微码缓存行优化，也就是允许翻译缓存行的长度不固定，根据翻译缓存行的指令数量动态调整长度。
+当指令数多时候使用64字节的翻译缓存行，当指令数少时候使用32字节的翻译缓存行。
+
+如图\ref{img:ipc4}所示，微译器在运行SPEC2000 整数测试集时，开启变长微码缓存行优化后，平均性能从87.8\%提升到了92.2\%，性能提升了4.4\%。
+这也是所有优化中效果最好的一个优化方案。
+根据分析发现缓存行平均指令数为4.0条，而32字节的翻译缓存行最大能存储6条标准融合指令，存储4条指令是足够的，大部分情况下不需要使用64字节的翻译缓存行。
+更短的翻译缓存行长度，意味着更高的存储效率，减少了缓存缺失率，提升了性能。
+
 \subsection{压缩指令优化}
 
 \begin{figure}[!htbp]
@@ -282,23 +301,6 @@ SPEC CPU 2000 test测试集包括了12个整数测试程序和14个浮点测试�
 但是由于翻译缓存行结束条件的限制，导致了翻译缓存行的指令数量没有增加，性能没有提升。
 3.3字节的平均指令长度，也接近RISC-V C扩展压缩指令的平均长度（3字节），说明大部分RISC-V 压缩指令
 都被翻译为融合微码的压缩指令，考虑到融合微码压缩指令同时支持x86指令的翻译，这个长度是可以接受的。
-
-\subsection{变长微码缓存行优化}
-
-\begin{figure}[!htbp]
-  \centering
-  \includegraphics[width=0.8\linewidth]{./plot/ucache_ipc4.pdf}
-  \bicaption{\enspace  使用变长微码缓存行优化后性能对比图}{\enspace The performance comparison of using variable length microcode cache line optimization}
-  \label{img:ipc4}
-\end{figure}
-
-回顾第\ref{chap:Opt}章提出的优化方案4——使用变长微码缓存行优化，也就是允许翻译缓存行的长度不固定，根据翻译缓存行的指令数量动态调整长度。
-当指令数多时候使用64字节的翻译缓存行，当指令数少时候使用32字节的翻译缓存行。
-
-如图\ref{img:ipc4}所示，微译器在运行SPEC2000 整数测试集时，开启变长微码缓存行优化后，平均性能从87.8\%提升到了92.2\%，性能提升了4.4\%。
-这也是所有优化中效果最好的一个优化方案。
-根据分析发现缓存行平均指令数为4.0条，而32字节的翻译缓存行最大能存储6条标准融合指令，存储4条指令是足够的，大部分情况下不需要使用64字节的翻译缓存行。
-更短的翻译缓存行长度，意味着更高的存储效率，减少了缓存缺失率，提升了性能。
 
 
 \section{本章小结}
