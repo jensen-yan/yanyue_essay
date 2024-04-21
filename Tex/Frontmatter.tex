@@ -24,21 +24,15 @@
 且软件优化方案已经比较成熟，难以进一步提升性能，亟需软硬件协同的优化。
 
 针对生态碎片化和二进制翻译器性能瓶颈的问题，
-本文合作提出了一种多架构软硬协同的二进制翻译技术——微译器。
+本文在一款软硬协同的二进制翻译技术——微译器中，添加了RISC-V架构的支持。
 该技术的核心目标是在单一硬件平台下实现多指令集的共存，同时实现接近原生的运行效率。
-当前微译器已支持x86指令集，本文在此基础上添加了RISC-V架构的支持，
-验证了其高效支持多架构的能力。
 
 本文的主要工作及贡献如下：
 
-1. 合作提出并设计了微译器：
-通过硬件层的翻译缓存与软件层的二进制翻译器相结合，
-消除了软件翻译中的间接跳转开销，缩小了指令集语义差异，提升了翻译性能。
+1. 设计并实现了RISC-V微译器：
+设计了寄存器映射方案，累计添加了51条微码指令用于支持272条RISC-V指令翻译，
 
-2. 扩展了微译器以支持RISC-V架构：
-累计添加了51条微码指令用于支持272条RISC-V指令翻译，并设计了寄存器映射方案。
-
-3. 优化微译器的性能：添加了4种优化方案，包括放松缓存行结尾、放松条件跳转指令、支持压缩指令、支持变长微码行。
+2. 优化微译器的性能：添加了4种优化方案，包括放松缓存行结尾、放松条件跳转指令、支持压缩指令、支持变长微码行。
 测试显示优化方案降低了微码缓存的缺失率，提升了微译器的性能。
 
 本文在Gem5模拟器中实现了RISC-V微译器的原型系统，
@@ -52,20 +46,19 @@
 %-
 \intobmk\chapter*{Abstract}% 显示在书签但不显示在目录
 
-In recent years, the design capabilities of various domestic processors have rapidly approached the international advanced level. 
-However, these processors often utilize different instruction sets, leading to software adaptation and ecosystem integration difficulties. This fragmentation impedes the development of domestic processors. Binary translation technology offers a potential solution to these issues, yet the performance of high-performance binary translators currently only reaches 80\% of native performance. With software optimization strategies becoming mature and difficult to further improve, there is an urgent need for optimization through hardware-software co-design.
+In recent years, the capabilities of various domestically-produced processors have rapidly approached international advanced levels, but they often utilize different instruction sets. This diversity has created difficulties in software adaptation and ecosystem integration, leading to ecosystem fragmentation which impedes the development of these domestic processors. Binary translation technology offers a means to mitigate these challenges, although the performance of high-performance binary translators currently only achieves up to 80\% of native performance, and with software optimization strategies already mature, further performance enhancements are challenging without hardware-software co-optimization.
 
-Addressing the issues of ecosystem fragmentation and the performance bottleneck of binary translators, this thesis introduces a multi-architecture, hardware-software co-designed binary translation technology—MicroTranslator. The core goal of this technology is to enable the coexistence of multiple instruction sets on a single hardware platform while achieving near-native execution efficiency. MicroTranslator already supports the x86 instruction set, and this thesis extends its capabilities to include the RISC-V architecture, demonstrating its efficient multi-architecture support.
+This thesis addresses ecosystem fragmentation and the performance bottleneck of binary translators by integrating support for the RISC-V architecture into a co-designed binary translator technology—MicroTranslator. The core goal of this technology is to enable the coexistence of multiple instruction sets on a single hardware platform while achieving near-native execution efficiency.
 
 The main work and contributions of this thesis are as follows:
 
-1. The collaborative proposal and design of MicroTranslator: Combining a hardware-level translation cache with a software-level binary translator, this approach eliminates the overhead of indirect jumps in software translation, reduces the semantic differences between instruction sets, and enhances translation performance.
+1. Design and Implementation of the RISC-V MicroTranslator:
+A register mapping scheme was designed, and 51 microcode instructions were added to support the translation of 272 RISC-V instructions.
+Performance Optimization of MicroTranslator:
 
-2. Extension of MicroTranslator to support the RISC-V architecture: This includes the addition of 51 microcode instructions to support the translation of 272 RISC-V instructions, along with a designed register mapping scheme.
+2. Four optimization strategies were implemented, including the relaxation of cache line endings, conditional jump instructions, support for compressed instructions, and support for variable-length microcode lines. Tests showed that these optimizations reduced the miss rate of the microcode cache and enhanced the performance of MicroTranslator.
 
-3. Optimization of MicroTranslator's performance: Four optimization strategies were implemented, including relaxation of cache line endings, conditional jump instructions, support for compressed instructions, and support for variable-length microcode lines. Testing shows that these optimization strategies reduce the miss rate of microcode cache and enhance the performance of MicroTranslator.
-
-This thesis implements a prototype system of the RISC-V MicroTranslator on the Gem5 simulator. Experimental results demonstrate that the optimized MicroTranslator achieves an average performance of 96.1\% of native programs when running the SPEC 2000 benchmarks, effectively alleviating the performance bottleneck and achieving near-native execution efficiency. By supporting both x86 and RISC-V instruction sets, MicroTranslator provides a novel solution for multi-architecture binary translation.
+A prototype system of the RISC-V MicroTranslator was implemented in the Gem5 simulator. Experimental results demonstrate that the optimized MicroTranslator achieves an average performance of 96.1\% of native programs when running the SPEC 2000 benchmarks, effectively alleviating the performance bottleneck and achieving near-native execution efficiency. By supporting both x86 and RISC-V instruction sets, MicroTranslator provides a novel solution for multi-architecture binary translation.
 
 \KEYWORDS{Binary translation, multi-architecture, software and hardware collaboration}% 英文关键词
 
