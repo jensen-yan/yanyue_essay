@@ -10,3 +10,5 @@ Tmp
 plot/*.pdf
 plot/*.png
 plot/*.svg
+!plot/ucacheline_nums1.pdf
+!plot/ucacheline_nums2.pdf
