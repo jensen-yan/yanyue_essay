@@ -258,7 +258,7 @@ Transmeta的CMS充当了翻译器和优化器的角色，使得基于非x86的VL
 例如龙芯公司在LoongArch指令集中添加的二进制翻译扩展指令（Loongson Binary Translation, LBT）\cite{LoongArch2023}。
 
 龙芯早期使用MIPS指令集，并添加了便于x86和ARM二进制翻译的一系列自定义指令集，例如对x86 EFLAGS的支持、对X87浮点指令的支持、非对齐访存的支持等，形成了LoongISA\cite{LoongISA}。
-但由于MIPS中用户定义指令（UDI）槽位有限，导致了LoongISA的指令集扩展受限，
+但由于MIPS中用户定义指令（UDI，user defined interface）槽位有限，导致了LoongISA的指令集扩展受限，
 所以在2020年龙芯公司发布了全新的、自主可控的、支持更多指令集扩展的LoongArch架构\cite{LoongArch2023}。
 并从3A5000开始，龙芯处理器开始支持LoongArch架构，并配套使用LATX二进制翻译器进行x86应用程序的翻译。
 LoongArch指令集中包括了对二进制翻译支持的扩展指令集，称为LBT指令集，用于支持x86、ARM、MIPS的二进制翻译。
