@@ -1,13 +1,13 @@
 \chapter{RISC-V微译器设计与实现}\label{chap:RISC-V}
 
-本节主要讲解为了让\textbf{微译器}支持RISC-V架构需要做的工作，主要包括RISC-V指令集的支持、RISC-V ABI的支持等。
+本节主要讲解为了让\textbf{x86微译器}支持RISC-V架构需要做的工作，主要包括RISC-V指令集的支持、RISC-V ABI的支持等。
 % 首先需要讲解\textbf{融合微码}的编码方式，是如何做到高可扩展性的。
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.8\linewidth]{./image/front_end_RISCV.pdf}
   \bicaption{\enspace RISC-V微译器整体架构图}{\enspace The overview of the RISC-V micro-translator architecture}
-  \fignote{绿色部分为本文重点工作。}
+  \fignote{绿色部分为本文重点工作，在x86微译器上支持RISC-V架构所需要的修改。}
   \label{img:front_end_riscv}
 \end{figure}
 
@@ -52,9 +52,14 @@
 
 \section{融合微码设计}
 
-本节讲解\textbf{融合微码}的编码方式，
-本文通过调整融合微码的编码方式，使得微码能够支持多种指令集的翻译，同时保持简洁性、可扩展性。
-前文\ref{sec:tisa}已经介绍了融合微码的概念，本节详细介绍融合微码的编码方式。
+本节详细介绍重要的一个概念——融合微码。“融合”代表它能融合了多种指令集的特征，
+包括x86和RISC-V，未来还可以支持ARM，MIPS等其他指令集，
+或许叫统一微码也更好理解。但融合并非简单的把所有指令集简单拼接就好，这会造成指令集冗余，挤占有限的编码空间。
+而是需要对各个指令集的特征进行分析，找到共性，抽象出一种更加简洁的指令集，这就是融合微码的设计思想。
+
+对于RISC-V微译器而言，融合微码是在前文\ref{sec:tisa}节中x86微码指令集进行扩充得到的。
+本节首先讲解\textbf{融合微码}的编码方式，
+通过调整融合微码的编码方式，使得微码能够支持多种指令集的翻译，同时保持简洁性、可扩展性。
 
 \begin{figure}[!htbp]
   \centering
@@ -150,7 +155,7 @@
 例如x86 SSE指令集有16个128位的XMM寄存器，
 RISC-V有32个64位的浮点寄存器。综合考虑，在设计中，只支持32个64位浮点寄存器的编码，同样通过5比特的操作数(opr)来寻址浮点寄存器。
 
-如图\ref{img:regs}，展示了融合微码的寄存器编码方式，主要包括通用寄存器、临时寄存器、浮点寄存器。
+如图\ref{img:regs}，展示了融合微码的寄存器编码方式，主要包括通用寄存器、浮点寄存器和临时寄存器。
 
 \begin{figure}[h]
   \centering
