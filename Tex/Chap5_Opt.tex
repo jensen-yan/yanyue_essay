@@ -82,7 +82,7 @@ Addr_{AOT} = Base +  Addr_{ELF} \times 64
 对传统微码缓存的空洞问题进行了分析，放松了前两个结束条件，能够提升微码缓存的存储效率，进而提升了12\%的整体性能。
 本文也借鉴了这个思路，对RISC-V微译器中翻译缓存进行了优化，放松了前两个结束条件，提升了翻译缓存的存储效率。
 
-\subsection{放松指令缓存行结尾}
+\subsection{行尾放松}
 
 前文中提到，遇到指令缓存行的结尾是一个结束条件，这样才能保证指令缓存行和翻译缓存行是一对多的关系。
 当遇到自修改代码等情况时，需要刷新一行指令缓存行，这样才能方便找到对应的翻译缓存行进行刷新和替换。
@@ -91,7 +91,7 @@ Addr_{AOT} = Base +  Addr_{ELF} \times 64
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=1\linewidth]{./image/aot_relaxed_icache.pdf}
-    \bicaption{\enspace 放松指令缓存行结尾}{\enspace Relaxing the end of the instruction cache line}
+    \bicaption{\enspace 行尾放松}{\enspace Relaxing the end of the instruction cache line}
     \fignote{允许连续的两行指令缓存行的指令填充到同一组翻译缓存行中，
     下一行的指令e0和指令f0可以填充到上一个指令缓存行对应的翻译缓存行中。}
     \label{img:aot_relaxed_icache}
@@ -106,7 +106,7 @@ Addr_{AOT} = Base +  Addr_{ELF} \times 64
 例如c0-d0-e0-f0这四条微码指令对应的指令缓存行为A-B-C-D和E-F，所以只需要刷新对应的两行指令缓存行即可。
 自修改代码的处理在实际场景中并不常见，并且对性能影响较小，因此放松这个结束条件是可行的。
 
-\subsection{放松条件跳转指令}
+\subsection{分支放松}
 
 前文中提到，控制流指令可能改变程序原本指令执行流，将顺序执行的指令分割为一个个基本块，因此控制流指令
 是一个结束条件，这样能够保证翻译缓存行中的微码指令是一个基本块的连续指令。
@@ -131,7 +131,7 @@ Addr_{AOT} = Base +  Addr_{ELF} \times 64
   \end{figure}
 
 
-\section{可变长翻译缓存行优化}
+\section{可变长行优化}
 
 前文中提到过，每一个翻译缓存行中所有指令对应于一个基本块，根据本文插装分析的结果，每个基本块平均长度为5条指令。
 然而，由于翻译缓存行的大小是固定的，为64字节，这意味着即便放松了结束条件，一行中有效的指令大约只有5条，占据20字节，存储效率平均只有35\%左右。
@@ -153,7 +153,7 @@ Addr_{AOT} = Base +  Addr_{ELF} \times 64
 如果基本块平均长度为5条指令，均使用32字节的翻译缓存行，存储效率为$ 5*4 / 32 = 62.5\% $，
 比固定长度的64字节翻译缓存行提升了接近一倍的存储效率，这样就能减少缓存缺失率，提升性能。
 
-\section{融合指令集压缩编码优化}
+\section{指令压缩优化}
 
 前文中提到，借鉴RISC-V 压缩指令集的思想，融合微码指令集也可以进行压缩编码，从而在一行翻译缓存中存放更多的指令，提升存储效率。
 回顾图\ref{img:TISA_encoder}，展示了融合微码可以有2字节和4字节两种长度，分别为压缩指令和标准指令。
