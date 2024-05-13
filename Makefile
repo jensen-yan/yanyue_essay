@@ -48,6 +48,11 @@ snippets/%-crop.pdf: snippets/%.pdf
 tables/%.tex tables/%.html &: tables/%.py tables/%.xlsx
 	$< -f $(word 2,$^)
 
+%.slides.html: %.slides.md \
+	$(patsubst %.drawio, %.pdf, $(wildcard image/*.drawio)) \
+	$(patsubst %_plot.py, %.pdf, $(wildcard plot/*_plot.py))
+	REPOROOT=./markdown_revealjs ./markdown_revealjs/bin/revealjs.sh $<
+
 clean:
 	rm -rf out/
 clean-all: clean
