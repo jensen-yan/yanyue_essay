@@ -2,6 +2,7 @@
 out
 __pycache__
 image/*.pdf
+image/*.svg
 snippets/*.pdf
 tables/*.tex
 tables/*.html
