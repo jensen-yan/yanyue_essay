@@ -19,6 +19,8 @@ out/Thesis.pdf: \
 	drawio -x -f svg $<
 %.pdf: %.drawio
 	drawio -x -f pdf --crop $<
+%.png: %.drawio
+	drawio -x -f png $< --scale 3
 
 .PHONY: ipc
 ipc: $(addprefix plot/ucache_ipc, $(addsuffix .pdf, 0 1 2 3 4))
@@ -39,6 +41,11 @@ plot/insts_inflt_breakdown_%.svg: plot/insts_inflt_breakdown_%_plot.py \
 	$< -o $@
 plot/%.pdf: plot/%.svg
 	rsvg-convert -f pdf -o $@ $<
+plot/%.png: plot/%.pdf
+	pdftoppm -png -singlefile -r 300 $< $(patsubst %.png, %, $@)
+
+
+png: $(patsubst %.pdf, %.png, $(wildcard plot/*.pdf))
 
 snippets/%.pdf: snippets/%.mkd
 	pandoc -V pagestyle=empty -o $@ $<
@@ -49,7 +56,8 @@ tables/%.tex tables/%.html &: tables/%.py tables/%.xlsx
 	$< -f $(word 2,$^)
 
 %.slides.html: %.slides.md \
-	$(patsubst %.drawio, %.svg, $(wildcard image/*.drawio)) \
+	$(patsubst %.drawio, %.png, $(wildcard image/*.drawio)) \
+	$(patsubst %.pdf, %.png, $(wildcard plot/*.pdf)) \
 	$(patsubst %_plot.py, %.pdf, $(wildcard plot/*_plot.py))
 	REPOROOT=./markdown_revealjs ./markdown_revealjs/bin/revealjs.sh $<
 
