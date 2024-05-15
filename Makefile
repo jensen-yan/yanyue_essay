@@ -18,7 +18,8 @@ out/Thesis.pdf: \
 %.svg: %.drawio
 	drawio -x -f svg $<
 %.pdf: %.drawio
-	drawio -x -f pdf --crop $<
+	drawio -x -f pdf --crop $< -o $(basename $@).nocrop.pdf
+	pdfcrop $(basename $@).nocrop.pdf $@
 %.png: %.drawio
 	drawio -x -f png $< --scale 3
 
