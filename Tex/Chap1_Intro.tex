@@ -229,7 +229,7 @@ Apple\cite{RunningIntelBinaries}、Intel\cite{noauthor_intel_nodate}
 AMD、Intel和很多国内显卡公司开发的加速器无法直接运行CUDA程序，这也导致了GPU生态碎片化问题。
 随着更多有竞争力的GPU架构的出现，也有更多用户倾向于在不同GPU架构上运行CUDA程序，目前有两种解决方案：
 重新编译CUDA程序，或者通过二进制兼容技术。
-重新编译现有的 CUDA 程序完全合法但需要人力投入，例如AMD 和 Intel 都有工具分别将 CUDA 程序移植到他们的 ROCm和 OneAPI平台。
+重新编译现有的 CUDA 程序完全合法但需要人力投入，例如AMD 和 Intel 都有工具分别将 CUDA 程序移植到他们的 ROCm和 oneAPI平台。
 而后者的代表是ZLUDA\cite{ZLUDA}，通过兼容层允许在非英伟达GPU上运行未经修改的CUDA程序
 （兼容层和二进制翻译不同，更接近于Wine这样的库兼容技术），
 并声称提供了“接近原生”的性能。但最新版本的英伟达用户协议（ELUA）中明确禁止使用ZLUDA等技术在其他平台上运行CUDA代码，
