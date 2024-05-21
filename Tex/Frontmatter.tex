@@ -30,7 +30,7 @@
 本文的主要工作及贡献如下：
 
 1. 设计并实现了RISC-V微译器：
-设计了寄存器映射方案，累计添加了51条微码指令用于支持272条通用RISC-V指令。
+通过增加专门的微码指令支持RISC-V指令翻译，获得了较高的RISC-V程序翻译执行性能。
 
 2. 优化了RISC-V微译器的性能：添加了4种优化方案，包括行尾放松、分支放松、可变长行、指令压缩，
 测试显示优化方案降低了翻译缓存的缺失率，提升了微译器的性能。
@@ -53,8 +53,7 @@ This thesis addresses ecosystem fragmentation and the performance bottleneck of 
 The main work and contributions of this thesis are as follows:
 
 1. Design of the RISC-V MicroTranslator:
-A register mapping scheme was designed, and 51 microcode instructions were added to support the translation of 272 RISC-V instructions.
-Performance Optimization of MicroTranslator:
+By adding specialized microcode instructions to support RISC-V instruction translation, high performance in the execution of translated RISC-V programs was achieved.
 
 2. Four optimization strategies were implemented, including the relaxation of cache line endings, conditional jump instructions, support for compressed instructions, and support for variable-length microcode lines. Tests showed that these optimizations reduced the miss rate of the microcode cache and enhanced the performance of MicroTranslator.
 
