@@ -16,3 +16,4 @@ plot/*.svg
 !plot/ucacheline_nums2.pdf
 晏悦*.pdf
 *.html
+!晏悦-论文终稿.pdf
